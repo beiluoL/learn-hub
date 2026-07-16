@@ -10,7 +10,7 @@ export default function KnowledgeMap() {
         返回首页
       </Link>
       <div className="flex items-center gap-4 mt-4 mb-6">
-        <div className="w-14 h-14 rounded-2xl grid place-items-center text-3xl bg-brand-50">
+        <div className="w-14 h-14 rounded-lg grid place-items-center text-3xl bg-brand-50">
           <Share2 size={28} className="text-brand-500" />
         </div>
         <div>

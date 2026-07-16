@@ -15,7 +15,7 @@ export default function Footer() {
         {/* 公众号与版权 */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-6 border-t border-border">
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-success-50 text-success-600 text-lg font-bold">
+            <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-success-50 text-success-600 text-lg font-bold">
               拾
             </span>
             <div>

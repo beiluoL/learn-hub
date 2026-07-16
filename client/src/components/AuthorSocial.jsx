@@ -88,7 +88,7 @@ export function SocialLinkList({ compact = false }) {
           href={l.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-sm font-medium text-text-primary transition hover:border-brand-300 hover:text-brand-600 hover:shadow-card-hover ${
+          className={`flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-text-primary transition hover:border-brand-300 hover:text-brand-600 hover:shadow-card-hover ${
             compact ? 'flex-1 min-w-[140px] justify-center' : ''
           }`}
         >

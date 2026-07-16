@@ -60,7 +60,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 shrink-0" onClick={close}>
-          <span className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 grid place-items-center text-white shadow-soft">
+          <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 grid place-items-center text-white shadow-soft">
             <Coffee size={20} />
           </span>
           <span className="text-lg font-extrabold tracking-tight hidden sm:inline">
@@ -85,7 +85,7 @@ export default function Header() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="搜索 Java / Python / 前端 / AI…"
-              className="w-full pl-9 pr-3 py-2 rounded-xl bg-surface border border-border focus:border-brand-400 focus:bg-card outline-none text-sm text-text-primary placeholder:text-text-muted transition"
+              className="w-full pl-9 pr-3 py-2 rounded-lg bg-surface border border-border focus:border-brand-400 focus:bg-card outline-none text-sm text-text-primary placeholder:text-text-muted transition"
             />
           </div>
         </form>

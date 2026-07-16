@@ -89,7 +89,7 @@ export default function InterviewDetail() {
         {prev ? (
           <Link
             to={`/interview/${prev.id}`}
-            className="p-4 rounded-xl bg-card border border-border hover:border-brand-300 shadow-card transition"
+            className="p-4 rounded-2xl bg-card border border-border hover:border-brand-300 shadow-card transition"
           >
             <div className="flex items-center gap-1 text-xs text-text-muted mb-1">
               <ArrowLeft size={12} />

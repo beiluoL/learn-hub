@@ -9,7 +9,7 @@ export default function NotFound() {
       <p className="text-text-secondary mt-2">你访问的页面不存在。</p>
       <Link
         to="/"
-        className="inline-flex items-center gap-2 mt-6 bg-brand-600 text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-brand-700"
+        className="btn-primary inline-flex items-center gap-2 mt-6 px-6 py-2.5 rounded-lg font-semibold"
       >
         <Home size={16} />
         回到首页

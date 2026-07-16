@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, CheckCircle, Circle } from 'lucide-react';
+import { ExternalLink, CheckCircle, Circle, ChevronDown } from 'lucide-react';
 import { DIFF_MAP } from './LevelBadge.jsx';
 import { content } from '../content.js';
 import Markdown from './Markdown.jsx';
@@ -67,7 +67,10 @@ export default function InterviewCard({ item, isMastered, onToggleMastered }) {
             {item.tags?.map((t) => ` · #${t}`).join('')}
           </span>
         </span>
-        <span className="text-text-muted text-lg shrink-0">{open ? '−' : '+'}</span>
+        <ChevronDown
+          size={18}
+          className={`shrink-0 text-text-muted transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        />
         {onToggleMastered && (
           <button
             onClick={(e) => {
@@ -103,7 +106,7 @@ export default function InterviewCard({ item, isMastered, onToggleMastered }) {
           <div className="mt-3 text-right">
             <Link
               to={`/interview/${item.id}`}
-              className="inline-flex items-center gap-1 text-sm text-brand-600 hover:underline font-medium"
+              className="btn-ghost inline-flex items-center gap-1 text-sm font-medium"
             >
               查看详情页
               <ExternalLink size={12} />

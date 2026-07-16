@@ -37,7 +37,7 @@ export default function Category() {
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="h-4 w-24 rounded bg-surface animate-pulse mb-6" />
         <div className="flex items-center gap-4 mb-6 animate-pulse">
-          <div className="w-14 h-14 rounded-2xl bg-surface" />
+          <div className="w-14 h-14 rounded-lg bg-surface" />
           <div>
             <div className="h-6 w-32 rounded bg-surface mb-1" />
             <div className="h-4 w-48 rounded bg-surface" />
@@ -58,7 +58,7 @@ export default function Category() {
       ]} />
       <div className="flex items-center gap-4 mt-4 mb-6">
         <div
-          className="w-14 h-14 rounded-2xl grid place-items-center"
+          className="w-14 h-14 rounded-lg grid place-items-center"
           style={{ background: `${cat.color}1a` }}
         >
           <CatIcon size={28} style={{ color: cat.color }} />
@@ -77,10 +77,10 @@ export default function Category() {
           <button
             key={l.id}
             onClick={() => setLevel(l.id)}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
+            className={`px-4 py-1.5 rounded-lg text-sm font-medium transition ${
               level === l.id
-                ? 'bg-brand-600 text-white'
-                : 'bg-card text-text-secondary border border-border hover:border-brand-300'
+                ? 'bg-brand-500 text-white'
+                : 'btn-ghost border border-border'
             }`}
           >
             {l.label}

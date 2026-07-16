@@ -39,7 +39,13 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-brand-500 to-brand-700 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,white,transparent_40%),radial-gradient(circle_at_80%_60%,white,transparent_35%)]" />
+        <div className="absolute inset-0 overflow-hidden">
+          {/* 装饰圆点 */}
+          <span className="absolute top-10 right-[15%] w-4 h-4 rounded-full bg-white/10" />
+          <span className="absolute top-1/3 right-[5%] w-3 h-3 rounded-full bg-white/10" />
+          <span className="absolute bottom-[20%] left-[8%] w-5 h-5 rounded-full bg-white/10" />
+          <span className="absolute bottom-10 right-[25%] w-3 h-3 rounded-full bg-white/10" />
+        </div>
         <div className="relative max-w-6xl mx-auto px-4 py-20 text-center">
           <span className="inline-flex items-center gap-1.5 text-sm font-medium bg-white/15 px-3 py-1 rounded-full mb-5">
             <BookOpen size={16} />
@@ -54,14 +60,14 @@ export default function Home() {
             体系化学习路线、实战示例与高频面试题，帮你从入门到进阶，从容应对技术面试。
           </p>
           <form onSubmit={submit} className="mt-8 max-w-xl mx-auto">
-            <div className="flex bg-white rounded-2xl p-1.5 shadow-lg">
+            <div className="flex bg-card rounded-lg p-1.5 shadow-lg">
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="搜点什么？比如 HashMap、装饰器、RAG…"
                 className="flex-1 px-4 py-3 text-gray-700 outline-none bg-transparent"
               />
-              <button className="bg-brand-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-brand-700">
+              <button className="btn-primary px-6 py-3 rounded-lg font-semibold">
                 搜索
               </button>
             </div>
@@ -88,7 +94,7 @@ export default function Home() {
                 className="group bg-card rounded-2xl p-6 border border-border shadow-card hover:-translate-y-0.5 hover:shadow-card-hover transition"
               >
                 <div
-                  className="w-12 h-12 rounded-xl grid place-items-center mb-4"
+                  className="w-12 h-12 rounded-lg grid place-items-center mb-4"
                   style={{ background: `${c.color}1a`, color: c.color }}
                 >
                   <CatIcon catId={c.id} size={28} />
@@ -117,7 +123,7 @@ export default function Home() {
             <div className="font-bold">学习知识点地图</div>
             <div className="text-white/80 text-sm">像 Obsidian 关系图谱一样，把文章与面试题连成知识网</div>
           </div>
-          <span className="text-sm font-semibold bg-white/20 px-4 py-2 rounded-xl">进入 →</span>
+          <span className="text-sm font-semibold bg-white/20 px-4 py-2 rounded-lg">进入 →</span>
         </Link>
       </section>
 
@@ -159,7 +165,7 @@ export default function Home() {
             {/* 左侧：作者信息 */}
             <div className="flex-1 px-8 py-10">
               <div className="flex items-center gap-4 mb-5">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-violet-500 flex items-center justify-center text-white text-2xl font-extrabold shadow-lg">
+                <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-brand-500 to-violet-500 flex items-center justify-center text-white text-2xl font-extrabold shadow-lg">
                   北
                 </div>
                 <div>
@@ -199,7 +205,7 @@ export default function Home() {
               <img
                 src={`${import.meta.env.BASE_URL}qrcode-wechat.jpg`}
                 alt="公众号：北落拾光"
-                className="w-32 h-32 rounded-xl bg-white p-1.5 shadow-lg mb-4"
+                className="w-32 h-32 rounded-lg bg-white p-1.5 shadow-lg mb-4"
               />
               <div className="text-center">
                 <div className="font-bold text-white text-lg mb-1">{WECHAT.name}</div>

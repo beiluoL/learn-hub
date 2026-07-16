@@ -64,10 +64,10 @@ export default function Interviews() {
           <button
             key={f.id}
             onClick={() => setCat(f.id)}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
+            className={`px-4 py-1.5 rounded-lg text-sm font-medium transition ${
               cat === f.id
-                ? 'bg-brand-600 text-white'
-                : 'bg-card text-text-secondary border border-border hover:border-brand-300'
+                ? 'bg-brand-500 text-white'
+                : 'btn-ghost border border-border'
             }`}
           >
             {f.label}
@@ -75,10 +75,10 @@ export default function Interviews() {
         ))}
         <button
           onClick={() => setHideMastered((v) => !v)}
-          className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
+          className={`px-4 py-1.5 rounded-lg text-sm font-medium transition ${
             hideMastered
               ? 'bg-success-500 text-white'
-              : 'bg-card text-text-secondary border border-border hover:border-brand-300'
+              : 'btn-ghost border border-border'
           }`}
         >
           仅未掌握
