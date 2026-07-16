@@ -6,6 +6,7 @@ import Category from './pages/Category.jsx';
 import ArticleDetail from './pages/ArticleDetail.jsx';
 import Interviews from './pages/Interviews.jsx';
 import Search from './pages/Search.jsx';
+import KnowledgeMap from './pages/KnowledgeMap.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/category/:catId" element={<Category />} />
           <Route path="/article/*" element={<ArticleDetail />} />
           <Route path="/interviews" element={<Interviews />} />
+          <Route path="/map" element={<KnowledgeMap />} />
           <Route path="/search" element={<Search />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

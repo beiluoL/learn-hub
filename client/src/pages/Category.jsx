@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
+import Roadmap from '../components/Roadmap.jsx';
 
 const LEVELS = [
   { id: 'all', label: '全部' },
@@ -52,6 +53,9 @@ export default function Category() {
           <p className="text-gray-500 text-sm">{cat.desc}</p>
         </div>
       </div>
+
+      {/* 学习路线时间轴 */}
+      <Roadmap articles={articles} color={cat.color} />
 
       <div className="flex flex-wrap gap-2 mb-6">
         {LEVELS.map((l) => (

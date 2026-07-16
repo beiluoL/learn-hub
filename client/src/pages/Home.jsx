@@ -98,6 +98,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 知识地图入口 */}
+      <section className="max-w-6xl mx-auto px-4 pb-4">
+        <Link
+          to="/map"
+          className="flex items-center gap-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-2xl p-5 shadow-soft hover:-translate-y-0.5 transition"
+        >
+          <span className="text-3xl">🕸</span>
+          <div className="flex-1">
+            <div className="font-bold">学习知识点地图</div>
+            <div className="text-white/80 text-sm">像 Obsidian 关系图谱一样，把文章与面试题连成知识网</div>
+          </div>
+          <span className="text-sm font-semibold bg-white/20 px-4 py-2 rounded-xl">进入 →</span>
+        </Link>
+      </section>
+
       {/* 精选文章 */}
       <section className="max-w-6xl mx-auto px-4 pb-14">
         <SectionTitle title="精选文章" sub="来自各方向的实战内容" />

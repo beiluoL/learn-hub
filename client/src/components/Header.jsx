@@ -27,6 +27,9 @@ export default function Header() {
           <Link to="/" className="px-3 py-2 rounded-lg hover:bg-gray-100">
             首页
           </Link>
+          <Link to="/map" className="px-3 py-2 rounded-lg hover:bg-gray-100">
+            知识地图
+          </Link>
           <Link to="/interviews" className="px-3 py-2 rounded-lg hover:bg-gray-100">
             面试题
           </Link>
