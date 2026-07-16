@@ -16,7 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/category/:catId" element={<Category />} />
-          <Route path="/article/:id" element={<ArticleDetail />} />
+          <Route path="/article/*" element={<ArticleDetail />} />
           <Route path="/interviews" element={<Interviews />} />
           <Route path="/search" element={<Search />} />
           <Route path="*" element={<NotFound />} />

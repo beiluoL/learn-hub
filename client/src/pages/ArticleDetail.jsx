@@ -5,7 +5,8 @@ import LevelBadge from '../components/LevelBadge.jsx';
 import Markdown from '../components/Markdown.jsx';
 
 export default function ArticleDetail() {
-  const { id } = useParams();
+  // 文章 id 含斜杠（如 ai/ai-prompt），用 splat 路由捕获完整路径
+  const { '*': id } = useParams();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
 
