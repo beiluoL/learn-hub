@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T12:42:09.062Z",
+  "generatedAt": "2026-07-16T13:09:20.089Z",
   "categories": [
     {
       "id": "java",
@@ -50,6 +50,7 @@
         "编排",
         "规划"
       ],
+      "prereq": [],
       "summary": "让 LLM 自主规划、调用工具、循环迭代完成复杂任务。",
       "order": 3,
       "file": "ai/ai-agent.md",
@@ -67,9 +68,49 @@
         "量化",
         "GPU"
       ],
+      "prereq": [],
       "summary": "把大模型高效、低成本地部署到线上服务。",
       "order": 5,
       "file": "ai/ai-deploy.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-eval",
+      "title": "大模型应用评估：如何衡量效果",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 10,
+      "tags": [
+        "评估",
+        "LLM-as-judge",
+        "指标"
+      ],
+      "prereq": [
+        "ai/ai-rag"
+      ],
+      "summary": "建立可量化的评估体系，用离线指标 + LLM 裁判 + 人工抽检衡量 LLM 应用质量。",
+      "order": 7,
+      "file": "ai/ai-eval.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-finetune",
+      "title": "模型微调：Fine-tuning 与 LoRA",
+      "category": "ai",
+      "level": "advanced",
+      "readMinutes": 12,
+      "tags": [
+        "微调",
+        "LoRA",
+        "PEFT",
+        "训练"
+      ],
+      "prereq": [
+        "ai/ai-prompt"
+      ],
+      "summary": "理解全量微调与参数高效微调（LoRA）的取舍，以及何时该微调、何时该用 RAG。",
+      "order": 6,
+      "file": "ai/ai-finetune.md",
       "type": "md"
     },
     {
@@ -83,6 +124,7 @@
         "LLM",
         "入门"
       ],
+      "prereq": [],
       "summary": "掌握结构化提示词技巧，稳定提升大模型输出质量。",
       "order": 1,
       "file": "ai/ai-prompt.md",
@@ -100,6 +142,7 @@
         "检索",
         "Embedding"
       ],
+      "prereq": [],
       "summary": "用私有知识 + 检索喂给 LLM，解决\"幻觉\"与知识时效问题。",
       "order": 2,
       "file": "ai/ai-rag.md",
@@ -117,6 +160,7 @@
         "相似度",
         "检索"
       ],
+      "prereq": [],
       "summary": "理解文本向量化与近似最近邻检索，支撑 RAG/Agent 记忆。",
       "order": 4,
       "file": "ai/ai-vector.md",
@@ -134,6 +178,7 @@
         "渲染",
         "回流重绘"
       ],
+      "prereq": [],
       "summary": "理解浏览器渲染流程与事件模型，写出流畅交互。",
       "order": 2,
       "file": "frontend/fe-dom.md",
@@ -151,6 +196,7 @@
         "模块化",
         "工程化"
       ],
+      "prereq": [],
       "summary": "理解 ESM、打包器与现代化构建工具链。",
       "order": 4,
       "file": "frontend/fe-engineering.md",
@@ -168,6 +214,7 @@
         "原型链",
         "this"
       ],
+      "prereq": [],
       "summary": "夯实 JS 三大难点，理解语言本质而非死记语法。",
       "order": 1,
       "file": "frontend/fe-js-core.md",
@@ -185,6 +232,7 @@
         "懒加载",
         "缓存"
       ],
+      "prereq": [],
       "summary": "从加载、渲染到运行时，系统性提升页面性能。",
       "order": 5,
       "file": "frontend/fe-perf.md",
@@ -202,22 +250,63 @@
         "状态管理",
         "组件"
       ],
+      "prereq": [],
       "summary": "掌握函数组件与 Hooks 心智模型，理解渲染与副作用。",
       "order": 3,
       "file": "frontend/fe-react.md",
       "type": "md"
     },
     {
+      "id": "frontend/fe-state",
+      "title": "React 状态管理：从 Context 到 Zustand",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 10,
+      "tags": [
+        "React",
+        "状态管理",
+        "Zustand",
+        "Context"
+      ],
+      "prereq": [
+        "frontend/fe-react"
+      ],
+      "summary": "厘清何时用本地状态、Context 还是外部状态库，掌握 Zustand 的极简用法。",
+      "order": 7,
+      "file": "frontend/fe-state.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-typescript",
+      "title": "TypeScript 基础：类型系统入门",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 11,
+      "tags": [
+        "TypeScript",
+        "类型",
+        "泛型"
+      ],
+      "prereq": [
+        "frontend/fe-js-core"
+      ],
+      "summary": "从 JS 到 TS，掌握基础类型、接口、联合类型、泛型与类型收窄。",
+      "order": 6,
+      "file": "frontend/fe-typescript.md",
+      "type": "md"
+    },
+    {
       "id": "java/add-your-own-article",
       "title": "示例文章：如何给本网站添加你自己的内容",
       "category": "java",
-      "level": "初级",
+      "level": "beginner",
       "readMinutes": 6,
       "tags": [
-        "[教程",
+        "教程",
         "入门",
-        "内容管理]"
+        "内容管理"
       ],
+      "prereq": [],
       "summary": "一篇用来演示的示例文章——你正在看的这篇，就是按照文末说明新建出来的。",
       "order": 99,
       "file": "java/add-your-own-article.md",
@@ -234,6 +323,7 @@
         "数据类型",
         "变量"
       ],
+      "prereq": [],
       "summary": "掌握 Java 的基本类型、引用类型、运算符与控制流，搭建扎实的语法基础。",
       "order": 1,
       "file": "java/java-basics.md",
@@ -251,6 +341,7 @@
         "并发",
         "性能"
       ],
+      "prereq": [],
       "summary": "吃透 Java 集合体系，重点理解 HashMap 的底层结构与扩容机制。",
       "order": 3,
       "file": "java/java-collections.md",
@@ -268,9 +359,49 @@
         "锁",
         "JUC"
       ],
+      "prereq": [],
       "summary": "理解线程模型、线程池参数与常见并发工具，写出安全的多线程代码。",
       "order": 4,
       "file": "java/java-concurrency.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-exception",
+      "title": "异常处理：Checked、Unchecked 与最佳实践",
+      "category": "java",
+      "level": "beginner",
+      "readMinutes": 8,
+      "tags": [
+        "异常",
+        "健壮性",
+        "try-catch"
+      ],
+      "prereq": [
+        "java/java-basics"
+      ],
+      "summary": "搞清 Checked / Unchecked 异常的区别，掌握 try-with-resources 与异常处理的工程实践。",
+      "order": 7,
+      "file": "java/java-exception.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-generics",
+      "title": "泛型与通配符：PECS 原则",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 10,
+      "tags": [
+        "泛型",
+        "类型安全",
+        "PECS"
+      ],
+      "prereq": [
+        "java/java-oop",
+        "java/java-collections"
+      ],
+      "summary": "理解类型擦除、上下界通配符，掌握\"生产者 extends、消费者 super\"的 PECS 原则。",
+      "order": 8,
+      "file": "java/java-generics.md",
       "type": "md"
     },
     {
@@ -285,6 +416,7 @@
         "内存",
         "调优"
       ],
+      "prereq": [],
       "summary": "理解运行时数据区、对象创建过程与主流垃圾回收器，具备基础调优能力。",
       "order": 5,
       "file": "java/java-jvm.md",
@@ -302,9 +434,31 @@
         "多态",
         "接口"
       ],
+      "prereq": [],
       "summary": "理解 Java 面向对象三大特性，以及接口与抽象类的取舍。",
       "order": 2,
       "file": "java/java-oop.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-spring",
+      "title": "Spring 核心：IoC 容器与依赖注入",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 12,
+      "tags": [
+        "Spring",
+        "IoC",
+        "DI",
+        "Bean"
+      ],
+      "prereq": [
+        "java/java-oop",
+        "java/java-collections"
+      ],
+      "summary": "理解控制反转与依赖注入的本质，掌握 Bean 生命周期、作用域与三种注入方式。",
+      "order": 9,
+      "file": "java/java-spring.md",
       "type": "md"
     },
     {
@@ -319,6 +473,7 @@
         "Stream",
         "函数式"
       ],
+      "prereq": [],
       "summary": "用 Lambda 与 Stream 写出声明式、易并行的高可读代码。",
       "order": 6,
       "file": "java/java-stream.md",
@@ -336,6 +491,7 @@
         "并发",
         "async/await"
       ],
+      "prereq": [],
       "summary": "用 async/await 处理高并发 IO，理解事件循环与协程调度。",
       "order": 3,
       "file": "python/py-asyncio.md",
@@ -352,6 +508,7 @@
         "数据类型",
         "语法"
       ],
+      "prereq": [],
       "summary": "掌握变量、缩进、内置数据结构与推导式，建立 Python 直觉。",
       "order": 1,
       "file": "python/py-basics.md",
@@ -369,6 +526,7 @@
         "数据分析",
         "科学计算"
       ],
+      "prereq": [],
       "summary": "用向量化思想处理表格与数组数据，远离慢速 for 循环。",
       "order": 5,
       "file": "python/py-data.md",
@@ -385,9 +543,49 @@
         "闭包",
         "高阶函数"
       ],
+      "prereq": [],
       "summary": "理解一等函数、闭包原理，手写可用的装饰器与带参装饰器。",
       "order": 2,
       "file": "python/py-decorator.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-testing",
+      "title": "单元测试：pytest 实战",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 10,
+      "tags": [
+        "测试",
+        "pytest",
+        "fixture",
+        "mock"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "用 pytest 写清爽的测试，掌握 fixture、参数化与 mock，建立可靠的测试习惯。",
+      "order": 7,
+      "file": "python/py-testing.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-typing",
+      "title": "类型注解与 dataclass",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 9,
+      "tags": [
+        "类型注解",
+        "dataclass",
+        "静态检查"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "用类型提示提升可读性与工具支持，用 dataclass 优雅地定义数据类。",
+      "order": 6,
+      "file": "python/py-typing.md",
       "type": "md"
     },
     {
@@ -402,6 +600,7 @@
         "API",
         "Pydantic"
       ],
+      "prereq": [],
       "summary": "用 FastAPI 快速构建类型安全、自带文档的异步 Web 服务。",
       "order": 4,
       "file": "python/py-web.md",
@@ -452,6 +651,20 @@
       "type": "md"
     },
     {
+      "id": "interviews/iv-ai-4",
+      "question": "大模型的\"幻觉\"（Hallucination）是什么？如何缓解？",
+      "category": "ai",
+      "difficulty": "middle",
+      "tags": [
+        "幻觉",
+        "RAG",
+        "可靠性"
+      ],
+      "order": 18,
+      "file": "interviews/iv-ai-4.md",
+      "type": "md"
+    },
+    {
       "id": "interviews/iv-fe-1",
       "question": "var、let、const 的区别？什么是变量提升（Hoisting）？",
       "category": "frontend",
@@ -491,6 +704,20 @@
       ],
       "order": 9,
       "file": "interviews/iv-fe-3.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-4",
+      "question": "解释 JavaScript 的事件循环（Event Loop）与宏任务/微任务。",
+      "category": "frontend",
+      "difficulty": "hard",
+      "tags": [
+        "事件循环",
+        "异步",
+        "Promise"
+      ],
+      "order": 17,
+      "file": "interviews/iv-fe-4.md",
       "type": "md"
     },
     {
@@ -536,6 +763,20 @@
       "type": "md"
     },
     {
+      "id": "interviews/iv-java-4",
+      "question": "volatile 关键字的作用是什么？能保证原子性吗？",
+      "category": "java",
+      "difficulty": "hard",
+      "tags": [
+        "并发",
+        "volatile",
+        "JMM"
+      ],
+      "order": 15,
+      "file": "interviews/iv-java-4.md",
+      "type": "md"
+    },
+    {
       "id": "interviews/iv-py-1",
       "question": "Python 中 list 和 tuple 的区别？什么场景用 tuple？",
       "category": "python",
@@ -573,6 +814,20 @@
       ],
       "order": 6,
       "file": "interviews/iv-py-3.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-py-4",
+      "question": "Python 的内存管理与垃圾回收机制是怎样的？",
+      "category": "python",
+      "difficulty": "middle",
+      "tags": [
+        "内存管理",
+        "GC",
+        "引用计数"
+      ],
+      "order": 16,
+      "file": "interviews/iv-py-4.md",
       "type": "md"
     },
     {

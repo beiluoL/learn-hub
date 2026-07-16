@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { DIFF_MAP } from './LevelBadge.jsx';
 import { content } from '../content.js';
 import Markdown from './Markdown.jsx';
@@ -48,6 +49,14 @@ export default function InterviewCard({ item }) {
         <div className="px-5 pb-5 -mt-2">
           {loading && <p className="text-gray-400 text-sm">加载答案…</p>}
           {!loading && <Markdown html={answer} />}
+          <div className="mt-3 text-right">
+            <Link
+              to={`/interview/${item.id}`}
+              className="text-sm text-brand-600 hover:underline font-medium"
+            >
+              查看详情页 →
+            </Link>
+          </div>
         </div>
       )}
     </div>

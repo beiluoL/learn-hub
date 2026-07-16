@@ -36,9 +36,28 @@ function parseFrontmatter(raw) {
   return { data, body: raw.slice(m[0].length) };
 }
 
+// 修复 CJK（中文）+ Markdown 强调语法的经典 bug：
+// CommonMark 规则下，强调闭合符号(** / * / __ / _)紧贴中文、且其内侧是全角标点时，
+// 该符号不满足“右侧闭合”条件，导致 **回流：**几何 里的星号原样显示、加粗失效。
+// 策略：把紧贴在闭合符号内侧的中日韩标点移到强调外侧（**回流：** -> **回流**：）。
+const CJK_PUNCT = '：:，,。.、；;！!？?）)】》”’…—·';
+function fixCjkEmphasis(md) {
+  // ** 文字：** / __文字：__（双符号，先处理，避免与单符号冲突）
+  let out = md.replace(
+    new RegExp(`(\\*\\*|__)([^\\n*_]*?)([${CJK_PUNCT}]+)\\1`, 'g'),
+    '$1$2$1$3'
+  );
+  // *文字：* / _文字：_（单符号，避开 ** 残留）
+  out = out.replace(
+    new RegExp(`(^|[^*_])([*_])([^\\n*_]+?)([${CJK_PUNCT}]+)\\2(?![*_])`, 'g'),
+    '$1$2$3$2$4'
+  );
+  return out;
+}
+
 // 把正文渲染为安全的 HTML（md 用 marked 解析，html 直接用；统一经 DOMPurify 消毒）
 function renderBody(body, type) {
-  const html = type === 'html' ? body : marked.parse(body || '');
+  const html = type === 'html' ? body : marked.parse(fixCjkEmphasis(body || ''));
   return DOMPurify.sanitize(html, {
     ADD_ATTR: ['target', 'rel'],
     FORBID_TAGS: ['style', 'iframe', 'form', 'input', 'button'],

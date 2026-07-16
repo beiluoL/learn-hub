@@ -19,15 +19,22 @@ const CAT_NAMES = {
   interview: '面试题',
 };
 
-// 力导向知识图谱（类 Obsidian）：节点=文章/面试题，边=同分类学习链路 + 共享标签关联。
+// 难度着色：文章 level 与面试题 difficulty 统一映射到三档
+const LEVEL_COLORS = { beginner: '#10b981', intermediate: '#f59e0b', advanced: '#f43f5e' };
+const LEVEL_NAMES = { beginner: '入门 / 简单', intermediate: '进阶 / 中等', advanced: '高级 / 困难' };
+const DIFF_TO_LEVEL = { easy: 'beginner', middle: 'intermediate', hard: 'advanced' };
+
+// 力导向知识图谱（类 Obsidian）：节点=文章/面试题，边=学习链路 + 共享标签 + 前置依赖。
 export default function KnowledgeGraph() {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
   const navigate = useNavigate();
   const [cats, setCats] = useState([]);
   const [filter, setFilter] = useState(null);
+  const [colorMode, setColorMode] = useState('category'); // 'category' | 'difficulty'
   const sim = useRef(null);
   const filterRef = useRef(null);
+  const colorModeRef = useRef('category');
 
   useEffect(() => {
     let alive = true;
@@ -40,12 +47,18 @@ export default function KnowledgeGraph() {
       const idMap = new Map();
       const add = (item, type) => {
         if (idMap.has(item.id)) return;
+        const levelBucket =
+          type === 'article'
+            ? item.level || 'beginner'
+            : DIFF_TO_LEVEL[item.difficulty] || 'intermediate';
         const node = {
           id: item.id,
           title: item.title || item.question,
           category: item.category || 'interview',
           type,
+          levelBucket,
           tags: item.tags || [],
+          prereq: item.prereq || [],
           order: item.order || 0,
           x: (Math.random() - 0.5) * 320,
           y: (Math.random() - 0.5) * 320,
@@ -69,7 +82,13 @@ export default function KnowledgeGraph() {
       const seen = new Set();
       const addLink = (sId, tId, kind, w) => {
         if (sId === tId) return;
-        const key = sId < tId ? `${sId}|${tId}` : `${tId}|${sId}`;
+        // prereq 是有方向的，用带方向 + kind 的 key，避免与无向的 chain/tag 冲突
+        const key =
+          kind === 'prereq'
+            ? `prereq:${sId}->${tId}`
+            : sId < tId
+            ? `${sId}|${tId}`
+            : `${tId}|${sId}`;
         if (seen.has(key)) return;
         seen.add(key);
         links.push({ source: idMap.get(sId), target: idMap.get(tId), kind, w });
@@ -77,6 +96,13 @@ export default function KnowledgeGraph() {
       Object.values(byCat).forEach((arr) => {
         arr.sort((a, b) => a.order - b.order);
         for (let i = 0; i < arr.length - 1; i++) addLink(arr[i].id, arr[i + 1].id, 'chain', 2);
+      });
+
+      // 边：前置依赖（prereq）——有方向：先学(prereq) → 后学(本文)
+      nodes.forEach((n) => {
+        (n.prereq || []).forEach((pid) => {
+          if (idMap.has(pid)) addLink(pid, n.id, 'prereq', 3);
+        });
       });
 
       // 边：文章之间共享标签（每篇文章最多取关联最强的 3 个，避免变成毛线团）
@@ -124,11 +150,20 @@ export default function KnowledgeGraph() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // filter 变化：更新 ref 并重绘
+  // filter / colorMode 变化：更新 ref 并重绘
   useEffect(() => {
     filterRef.current = filter;
     if (sim.current) ensureLoop();
   }, [filter]);
+  useEffect(() => {
+    colorModeRef.current = colorMode;
+    if (sim.current) ensureLoop();
+  }, [colorMode]);
+
+  function nodeColor(n) {
+    if (colorModeRef.current === 'difficulty') return LEVEL_COLORS[n.levelBucket] || '#94a3b8';
+    return CAT_COLORS[n.category] || '#7c3aed';
+  }
 
   function ensureLoop() {
     const s = sim.current;
@@ -172,8 +207,9 @@ export default function KnowledgeGraph() {
         const dx = b.x - a.x;
         const dy = b.y - a.y;
         const d = Math.sqrt(dx * dx + dy * dy) || 0.01;
-        const L = l.kind === 'chain' ? 120 : 160;
-        const f = (d - L) * 0.02 * (l.kind === 'chain' ? 1.4 : 1);
+        const L = l.kind === 'chain' ? 120 : l.kind === 'prereq' ? 130 : 160;
+        const k = l.kind === 'chain' ? 1.4 : l.kind === 'prereq' ? 1.2 : 1;
+        const f = (d - L) * 0.02 * k;
         const fx = (dx / d) * f;
         const fy = (dy / d) * f;
         a.vx += fx;
@@ -241,14 +277,16 @@ export default function KnowledgeGraph() {
       if (!visible(l.source) || !visible(l.target)) return;
       const a = toScreen(l.source);
       const b = toScreen(l.target);
-      let alpha = 0.16;
-      let color = '#c4b5fd';
-      let width = 1;
+      const isPrereq = l.kind === 'prereq';
+      let alpha = isPrereq ? 0.5 : 0.16;
+      let color = isPrereq ? '#f97316' : '#c4b5fd';
+      let width = isPrereq ? 1.6 : 1;
+      const related = hover && (l.source.id === hover || l.target.id === hover);
       if (hover) {
-        if (l.source.id === hover || l.target.id === hover) {
-          alpha = 0.9;
-          color = CAT_COLORS[l.source.category] || '#7c3aed';
-          width = 1.8;
+        if (related) {
+          alpha = 0.95;
+          color = isPrereq ? '#ea580c' : nodeColor(l.source);
+          width = isPrereq ? 2.2 : 1.8;
         } else {
           alpha = 0.04;
         }
@@ -260,6 +298,21 @@ export default function KnowledgeGraph() {
       ctx.moveTo(a.x, a.y);
       ctx.lineTo(b.x, b.y);
       ctx.stroke();
+      // prereq 画箭头（指向“后学”的节点）
+      if (isPrereq && (!hover || related)) {
+        const ang = Math.atan2(b.y - a.y, b.x - a.x);
+        const r = (l.target.type === 'interview' ? 7 : 9) * sc + 3;
+        const tipX = b.x - Math.cos(ang) * r;
+        const tipY = b.y - Math.sin(ang) * r;
+        const ah = 7;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(tipX, tipY);
+        ctx.lineTo(tipX - Math.cos(ang - 0.4) * ah, tipY - Math.sin(ang - 0.4) * ah);
+        ctx.lineTo(tipX - Math.cos(ang + 0.4) * ah, tipY - Math.sin(ang + 0.4) * ah);
+        ctx.closePath();
+        ctx.fill();
+      }
     });
     ctx.globalAlpha = 1;
 
@@ -273,7 +326,7 @@ export default function KnowledgeGraph() {
       ctx.globalAlpha = alpha;
       ctx.beginPath();
       ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-      ctx.fillStyle = CAT_COLORS[n.category] || '#7c3aed';
+      ctx.fillStyle = nodeColor(n);
       ctx.fill();
       ctx.lineWidth = 2;
       ctx.strokeStyle = '#ffffff';
@@ -364,7 +417,7 @@ export default function KnowledgeGraph() {
     }
   }
 
-  function onPointerUp(e) {
+  function onPointerUp() {
     const s = sim.current;
     if (!s) return;
     if (s.drag) {
@@ -374,7 +427,7 @@ export default function KnowledgeGraph() {
       n.fy = null;
       s.drag = null;
       if (wasClick) {
-        navigate(n.type === 'article' ? `/article/${n.id}` : '/interviews');
+        navigate(n.type === 'article' ? `/article/${n.id}` : `/interview/${n.id}`);
       }
     }
     if (s.pan) s.pan = null;
@@ -399,6 +452,8 @@ export default function KnowledgeGraph() {
     draw();
   }
 
+  const byDifficulty = colorMode === 'difficulty';
+
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-soft overflow-hidden">
       <div className="flex flex-wrap items-center gap-3 p-5 border-b border-gray-100">
@@ -409,6 +464,29 @@ export default function KnowledgeGraph() {
         <span className="text-xs text-gray-400">
           拖动节点 · 滚轮缩放 · 拖空白平移 · 悬停高亮关联 · 点击打开
         </span>
+
+        {/* 按难度着色开关 */}
+        <button
+          onClick={() => setColorMode(byDifficulty ? 'category' : 'difficulty')}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border transition ${
+            byDifficulty
+              ? 'bg-gray-800 text-white border-transparent'
+              : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300'
+          }`}
+          title="切换节点着色方式"
+        >
+          <span
+            className="w-6 h-3.5 rounded-full relative transition"
+            style={{ background: byDifficulty ? '#f59e0b' : '#cbd5e1' }}
+          >
+            <span
+              className="absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white transition-all"
+              style={{ left: byDifficulty ? '0.85rem' : '0.15rem' }}
+            />
+          </span>
+          按难度着色
+        </button>
+
         <div className="flex flex-wrap gap-1.5 ml-auto">
           <FilterChip active={filter === null} color="#7c3aed" label="全部" onClick={() => setFilter(null)} />
           {cats.map((c) => (
@@ -434,6 +512,18 @@ export default function KnowledgeGraph() {
           onPointerLeave={onPointerLeave}
           onWheel={onWheel}
         />
+        {/* 难度着色图例 */}
+        {byDifficulty && (
+          <div className="absolute top-3 left-3 bg-white/90 backdrop-blur rounded-xl border border-gray-100 shadow-soft px-3 py-2 text-xs space-y-1">
+            <div className="font-semibold text-gray-500 mb-1">难度</div>
+            {Object.entries(LEVEL_NAMES).map(([k, name]) => (
+              <div key={k} className="flex items-center gap-2 text-gray-600">
+                <span className="w-3 h-3 rounded-full" style={{ background: LEVEL_COLORS[k] }} />
+                {name}
+              </div>
+            ))}
+          </div>
+        )}
         {cats.length === 0 && (
           <div className="absolute inset-0 grid place-items-center text-gray-400 text-sm">
             正在生成知识图谱…
@@ -443,10 +533,12 @@ export default function KnowledgeGraph() {
 
       <div className="px-5 py-3 text-xs text-gray-400 border-t border-gray-100">
         连线含义：同方向按学习顺序相连的
-        <span className="text-brand-600 font-semibold">链路</span>；
+        <span className="text-brand-600 font-semibold"> 链路</span>；
         文章间
-        <span className="text-violet-500 font-semibold">共享标签</span>
-        形成的关联。节点颜色对应学习方向。
+        <span className="text-violet-500 font-semibold"> 共享标签 </span>
+        的关联；
+        <span className="text-orange-500 font-semibold"> 前置依赖 </span>
+        （带箭头，先学 → 后学）。节点颜色{byDifficulty ? '对应学习难度' : '对应学习方向'}。
       </div>
     </div>
   );

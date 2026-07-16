@@ -1,9 +1,9 @@
 ---
 title: 示例文章：如何给本网站添加你自己的内容
 category: java
-level: 初级
+level: beginner
 readMinutes: 6
-tags: [教程, 入门, 内容管理]
+tags: 教程, 入门, 内容管理
 summary: 一篇用来演示的示例文章——你正在看的这篇，就是按照文末说明新建出来的。
 order: 99
 ---

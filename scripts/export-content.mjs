@@ -188,6 +188,12 @@ for (const { full, rel } of found) {
         .split(',')
         .map((t) => t.trim())
         .filter(Boolean),
+      // 前置知识：frontmatter 里写 prereq: id1, id2（前置文章的完整 id），
+      // 知识图谱据此画“先学 → 后学”的依赖连线。
+      prereq: (data.prereq || '')
+        .split(',')
+        .map((t) => t.trim())
+        .filter(Boolean),
       summary: data.summary || '',
       order: Number(data.order) || 999,
       file: rel,
