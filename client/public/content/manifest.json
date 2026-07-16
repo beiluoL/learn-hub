@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T14:41:02.069Z",
+  "generatedAt": "2026-07-16T15:12:20.018Z",
   "categories": [
     {
       "id": "java",
@@ -2063,6 +2063,53 @@
       "type": "md"
     },
     {
+      "id": "interviews/iv-ai-10",
+      "question": "Prompt Engineering 的核心技巧有哪些？如何写出高质量 Prompt？",
+      "category": "ai",
+      "difficulty": "middle",
+      "tags": [
+        "Prompt Engineering",
+        "Few-shot",
+        "CoT",
+        "结构化输出"
+      ],
+      "order": 42,
+      "file": "interviews/iv-ai-10.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-ai-11",
+      "question": "大模型推理加速有哪些方法？vLLM 的 PagedAttention 原理是什么？",
+      "category": "ai",
+      "difficulty": "hard",
+      "tags": [
+        "推理优化",
+        "vLLM",
+        "量化",
+        "PagedAttention",
+        "KV Cache"
+      ],
+      "order": 43,
+      "file": "interviews/iv-ai-11.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-ai-12",
+      "question": "如何设计一个企业级 AI Agent？需要考虑哪些核心要素？",
+      "category": "ai",
+      "difficulty": "hard",
+      "tags": [
+        "Agent",
+        "多智能体",
+        "工具调用",
+        "记忆",
+        "安全"
+      ],
+      "order": 44,
+      "file": "interviews/iv-ai-12.md",
+      "type": "md"
+    },
+    {
       "id": "interviews/iv-ai-2",
       "question": "Agent（智能体）与传统 LLM 调用的区别？Tool Calling 是如何工作的？",
       "category": "ai",
@@ -2105,6 +2152,85 @@
       "type": "md"
     },
     {
+      "id": "interviews/iv-ai-5",
+      "question": "RAG 系统中如何进行文档分块（Chunking）？有哪些策略和最佳实践？",
+      "category": "ai",
+      "difficulty": "middle",
+      "tags": [
+        "RAG",
+        "Chunking",
+        "分块策略",
+        "检索"
+      ],
+      "order": 37,
+      "file": "interviews/iv-ai-5.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-ai-6",
+      "question": "LangChain 的核心组件有哪些？Chain、Agent、Tool 之间是什么关系？",
+      "category": "ai",
+      "difficulty": "middle",
+      "tags": [
+        "LangChain",
+        "Chain",
+        "Agent",
+        "Tool",
+        "Memory"
+      ],
+      "order": 38,
+      "file": "interviews/iv-ai-6.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-ai-7",
+      "question": "如何评估一个 RAG 系统的质量？有哪些评估指标和框架？",
+      "category": "ai",
+      "difficulty": "hard",
+      "tags": [
+        "RAG",
+        "评估",
+        "检索质量",
+        "生成质量",
+        "RAGAS"
+      ],
+      "order": 39,
+      "file": "interviews/iv-ai-7.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-ai-8",
+      "question": "大模型微调（Fine-tuning）和 RAG 方案如何选型？各自的优缺点和适用场景？",
+      "category": "ai",
+      "difficulty": "hard",
+      "tags": [
+        "微调",
+        "RAG",
+        "LoRA",
+        "SFT",
+        "选型"
+      ],
+      "order": 40,
+      "file": "interviews/iv-ai-8.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-ai-9",
+      "question": "Transformer 中 Self-Attention 的 Q、K、V 分别代表什么？计算流程是怎样的？",
+      "category": "ai",
+      "difficulty": "hard",
+      "tags": [
+        "Transformer",
+        "Attention",
+        "QKV",
+        "Self-Attention",
+        "Softmax"
+      ],
+      "order": 41,
+      "file": "interviews/iv-ai-9.md",
+      "type": "md"
+    },
+    {
       "id": "interviews/iv-fe-1",
       "question": "var、let、const 的区别？什么是变量提升（Hoisting）？",
       "category": "frontend",
@@ -2116,6 +2242,52 @@
       ],
       "order": 7,
       "file": "interviews/iv-fe-1.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-10",
+      "question": "Vue3 Composition API 相比 Options API 有什么优势？",
+      "category": "frontend",
+      "difficulty": "middle",
+      "tags": [
+        "Vue",
+        "Composition API",
+        "setup",
+        "逻辑复用"
+      ],
+      "order": 34,
+      "file": "interviews/iv-fe-10.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-11",
+      "question": "Pinia 相比 Vuex 有什么改进？为什么官方推荐 Pinia？",
+      "category": "frontend",
+      "difficulty": "middle",
+      "tags": [
+        "Pinia",
+        "Vuex",
+        "状态管理",
+        "模块化"
+      ],
+      "order": 35,
+      "file": "interviews/iv-fe-11.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-12",
+      "question": "Vue 项目中你做过哪些性能优化？",
+      "category": "frontend",
+      "difficulty": "middle",
+      "tags": [
+        "Vue",
+        "性能优化",
+        "懒加载",
+        "虚拟列表",
+        "首屏"
+      ],
+      "order": 36,
+      "file": "interviews/iv-fe-12.md",
       "type": "md"
     },
     {
@@ -2161,6 +2333,86 @@
       "type": "md"
     },
     {
+      "id": "interviews/iv-fe-5",
+      "question": "Vue2 的 Object.defineProperty 和 Vue3 的 Proxy 响应式原理有什么区别？",
+      "category": "frontend",
+      "difficulty": "hard",
+      "tags": [
+        "Vue",
+        "响应式",
+        "Proxy",
+        "Object.defineProperty",
+        "依赖收集"
+      ],
+      "order": 29,
+      "file": "interviews/iv-fe-5.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-6",
+      "question": "Vue 组件间通信有哪些方式？各自适用于什么场景？",
+      "category": "frontend",
+      "difficulty": "middle",
+      "tags": [
+        "Vue",
+        "组件通信",
+        "props",
+        "emit",
+        "provide inject",
+        "Pinia"
+      ],
+      "order": 30,
+      "file": "interviews/iv-fe-6.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-7",
+      "question": "虚拟 DOM 和 diff 算法的核心原理是什么？为什么需要 key？",
+      "category": "frontend",
+      "difficulty": "middle",
+      "tags": [
+        "Vue",
+        "虚拟DOM",
+        "diff",
+        "key",
+        "patch"
+      ],
+      "order": 31,
+      "file": "interviews/iv-fe-7.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-8",
+      "question": "Vue Router 有哪些导航守卫？各自的应用场景？",
+      "category": "frontend",
+      "difficulty": "middle",
+      "tags": [
+        "Vue Router",
+        "导航守卫",
+        "beforeEach",
+        "路由"
+      ],
+      "order": 32,
+      "file": "interviews/iv-fe-8.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-9",
+      "question": "computed、watch 和 watchEffect 有什么区别？分别适用什么场景？",
+      "category": "frontend",
+      "difficulty": "middle",
+      "tags": [
+        "Vue",
+        "computed",
+        "watch",
+        "watchEffect",
+        "响应式"
+      ],
+      "order": 33,
+      "file": "interviews/iv-fe-9.md",
+      "type": "md"
+    },
+    {
       "id": "interviews/iv-java-1",
       "question": "HashMap 和 ConcurrentHashMap 的区别？ConcurrentHashMap 如何保证线程安全？",
       "category": "java",
@@ -2172,6 +2424,87 @@
       ],
       "order": 1,
       "file": "interviews/iv-java-1.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-10",
+      "question": "消息队列如何保证消息不丢失？如何避免重复消费？",
+      "category": "java",
+      "difficulty": "hard",
+      "tags": [
+        "MQ",
+        "消息可靠性",
+        "幂等",
+        "Kafka",
+        "RabbitMQ"
+      ],
+      "order": 24,
+      "file": "interviews/iv-java-10.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-11",
+      "question": "分布式锁有哪几种实现方式？Redisson 如何实现自动续期？",
+      "category": "java",
+      "difficulty": "hard",
+      "tags": [
+        "分布式锁",
+        "Redisson",
+        "Redis",
+        "Zookeeper",
+        "红锁"
+      ],
+      "order": 25,
+      "file": "interviews/iv-java-11.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-12",
+      "question": "JVM 垃圾回收算法有哪些？CMS 和 G1 的区别和使用场景？",
+      "category": "java",
+      "difficulty": "hard",
+      "tags": [
+        "JVM",
+        "GC",
+        "CMS",
+        "G1",
+        "垃圾回收",
+        "ZGC"
+      ],
+      "order": 26,
+      "file": "interviews/iv-java-12.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-13",
+      "question": "类加载的双亲委派机制是什么？什么时候需要打破它？",
+      "category": "java",
+      "difficulty": "middle",
+      "tags": [
+        "类加载",
+        "双亲委派",
+        "Tomcat",
+        "JDBC",
+        "SPI"
+      ],
+      "order": 27,
+      "file": "interviews/iv-java-13.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-14",
+      "question": "微服务之间如何通信？OpenFeign 的底层原理是什么？",
+      "category": "java",
+      "difficulty": "middle",
+      "tags": [
+        "微服务",
+        "OpenFeign",
+        "服务调用",
+        "熔断",
+        "Ribbon"
+      ],
+      "order": 28,
+      "file": "interviews/iv-java-14.md",
       "type": "md"
     },
     {
@@ -2214,6 +2547,81 @@
       ],
       "order": 15,
       "file": "interviews/iv-java-4.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-5",
+      "question": "线程池 ThreadPoolExecutor 的核心参数有哪些？任务提交后的执行流程是怎样的？",
+      "category": "java",
+      "difficulty": "middle",
+      "tags": [
+        "线程池",
+        "拒绝策略",
+        "Executors",
+        "ThreadPoolExecutor"
+      ],
+      "order": 19,
+      "file": "interviews/iv-java-5.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-6",
+      "question": "Spring IoC 如何解决循环依赖？三级缓存分别存什么？",
+      "category": "java",
+      "difficulty": "hard",
+      "tags": [
+        "Spring",
+        "IoC",
+        "循环依赖",
+        "三级缓存"
+      ],
+      "order": 20,
+      "file": "interviews/iv-java-6.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-7",
+      "question": "Spring @Transactional 什么情况下会失效？事务传播行为有哪些？",
+      "category": "java",
+      "difficulty": "middle",
+      "tags": [
+        "Spring",
+        "事务",
+        "@Transactional",
+        "传播行为"
+      ],
+      "order": 21,
+      "file": "interviews/iv-java-7.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-8",
+      "question": "MySQL 索引为什么选用 B+ 树？哪些场景下索引会失效？",
+      "category": "java",
+      "difficulty": "middle",
+      "tags": [
+        "MySQL",
+        "B+树",
+        "索引失效",
+        "最左前缀"
+      ],
+      "order": 22,
+      "file": "interviews/iv-java-8.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-9",
+      "question": "Redis 缓存穿透、缓存击穿、缓存雪崩分别是什么？如何解决？",
+      "category": "java",
+      "difficulty": "middle",
+      "tags": [
+        "Redis",
+        "缓存穿透",
+        "缓存击穿",
+        "缓存雪崩"
+      ],
+      "order": 23,
+      "file": "interviews/iv-java-9.md",
       "type": "md"
     },
     {
@@ -2285,6 +2693,53 @@
       "type": "md"
     },
     {
+      "id": "interviews/iv-sys-10",
+      "question": "线上突然 CPU 飙高到 100% 或 OOM，你的完整排查思路是什么？",
+      "category": "system",
+      "difficulty": "hard",
+      "tags": [
+        "线上排障",
+        "CPU",
+        "OOM",
+        "排查思路",
+        "jstack",
+        "Arthas"
+      ],
+      "order": 52,
+      "file": "interviews/iv-sys-10.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-11",
+      "question": "技术选型时你的决策框架是什么？例如选 React 还是 Vue、选 MySQL 还是 PostgreSQL？",
+      "category": "system",
+      "difficulty": "middle",
+      "tags": [
+        "技术选型",
+        "决策",
+        "团队",
+        "项目需求"
+      ],
+      "order": 53,
+      "file": "interviews/iv-sys-11.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-12",
+      "question": "面试最后被问到\"你有什么要问我们的？\"，你应该问什么？",
+      "category": "system",
+      "difficulty": "middle",
+      "tags": [
+        "面试技巧",
+        "反问",
+        "职业发展",
+        "团队文化"
+      ],
+      "order": 54,
+      "file": "interviews/iv-sys-12.md",
+      "type": "md"
+    },
+    {
       "id": "interviews/iv-sys-2",
       "question": "如何设计一个支持高并发的秒杀系统？",
       "category": "system",
@@ -2296,6 +2751,117 @@
       ],
       "order": 14,
       "file": "interviews/iv-sys-2.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-3",
+      "question": "如何设计一个IM即时通讯系统？核心挑战和技术方案？",
+      "category": "system",
+      "difficulty": "hard",
+      "tags": [
+        "系统设计",
+        "IM",
+        "WebSocket",
+        "消息可靠性"
+      ],
+      "order": 45,
+      "file": "interviews/iv-sys-3.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-4",
+      "question": "分布式事务有哪些解决方案？2PC、TCC、最终一致性消息的对比与落地？",
+      "category": "system",
+      "difficulty": "hard",
+      "tags": [
+        "分布式事务",
+        "2PC",
+        "TCC",
+        "Seata",
+        "Saga",
+        "最终一致性"
+      ],
+      "order": 46,
+      "file": "interviews/iv-sys-4.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-5",
+      "question": "如何保证服务的高可用？从哪些层面设计容灾？",
+      "category": "system",
+      "difficulty": "hard",
+      "tags": [
+        "高可用",
+        "容灾",
+        "多活",
+        "限流",
+        "熔断"
+      ],
+      "order": 47,
+      "file": "interviews/iv-sys-5.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-6",
+      "question": "API 网关在微服务中起什么作用？设计时需要考虑哪些点？",
+      "category": "system",
+      "difficulty": "hard",
+      "tags": [
+        "API网关",
+        "微服务",
+        "限流",
+        "鉴权",
+        "路由"
+      ],
+      "order": 48,
+      "file": "interviews/iv-sys-6.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-7",
+      "question": "什么是接口幂等性？前后端如何保证接口幂等？",
+      "category": "system",
+      "difficulty": "middle",
+      "tags": [
+        "幂等",
+        "唯一ID",
+        "Token",
+        "状态机",
+        "去重"
+      ],
+      "order": 49,
+      "file": "interviews/iv-sys-7.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-8",
+      "question": "如何设计一个分布式配置中心？动态刷新是怎么实现的？",
+      "category": "system",
+      "difficulty": "hard",
+      "tags": [
+        "配置中心",
+        "Nacos",
+        "Apollo",
+        "动态刷新",
+        "灰度发布"
+      ],
+      "order": 50,
+      "file": "interviews/iv-sys-8.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-9",
+      "question": "介绍一个你最有挑战的项目经历，遇到什么困难？如何解决的？",
+      "category": "system",
+      "difficulty": "middle",
+      "tags": [
+        "项目经验",
+        "STAR法则",
+        "问题解决",
+        "面试技巧"
+      ],
+      "order": 51,
+      "file": "interviews/iv-sys-9.md",
       "type": "md"
     }
   ]
