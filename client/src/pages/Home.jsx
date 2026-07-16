@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import InterviewCard from '../components/InterviewCard.jsx';
+import LINKS, { WECHAT, SocialLinkList } from '../components/AuthorSocial.jsx';
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
@@ -139,6 +140,66 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 关于作者 / 关注我 */}
+      <section className="max-w-6xl mx-auto px-4 py-14">
+        <div className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white rounded-2xl shadow-xl overflow-hidden">
+          <div className="flex flex-col lg:flex-row">
+            {/* 左侧：作者信息 */}
+            <div className="flex-1 px-8 py-10">
+              <div className="flex items-center gap-4 mb-5">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-violet-500 flex items-center justify-center text-white text-2xl font-extrabold shadow-lg">
+                  北
+                </div>
+                <div>
+                  <h3 className="text-xl font-extrabold">北落</h3>
+                  <p className="text-sm text-gray-300">全栈开发工程师 · 10 年经验</p>
+                </div>
+              </div>
+              <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-md">
+                专注于 Java / Vue 全栈开发与 AI 大模型应用落地。热爱技术分享，坚持输出高质量技术文章与面试经验。
+                欢迎关注我的博客和公众号，一起成长。
+              </p>
+
+              {/* 平台链接 */}
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
+                技术平台
+              </h4>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {LINKS.map((l) => (
+                  <a
+                    key={l.url}
+                    href={l.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/10 text-gray-200 hover:bg-white/20 hover:text-white transition"
+                  >
+                    {l.label}
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* 右侧：公众号 */}
+            <div className="lg:w-72 bg-slate-700/40 flex flex-col items-center justify-center px-8 py-10 border-t lg:border-t-0 lg:border-l border-slate-600">
+              <div className="w-24 h-24 rounded-2xl bg-white flex items-center justify-center text-green-600 text-4xl font-extrabold shadow-lg mb-4">
+                拾
+              </div>
+              <div className="text-center">
+                <div className="font-bold text-white text-lg mb-1">{WECHAT.name}</div>
+                <div className="text-sm text-gray-300 mb-3">{WECHAT.desc}</div>
+                <span className="inline-block text-xs px-3 py-1 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">
+                  微信扫码关注
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
