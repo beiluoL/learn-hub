@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ExternalLink } from 'lucide-react';
 import { DIFF_MAP } from './LevelBadge.jsx';
 import { content } from '../content.js';
 import Markdown from './Markdown.jsx';
@@ -28,7 +29,7 @@ export default function InterviewCard({ item }) {
   }, [open, item.id]);
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-soft overflow-hidden">
+    <div className="bg-card rounded-2xl border border-border shadow-card overflow-hidden">
       <button
         onClick={() => setOpen((v) => !v)}
         className="w-full text-left p-5 flex items-start gap-3"
@@ -37,24 +38,25 @@ export default function InterviewCard({ item }) {
           {diff.label}
         </span>
         <span className="flex-1">
-          <span className="font-semibold text-gray-800">{item.question}</span>
-          <span className="block mt-1 text-xs text-gray-400">
+          <span className="font-semibold text-text-primary">{item.question}</span>
+          <span className="block mt-1 text-xs text-text-muted">
             {CAT_NAME[item.category] || item.category}
             {item.tags?.map((t) => ` · #${t}`).join('')}
           </span>
         </span>
-        <span className="text-gray-400 text-lg">{open ? '−' : '+'}</span>
+        <span className="text-text-muted text-lg shrink-0">{open ? '−' : '+'}</span>
       </button>
       {open && (
-        <div className="px-5 pb-5 -mt-2">
-          {loading && <p className="text-gray-400 text-sm">加载答案…</p>}
+        <div className="px-5 pb-5 mt-2 border-t border-border pt-4">
+          {loading && <p className="text-text-muted text-sm">加载答案…</p>}
           {!loading && <Markdown html={answer} />}
           <div className="mt-3 text-right">
             <Link
               to={`/interview/${item.id}`}
-              className="text-sm text-brand-600 hover:underline font-medium"
+              className="inline-flex items-center gap-1 text-sm text-brand-600 hover:underline font-medium"
             >
-              查看详情页 →
+              查看详情页
+              <ExternalLink size={12} />
             </Link>
           </div>
         </div>

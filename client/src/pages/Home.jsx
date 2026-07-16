@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { BookOpen, Map } from 'lucide-react';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import InterviewCard from '../components/InterviewCard.jsx';
@@ -32,11 +33,12 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-brand-600 via-indigo-600 to-violet-700 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-br from-brand-500 to-brand-700 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,white,transparent_40%),radial-gradient(circle_at_80%_60%,white,transparent_35%)]" />
         <div className="relative max-w-6xl mx-auto px-4 py-20 text-center">
-          <span className="inline-block text-sm font-medium bg-white/15 px-3 py-1 rounded-full mb-5">
-            📚 一站式编程学习平台
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium bg-white/15 px-3 py-1 rounded-full mb-5">
+            <BookOpen size={16} />
+            一站式编程学习平台
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
             学 Java · Python · 前端 · AI
@@ -78,7 +80,7 @@ export default function Home() {
               <Link
                 key={c.id}
                 to={to}
-                className="group bg-white rounded-2xl p-6 border border-gray-100 shadow-soft hover:-translate-y-0.5 hover:shadow-lg transition"
+                className="group bg-card rounded-2xl p-6 border border-border shadow-card hover:-translate-y-0.5 hover:shadow-card-hover transition"
               >
                 <div
                   className="w-12 h-12 rounded-xl grid place-items-center text-2xl mb-4"
@@ -87,12 +89,12 @@ export default function Home() {
                   {c.icon}
                 </div>
                 <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-gray-800 group-hover:text-brand-600">
+                  <h3 className="font-bold text-text-primary group-hover:text-brand-600">
                     {c.name}
                   </h3>
-                  <span className="text-xs text-gray-400">{c.count} 篇</span>
+                  <span className="text-xs text-text-muted">{c.count} 篇</span>
                 </div>
-                <p className="text-sm text-gray-500 mt-1.5">{c.desc}</p>
+                <p className="text-sm text-text-secondary mt-1.5">{c.desc}</p>
               </Link>
             );
           })}
@@ -103,9 +105,9 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 pb-4">
         <Link
           to="/map"
-          className="flex items-center gap-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-2xl p-5 shadow-soft hover:-translate-y-0.5 transition"
+          className="flex items-center gap-4 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-2xl p-5 shadow-soft hover:-translate-y-0.5 transition"
         >
-          <span className="text-3xl">🕸</span>
+          <Map size={28} />
           <div className="flex-1">
             <div className="font-bold">学习知识点地图</div>
             <div className="text-white/80 text-sm">像 Obsidian 关系图谱一样，把文章与面试题连成知识网</div>
@@ -125,7 +127,7 @@ export default function Home() {
       </section>
 
       {/* 近期面试题 */}
-      <section className="bg-white border-y border-gray-100">
+      <section className="bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-4 py-14">
           <div className="flex items-end justify-between">
             <SectionTitle title="近期面试题" sub="点击展开查看答案要点" align="left" />
@@ -218,8 +220,8 @@ function Stat({ n, label }) {
 function SectionTitle({ title, sub, align = 'center' }) {
   return (
     <div className={align === 'center' ? 'text-center' : 'text-left'}>
-      <h2 className="text-2xl font-extrabold text-gray-800">{title}</h2>
-      {sub && <p className="text-gray-500 mt-1">{sub}</p>}
+      <h2 className="text-2xl font-extrabold text-text-primary">{title}</h2>
+      {sub && <p className="text-text-secondary mt-1">{sub}</p>}
     </div>
   );
 }

@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Share2 } from 'lucide-react';
 import { content } from '../content.js';
 
 const CAT_COLORS = {
-  java: '#f89820',
-  python: '#3776ab',
-  frontend: '#61dafb',
-  ai: '#7c5cff',
-  system: '#94a3b8',
-  interview: '#22c55e',
+  java: '#F59E0B',
+  python: '#3B6FE0',
+  frontend: '#10B981',
+  ai: '#8B5CF6',
+  system: '#EF4444',
+  interview: '#06B6D4',
 };
 const CAT_NAMES = {
   java: 'Java',
@@ -20,7 +21,7 @@ const CAT_NAMES = {
 };
 
 // 难度着色：文章 level 与面试题 difficulty 统一映射到三档
-const LEVEL_COLORS = { beginner: '#10b981', intermediate: '#f59e0b', advanced: '#f43f5e' };
+const LEVEL_COLORS = { beginner: '#10B981', intermediate: '#F59E0B', advanced: '#EF4444' };
 const LEVEL_NAMES = { beginner: '入门 / 简单', intermediate: '进阶 / 中等', advanced: '高级 / 困难' };
 const DIFF_TO_LEVEL = { easy: 'beginner', middle: 'intermediate', hard: 'advanced' };
 
@@ -279,13 +280,13 @@ export default function KnowledgeGraph() {
       const b = toScreen(l.target);
       const isPrereq = l.kind === 'prereq';
       let alpha = isPrereq ? 0.5 : 0.16;
-      let color = isPrereq ? '#f97316' : '#c4b5fd';
+      let color = isPrereq ? '#F59E0B' : '#8B5CF6';
       let width = isPrereq ? 1.6 : 1;
       const related = hover && (l.source.id === hover || l.target.id === hover);
       if (hover) {
         if (related) {
           alpha = 0.95;
-          color = isPrereq ? '#ea580c' : nodeColor(l.source);
+          color = isPrereq ? '#D97706' : nodeColor(l.source);
           width = isPrereq ? 2.2 : 1.8;
         } else {
           alpha = 0.04;
@@ -298,7 +299,7 @@ export default function KnowledgeGraph() {
       ctx.moveTo(a.x, a.y);
       ctx.lineTo(b.x, b.y);
       ctx.stroke();
-      // prereq 画箭头（指向“后学”的节点）
+      // prereq 画箭头（指向"后学"的节点）
       if (isPrereq && (!hover || related)) {
         const ang = Math.atan2(b.y - a.y, b.x - a.x);
         const r = (l.target.type === 'interview' ? 7 : 9) * sc + 3;
@@ -335,7 +336,7 @@ export default function KnowledgeGraph() {
       if (!hover || hover === n.id || (neighbors && neighbors.has(n.id))) {
         ctx.globalAlpha = alpha;
         ctx.font = '11px system-ui, -apple-system, sans-serif';
-        ctx.fillStyle = '#334155';
+        ctx.fillStyle = '#1A1F2E';
         ctx.textAlign = 'center';
         ctx.fillText(n.title, p.x, p.y + r + 12);
       }
@@ -455,13 +456,13 @@ export default function KnowledgeGraph() {
   const byDifficulty = colorMode === 'difficulty';
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-soft overflow-hidden">
-      <div className="flex flex-wrap items-center gap-3 p-5 border-b border-gray-100">
+    <div className="bg-card rounded-2xl border border-border shadow-card overflow-hidden">
+      <div className="flex flex-wrap items-center gap-3 p-5 border-b border-border">
         <div className="flex items-center gap-2">
-          <span className="text-xl">🕸</span>
-          <h2 className="text-lg font-extrabold text-gray-800">学习知识点地图</h2>
+          <Share2 size={20} className="text-brand-500" />
+          <h2 className="text-lg font-extrabold text-text-primary">学习知识点地图</h2>
         </div>
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-text-muted">
           拖动节点 · 滚轮缩放 · 拖空白平移 · 悬停高亮关联 · 点击打开
         </span>
 
@@ -470,14 +471,14 @@ export default function KnowledgeGraph() {
           onClick={() => setColorMode(byDifficulty ? 'category' : 'difficulty')}
           className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border transition ${
             byDifficulty
-              ? 'bg-gray-800 text-white border-transparent'
-              : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300'
+              ? 'bg-brand-600 text-white border-transparent'
+              : 'bg-card text-text-secondary border-border hover:border-brand-300'
           }`}
           title="切换节点着色方式"
         >
           <span
             className="w-6 h-3.5 rounded-full relative transition"
-            style={{ background: byDifficulty ? '#f59e0b' : '#cbd5e1' }}
+            style={{ background: byDifficulty ? '#F59E0B' : '#cbd5e1' }}
           >
             <span
               className="absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white transition-all"
@@ -488,7 +489,7 @@ export default function KnowledgeGraph() {
         </button>
 
         <div className="flex flex-wrap gap-1.5 ml-auto">
-          <FilterChip active={filter === null} color="#7c3aed" label="全部" onClick={() => setFilter(null)} />
+          <FilterChip active={filter === null} color="#8B5CF6" label="全部" onClick={() => setFilter(null)} />
           {cats.map((c) => (
             <FilterChip
               key={c}
@@ -501,7 +502,7 @@ export default function KnowledgeGraph() {
         </div>
       </div>
 
-      <div ref={wrapRef} className="relative h-[540px] bg-gray-50">
+      <div ref={wrapRef} className="relative h-[540px] bg-surface">
         <canvas
           ref={canvasRef}
           className="absolute inset-0 touch-none"
@@ -514,10 +515,10 @@ export default function KnowledgeGraph() {
         />
         {/* 难度着色图例 */}
         {byDifficulty && (
-          <div className="absolute top-3 left-3 bg-white/90 backdrop-blur rounded-xl border border-gray-100 shadow-soft px-3 py-2 text-xs space-y-1">
-            <div className="font-semibold text-gray-500 mb-1">难度</div>
+          <div className="absolute top-3 left-3 bg-card/95 backdrop-blur rounded-xl border border-border shadow-card px-3 py-2 text-xs space-y-1">
+            <div className="font-semibold text-text-secondary mb-1">难度</div>
             {Object.entries(LEVEL_NAMES).map(([k, name]) => (
-              <div key={k} className="flex items-center gap-2 text-gray-600">
+              <div key={k} className="flex items-center gap-2 text-text-secondary">
                 <span className="w-3 h-3 rounded-full" style={{ background: LEVEL_COLORS[k] }} />
                 {name}
               </div>
@@ -525,19 +526,19 @@ export default function KnowledgeGraph() {
           </div>
         )}
         {cats.length === 0 && (
-          <div className="absolute inset-0 grid place-items-center text-gray-400 text-sm">
+          <div className="absolute inset-0 grid place-items-center text-text-muted text-sm">
             正在生成知识图谱…
           </div>
         )}
       </div>
 
-      <div className="px-5 py-3 text-xs text-gray-400 border-t border-gray-100">
+      <div className="px-5 py-3 text-xs text-text-muted border-t border-border">
         连线含义：同方向按学习顺序相连的
         <span className="text-brand-600 font-semibold"> 链路</span>；
         文章间
-        <span className="text-violet-500 font-semibold"> 共享标签 </span>
+        <span className="font-semibold" style={{ color: '#8B5CF6' }}> 共享标签 </span>
         的关联；
-        <span className="text-orange-500 font-semibold"> 前置依赖 </span>
+        <span className="text-warning-600 font-semibold"> 前置依赖 </span>
         （带箭头，先学 → 后学）。节点颜色{byDifficulty ? '对应学习难度' : '对应学习方向'}。
       </div>
     </div>
@@ -549,7 +550,7 @@ function FilterChip({ active, color, label, onClick }) {
     <button
       onClick={onClick}
       className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border transition ${
-        active ? 'text-white border-transparent' : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300'
+        active ? 'text-white border-transparent' : 'bg-card text-text-secondary border-border hover:border-brand-300'
       }`}
       style={active ? { background: color } : undefined}
     >

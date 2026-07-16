@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Compass, ChevronRight, Clock } from 'lucide-react';
 import LevelBadge from './LevelBadge.jsx';
 
 // 学习路线：按难度分为 入门 / 进阶 / 高级 三个阶段，章节按 order 编号排成时间轴。
@@ -33,11 +34,11 @@ export default function Roadmap({ articles, color = '#7c3aed' }) {
   if (ordered.length === 0) return null;
 
   return (
-    <section className="bg-white rounded-2xl border border-gray-100 shadow-soft p-6 mb-8">
+    <section className="bg-card rounded-2xl border border-border shadow-card p-6 mb-8">
       <div className="flex items-center gap-2 mb-1">
-        <span className="text-xl">🧭</span>
-        <h2 className="text-lg font-extrabold text-gray-800">学习路线</h2>
-        <span className="text-xs text-gray-400 ml-1">
+        <Compass size={20} style={{ color }} />
+        <h2 className="text-lg font-extrabold text-text-primary">学习路线</h2>
+        <span className="text-xs text-text-muted ml-1">
           按推荐顺序循序渐进 · 共 {ordered.length} 章
         </span>
         <button
@@ -47,7 +48,7 @@ export default function Roadmap({ articles, color = '#7c3aed' }) {
           {allOpen ? '全部收起' : '全部展开'}
         </button>
       </div>
-      <p className="text-sm text-gray-500 mb-4">
+      <p className="text-sm text-text-secondary mb-4">
         沿着时间轴依次学习，点击阶段标题可折叠，每个章节都可点击直达正文。
       </p>
 
@@ -57,25 +58,24 @@ export default function Roadmap({ articles, color = '#7c3aed' }) {
           <div key={g.id} className="mb-2">
             <button
               onClick={() => toggle(g.id)}
-              className="w-full flex items-center gap-2 py-2.5 px-1 text-left rounded-lg hover:bg-gray-50 transition"
+              className="w-full flex items-center gap-2 py-2.5 px-1 text-left rounded-lg hover:bg-brand-50 transition"
             >
-              <span
-                className="w-6 h-6 grid place-items-center rounded-md text-white text-xs shrink-0 transition-transform"
-                style={{ background: color, transform: open ? 'rotate(90deg)' : 'none' }}
-              >
-                ▶
-              </span>
+              <ChevronRight
+                size={16}
+                className="shrink-0 transition-transform"
+                style={{ color, transform: open ? 'rotate(90deg)' : 'none' }}
+              />
               <span className="text-sm font-bold" style={{ color }}>
                 {g.label}
               </span>
-              <span className="text-xs text-gray-400">· {g.items.length} 章</span>
-              <span className="text-xs text-gray-300">{g.hint}</span>
-              <span className="flex-1 h-px bg-gray-100" />
+              <span className="text-xs text-text-muted">· {g.items.length} 章</span>
+              <span className="text-xs text-text-muted">{g.hint}</span>
+              <span className="flex-1 h-px bg-border" />
             </button>
 
             {open && (
               <ol
-                className="relative border-l-2 border-dashed ml-4 mt-2"
+                className="relative border-l-2 border-brand-200 border-dashed ml-4 mt-2"
                 style={{ borderColor: `${color}55` }}
               >
                 {ordered
@@ -90,16 +90,19 @@ export default function Roadmap({ articles, color = '#7c3aed' }) {
                       </span>
                       <Link
                         to={`/article/${item.id}`}
-                        className="block bg-gray-50 hover:bg-brand-50 border border-gray-100 hover:border-brand-200 rounded-xl px-4 py-3 transition group"
+                        className="block bg-surface hover:bg-brand-50 border border-border hover:border-brand-300 rounded-xl px-4 py-3 transition group"
                       >
                         <div className="flex items-center gap-2 mb-1">
                           <LevelBadge level={item.level} />
-                          <span className="text-xs text-gray-400">⏱ {item.readMinutes} 分钟</span>
+                          <span className="inline-flex items-center gap-1 text-xs text-text-muted">
+                            <Clock size={12} />
+                            {item.readMinutes} 分钟
+                          </span>
                         </div>
-                        <h4 className="font-semibold text-gray-800 group-hover:text-brand-600">
+                        <h4 className="font-semibold text-text-primary group-hover:text-brand-600">
                           {item.title}
                         </h4>
-                        <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{item.summary}</p>
+                        <p className="text-xs text-text-secondary mt-0.5 line-clamp-1">{item.summary}</p>
                       </Link>
                     </li>
                   ))}

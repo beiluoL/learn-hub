@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowLeft, FileText } from 'lucide-react';
 import { content } from '../content.js';
 import InterviewCard from '../components/InterviewCard.jsx';
 
@@ -23,14 +24,18 @@ export default function Interviews() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
-      <Link to="/" className="text-sm text-brand-600 hover:underline">
-        ← 返回首页
+      <Link to="/" className="inline-flex items-center gap-1 text-sm text-text-muted hover:text-brand-600">
+        <ArrowLeft size={14} />
+        返回首页
       </Link>
       <div className="flex items-center justify-between mt-4 mb-2">
-        <h1 className="text-2xl font-extrabold text-gray-800">📝 近期面试题</h1>
-        <span className="text-sm text-gray-400">{items.length} 题</span>
+        <h1 className="flex items-center gap-2 text-2xl font-extrabold text-text-primary">
+          <FileText size={24} className="text-brand-500" />
+          近期面试题
+        </h1>
+        <span className="text-sm text-text-muted">{items.length} 题</span>
       </div>
-      <p className="text-gray-500 text-sm mb-5">
+      <p className="text-text-secondary text-sm mb-5">
         覆盖 Java / Python / 前端 / AI / 系统设计，点击题目展开答案要点。
       </p>
 
@@ -42,7 +47,7 @@ export default function Interviews() {
             className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
               cat === f.id
                 ? 'bg-brand-600 text-white'
-                : 'bg-white text-gray-600 border border-gray-200 hover:border-brand-300'
+                : 'bg-card text-text-secondary border border-border hover:border-brand-300'
             }`}
           >
             {f.label}
@@ -56,7 +61,7 @@ export default function Interviews() {
         ))}
       </div>
       {items.length === 0 && (
-        <p className="text-gray-400 py-10 text-center">该方向暂无面试题。</p>
+        <p className="text-text-muted py-10 text-center">该方向暂无面试题。</p>
       )}
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Coffee, Search } from 'lucide-react';
 
 export default function Header() {
   const [q, setQ] = useState('');
@@ -12,32 +13,32 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-white/80 backdrop-blur border-b border-gray-100">
+    <header className="sticky top-0 z-30 bg-card/80 backdrop-blur border-b border-border">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center gap-6">
         <Link to="/" className="flex items-center gap-2 shrink-0">
-          <span className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-indigo-500 grid place-items-center text-white text-lg shadow-soft">
-            🚀
+          <span className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 grid place-items-center text-white shadow-soft">
+            <Coffee size={20} />
           </span>
           <span className="text-lg font-extrabold tracking-tight">
             Learn<span className="text-brand-600">Hub</span>
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-gray-600">
-          <Link to="/" className="px-3 py-2 rounded-lg hover:bg-gray-100">
+        <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-text-secondary">
+          <Link to="/" className="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-600">
             首页
           </Link>
-          <Link to="/map" className="px-3 py-2 rounded-lg hover:bg-gray-100">
+          <Link to="/map" className="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-600">
             知识地图
           </Link>
-          <Link to="/interviews" className="px-3 py-2 rounded-lg hover:bg-gray-100">
+          <Link to="/interviews" className="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-600">
             面试题
           </Link>
         </nav>
 
         <form onSubmit={submit} className="ml-auto flex-1 max-w-md">
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}

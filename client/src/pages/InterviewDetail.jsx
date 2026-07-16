@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { content } from '../content.js';
 import { DIFF_MAP } from '../components/LevelBadge.jsx';
 import Markdown from '../components/Markdown.jsx';
@@ -35,12 +36,12 @@ export default function InterviewDetail() {
   }, [id]);
 
   if (loading) {
-    return <div className="max-w-3xl mx-auto px-4 py-20 text-center text-gray-500">加载中…</div>;
+    return <div className="max-w-3xl mx-auto px-4 py-20 text-center text-text-secondary">加载中…</div>;
   }
   if (!iv) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <p className="text-gray-600 mb-4">未找到该面试题。</p>
+        <p className="text-text-secondary mb-4">未找到该面试题。</p>
         <Link to="/interviews" className="text-brand-600 hover:underline">
           返回面试题列表
         </Link>
@@ -55,26 +56,27 @@ export default function InterviewDetail() {
 
   return (
     <article className="max-w-3xl mx-auto px-4 py-10">
-      <Link to="/interviews" className="text-sm text-brand-600 hover:underline">
-        ← 返回面试题
+      <Link to="/interviews" className="inline-flex items-center gap-1 text-sm text-text-muted hover:text-brand-600">
+        <ArrowLeft size={14} />
+        返回面试题
       </Link>
       <div className="flex items-center gap-3 mt-4 mb-3">
         <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${diff.cls}`}>
           {diff.label}
         </span>
-        <span className="text-sm text-gray-400">{CAT_NAME[iv.category] || iv.category}</span>
+        <span className="text-sm text-text-muted">{CAT_NAME[iv.category] || iv.category}</span>
       </div>
-      <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 leading-snug">
+      <h1 className="text-2xl md:text-3xl font-extrabold text-text-primary leading-snug">
         {iv.question}
       </h1>
       <div className="flex flex-wrap gap-1.5 my-4">
         {iv.tags?.map((t) => (
-          <span key={t} className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+          <span key={t} className="text-xs text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full">
             #{t}
           </span>
         ))}
       </div>
-      <hr className="border-gray-100 my-5" />
+      <hr className="border-border my-5" />
       <div className="text-xs font-bold text-brand-600 mb-2 tracking-wide">参考答案</div>
       <Markdown html={iv.answer} />
 
@@ -82,10 +84,13 @@ export default function InterviewDetail() {
         {prev ? (
           <Link
             to={`/interview/${prev.id}`}
-            className="p-4 rounded-xl border border-gray-100 hover:border-brand-200 hover:bg-brand-50 transition"
+            className="p-4 rounded-xl bg-card border border-border hover:border-brand-300 shadow-card transition"
           >
-            <div className="text-xs text-gray-400 mb-1">← 上一题</div>
-            <div className="text-sm font-semibold text-gray-700 line-clamp-2">{prev.question}</div>
+            <div className="flex items-center gap-1 text-xs text-text-muted mb-1">
+              <ArrowLeft size={12} />
+              上一题
+            </div>
+            <div className="text-sm font-semibold text-text-primary line-clamp-2">{prev.question}</div>
           </Link>
         ) : (
           <span />
@@ -93,10 +98,13 @@ export default function InterviewDetail() {
         {next ? (
           <Link
             to={`/interview/${next.id}`}
-            className="p-4 rounded-xl border border-gray-100 hover:border-brand-200 hover:bg-brand-50 transition text-right"
+            className="p-4 rounded-xl bg-card border border-border hover:border-brand-300 shadow-card transition text-right"
           >
-            <div className="text-xs text-gray-400 mb-1">下一题 →</div>
-            <div className="text-sm font-semibold text-gray-700 line-clamp-2">{next.question}</div>
+            <div className="flex items-center justify-end gap-1 text-xs text-text-muted mb-1">
+              下一题
+              <ArrowRight size={12} />
+            </div>
+            <div className="text-sm font-semibold text-text-primary line-clamp-2">{next.question}</div>
           </Link>
         ) : (
           <span />

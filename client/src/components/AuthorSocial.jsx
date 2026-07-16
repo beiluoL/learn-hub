@@ -88,11 +88,11 @@ export function SocialLinkList({ compact = false }) {
           href={l.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-700 transition hover:border-brand-300 hover:text-brand-600 hover:shadow-sm ${
+          className={`flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-sm font-medium text-text-primary transition hover:border-brand-300 hover:text-brand-600 hover:shadow-card-hover ${
             compact ? 'flex-1 min-w-[140px] justify-center' : ''
           }`}
         >
-          <span className="text-brand-600">
+          <span className="text-brand-500">
             <Icon ico={l.ico} />
           </span>
           <span>{l.label}</span>

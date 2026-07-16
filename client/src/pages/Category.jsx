@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { ArrowLeft, Code, Terminal, Globe, Brain, Server, BookOpen } from 'lucide-react';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import Roadmap from '../components/Roadmap.jsx';
@@ -10,6 +11,14 @@ const LEVELS = [
   { id: 'intermediate', label: '进阶' },
   { id: 'advanced', label: '高级' },
 ];
+
+const CAT_ICONS = {
+  java: Code,
+  python: Terminal,
+  frontend: Globe,
+  ai: Brain,
+  system: Server,
+};
 
 export default function Category() {
   const { catId } = useParams();
@@ -26,7 +35,7 @@ export default function Category() {
   const filtered = level === 'all' ? articles : articles.filter((a) => a.level === level);
 
   if (category === undefined) {
-    return <div className="max-w-6xl mx-auto px-4 py-20 text-center text-gray-500">加载中…</div>;
+    return <div className="max-w-6xl mx-auto px-4 py-20 text-center text-text-secondary">加载中…</div>;
   }
   const cat = category || {
     id: catId,
@@ -36,21 +45,24 @@ export default function Category() {
     desc: '',
   };
 
+  const CatIcon = CAT_ICONS[catId] || BookOpen;
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <Link to="/" className="text-sm text-brand-600 hover:underline">
-        ← 返回首页
+      <Link to="/" className="inline-flex items-center gap-1 text-sm text-text-muted hover:text-brand-600">
+        <ArrowLeft size={14} />
+        返回首页
       </Link>
       <div className="flex items-center gap-4 mt-4 mb-6">
         <div
-          className="w-14 h-14 rounded-2xl grid place-items-center text-3xl"
+          className="w-14 h-14 rounded-2xl grid place-items-center"
           style={{ background: `${cat.color}1a` }}
         >
-          {cat.icon}
+          <CatIcon size={28} style={{ color: cat.color }} />
         </div>
         <div>
-          <h1 className="text-2xl font-extrabold text-gray-800">{cat.name}</h1>
-          <p className="text-gray-500 text-sm">{cat.desc}</p>
+          <h1 className="text-2xl font-extrabold text-text-primary">{cat.name}</h1>
+          <p className="text-text-secondary text-sm">{cat.desc}</p>
         </div>
       </div>
 
@@ -65,7 +77,7 @@ export default function Category() {
             className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
               level === l.id
                 ? 'bg-brand-600 text-white'
-                : 'bg-white text-gray-600 border border-gray-200 hover:border-brand-300'
+                : 'bg-card text-text-secondary border border-border hover:border-brand-300'
             }`}
           >
             {l.label}
@@ -79,7 +91,7 @@ export default function Category() {
         ))}
       </div>
       {filtered.length === 0 && (
-        <p className="text-gray-400 py-10 text-center">该难度下暂无文章。</p>
+        <p className="text-text-muted py-10 text-center">该难度下暂无文章。</p>
       )}
     </div>
   );
