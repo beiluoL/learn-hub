@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T13:51:33.477Z",
+  "generatedAt": "2026-07-16T14:41:02.069Z",
   "categories": [
     {
       "id": "java",
@@ -39,6 +39,26 @@
   ],
   "articles": [
     {
+      "id": "ai/ai-agent-framework",
+      "title": "AI Agent 框架与多智能体协作",
+      "category": "ai",
+      "level": "advanced",
+      "readMinutes": 20,
+      "tags": [
+        "Agent",
+        "AutoGPT",
+        "CrewAI",
+        "多智能体"
+      ],
+      "prereq": [
+        "ai/ai-agent"
+      ],
+      "summary": "AI Agent 框架对比与多智能体协作。",
+      "order": 30,
+      "file": "ai/ai-agent-framework.md",
+      "type": "md"
+    },
+    {
       "id": "ai/ai-agent",
       "title": "Agent：智能体与工具调用",
       "category": "ai",
@@ -72,6 +92,64 @@
       "summary": "把大模型高效、低成本地部署到线上服务。",
       "order": 5,
       "file": "ai/ai-deploy.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-dl-basics",
+      "title": "深度学习基础",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 20,
+      "tags": [
+        "深度学习",
+        "神经网络",
+        "反向传播",
+        "激活函数"
+      ],
+      "prereq": [
+        "ai/ai-ml-basics"
+      ],
+      "summary": "深度学习基础：神经网络架构、反向传播与激活函数。",
+      "order": 21,
+      "file": "ai/ai-dl-basics.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-embedding",
+      "title": "嵌入技术原理与语义搜索",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "Embedding",
+        "语义搜索",
+        "嵌入",
+        "向量化"
+      ],
+      "prereq": [
+        "ai/ai-vector"
+      ],
+      "summary": "嵌入技术原理与语义搜索实战。",
+      "order": 29,
+      "file": "ai/ai-embedding.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-ethics",
+      "title": "AI 伦理与安全",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 14,
+      "tags": [
+        "AI安全",
+        "偏见",
+        "对齐",
+        "伦理"
+      ],
+      "prereq": [],
+      "summary": "AI 伦理与安全：偏见、幻觉与对齐问题。",
+      "order": 31,
+      "file": "ai/ai-ethics.md",
       "type": "md"
     },
     {
@@ -114,6 +192,123 @@
       "type": "md"
     },
     {
+      "id": "ai/ai-huggingface",
+      "title": "Hugging Face 生态实战",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "HuggingFace",
+        "模型库",
+        "Transformers",
+        "微调"
+      ],
+      "prereq": [],
+      "summary": "Hugging Face 生态实战：模型查找、加载与使用。",
+      "order": 27,
+      "file": "ai/ai-huggingface.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-langchain",
+      "title": "LangChain 框架深入",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "LangChain",
+        "Chain",
+        "Agent",
+        "Tool"
+      ],
+      "prereq": [
+        "ai/ai-prompt"
+      ],
+      "summary": "LangChain 框架深入：Chain、Agent 与 Tool 体系。",
+      "order": 23,
+      "file": "ai/ai-langchain.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-llamaindex",
+      "title": "LlamaIndex RAG 框架深入",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "LlamaIndex",
+        "RAG",
+        "索引",
+        "检索"
+      ],
+      "prereq": [
+        "ai/ai-rag"
+      ],
+      "summary": "LlamaIndex RAG 框架深入。",
+      "order": 28,
+      "file": "ai/ai-llamaindex.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-ml-basics",
+      "title": "机器学习核心概念",
+      "category": "ai",
+      "level": "beginner",
+      "readMinutes": 18,
+      "tags": [
+        "机器学习",
+        "监督学习",
+        "分类",
+        "回归"
+      ],
+      "prereq": [],
+      "summary": "机器学习核心概念：监督/非监督/强化学习与常见算法。",
+      "order": 20,
+      "file": "ai/ai-ml-basics.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-model-deploy",
+      "title": "大模型本地部署与服务化",
+      "category": "ai",
+      "level": "advanced",
+      "readMinutes": 18,
+      "tags": [
+        "模型部署",
+        "Ollama",
+        "vLLM",
+        "量化",
+        "GGUF"
+      ],
+      "prereq": [
+        "ai/ai-deploy"
+      ],
+      "summary": "大模型本地部署与服务化方案。",
+      "order": 26,
+      "file": "ai/ai-model-deploy.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-prompt-deep",
+      "title": "提示工程进阶",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "提示工程",
+        "CoT",
+        "Few-shot",
+        "结构化输出"
+      ],
+      "prereq": [
+        "ai/ai-prompt"
+      ],
+      "summary": "提示工程进阶：思维链、少样本与结构化输出。",
+      "order": 25,
+      "file": "ai/ai-prompt-deep.md",
+      "type": "md"
+    },
+    {
       "id": "ai/ai-prompt",
       "title": "Prompt Engineering：提示词工程",
       "category": "ai",
@@ -149,6 +344,24 @@
       "type": "md"
     },
     {
+      "id": "ai/ai-transformer",
+      "title": "Transformer 架构与 Attention 机制",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 22,
+      "tags": [
+        "Transformer",
+        "Attention",
+        "LLM",
+        "架构"
+      ],
+      "prereq": [],
+      "summary": "Transformer 架构与 Attention 机制深度解析。",
+      "order": 22,
+      "file": "ai/ai-transformer.md",
+      "type": "md"
+    },
+    {
       "id": "ai/ai-vector",
       "title": "向量数据库与 Embedding",
       "category": "ai",
@@ -164,6 +377,124 @@
       "summary": "理解文本向量化与近似最近邻检索，支撑 RAG/Agent 记忆。",
       "order": 4,
       "file": "ai/ai-vector.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-vectordb",
+      "title": "向量数据库选型与实战",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "向量数据库",
+        "Pinecone",
+        "Milvus",
+        "Chroma"
+      ],
+      "prereq": [
+        "ai/ai-vector"
+      ],
+      "summary": "向量数据库选型与实战对比。",
+      "order": 24,
+      "file": "ai/ai-vectordb.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-animation",
+      "title": "前端动画与动效设计",
+      "category": "frontend",
+      "level": "beginner",
+      "readMinutes": 14,
+      "tags": [
+        "动画",
+        "CSS动画",
+        "Framer Motion",
+        "动效"
+      ],
+      "prereq": [],
+      "summary": "前端动画与动效设计。",
+      "order": 34,
+      "file": "frontend/fe-animation.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-api-design",
+      "title": "前端 API 通信方案对比：REST、GraphQL 与 tRPC",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "API",
+        "REST",
+        "GraphQL",
+        "tRPC",
+        "数据请求"
+      ],
+      "prereq": [
+        "frontend/fe-react"
+      ],
+      "summary": "前端 API 通信方案对比：REST、GraphQL 与 tRPC。",
+      "order": 33,
+      "file": "frontend/fe-api-design.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-bundlers",
+      "title": "前端构建工具原理与对比",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "构建",
+        "Vite",
+        "Webpack",
+        "esbuild",
+        "打包"
+      ],
+      "prereq": [
+        "frontend/fe-engineering"
+      ],
+      "summary": "前端构建工具原理与对比。",
+      "order": 25,
+      "file": "frontend/fe-bundlers.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-css-engineering",
+      "title": "现代 CSS 工程化方案：Tailwind/CSS Modules/PostCSS 对比上手",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "CSS",
+        "Tailwind",
+        "CSS Modules",
+        "PostCSS"
+      ],
+      "prereq": [
+        "frontend/fe-js-core"
+      ],
+      "summary": "现代 CSS 工程化方案：Tailwind/CSS Modules/PostCSS 对比上手。",
+      "order": 20,
+      "file": "frontend/fe-css-engineering.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-debugging",
+      "title": "前端调试技巧与 Chrome DevTools 深度使用",
+      "category": "frontend",
+      "level": "beginner",
+      "readMinutes": 14,
+      "tags": [
+        "调试",
+        "DevTools",
+        "Performance",
+        "SourceMap"
+      ],
+      "prereq": [],
+      "summary": "前端调试技巧与 Chrome DevTools 深度使用。",
+      "order": 26,
+      "file": "frontend/fe-debugging.md",
       "type": "md"
     },
     {
@@ -203,6 +534,26 @@
       "type": "md"
     },
     {
+      "id": "frontend/fe-form",
+      "title": "前端表单最优实践：React Hook Form + Zod",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "表单",
+        "React Hook Form",
+        "Zod",
+        "验证"
+      ],
+      "prereq": [
+        "frontend/fe-react"
+      ],
+      "summary": "前端表单最优实践：React Hook Form + Zod。",
+      "order": 30,
+      "file": "frontend/fe-form.md",
+      "type": "md"
+    },
+    {
       "id": "frontend/fe-js-core",
       "title": "JavaScript 核心：闭包、原型与 this",
       "category": "frontend",
@@ -218,6 +569,47 @@
       "summary": "夯实 JS 三大难点，理解语言本质而非死记语法。",
       "order": 1,
       "file": "frontend/fe-js-core.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-monitoring",
+      "title": "前端错误监控与性能追踪",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "监控",
+        "Sentry",
+        "埋点",
+        "性能监控"
+      ],
+      "prereq": [
+        "frontend/fe-js-core"
+      ],
+      "summary": "前端错误监控与性能追踪。",
+      "order": 28,
+      "file": "frontend/fe-monitoring.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-nextjs",
+      "title": "Next.js 服务端渲染与全栈开发",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 20,
+      "tags": [
+        "Next.js",
+        "SSR",
+        "SSG",
+        "ISR",
+        "App Router"
+      ],
+      "prereq": [
+        "frontend/fe-react"
+      ],
+      "summary": "Next.js 服务端渲染与全栈开发。",
+      "order": 22,
+      "file": "frontend/fe-nextjs.md",
       "type": "md"
     },
     {
@@ -239,6 +631,45 @@
       "type": "md"
     },
     {
+      "id": "frontend/fe-pwa",
+      "title": "PWA 渐进式 Web 应用与离线化",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "PWA",
+        "Service Worker",
+        "离线",
+        "缓存"
+      ],
+      "prereq": [],
+      "summary": "PWA 渐进式 Web 应用与离线化。",
+      "order": 35,
+      "file": "frontend/fe-pwa.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-react-hooks-deep",
+      "title": "React Hooks 深入：缓存优化、Ref 妙用与自定义 Hook",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 20,
+      "tags": [
+        "React",
+        "Hooks",
+        "useMemo",
+        "useCallback",
+        "自定义Hook"
+      ],
+      "prereq": [
+        "frontend/fe-react"
+      ],
+      "summary": "React Hooks 深入：缓存优化、Ref 妙用与自定义 Hook。",
+      "order": 21,
+      "file": "frontend/fe-react-hooks-deep.md",
+      "type": "md"
+    },
+    {
       "id": "frontend/fe-react",
       "title": "React 核心：组件、Hooks 与状态",
       "category": "frontend",
@@ -254,6 +685,64 @@
       "summary": "掌握函数组件与 Hooks 心智模型，理解渲染与副作用。",
       "order": 3,
       "file": "frontend/fe-react.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-responsive",
+      "title": "响应式设计与移动端适配实战",
+      "category": "frontend",
+      "level": "beginner",
+      "readMinutes": 14,
+      "tags": [
+        "响应式",
+        "移动适配",
+        "媒体查询",
+        "rem"
+      ],
+      "prereq": [],
+      "summary": "响应式设计与移动端适配实战。",
+      "order": 32,
+      "file": "frontend/fe-responsive.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-routing-deep",
+      "title": "前端路由原理与 React Router 进阶",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "路由",
+        "React Router",
+        "Hash",
+        "History"
+      ],
+      "prereq": [
+        "frontend/fe-react"
+      ],
+      "summary": "前端路由原理与 React Router 进阶。",
+      "order": 29,
+      "file": "frontend/fe-routing-deep.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-security",
+      "title": "前端 Web 安全攻防实战",
+      "category": "frontend",
+      "level": "advanced",
+      "readMinutes": 18,
+      "tags": [
+        "安全",
+        "XSS",
+        "CSRF",
+        "CSP"
+      ],
+      "prereq": [
+        "frontend/fe-js-core"
+      ],
+      "summary": "前端 Web 安全攻防实战。",
+      "order": 24,
+      "file": "frontend/fe-security.md",
       "type": "md"
     },
     {
@@ -274,6 +763,66 @@
       "summary": "厘清何时用本地状态、Context 还是外部状态库，掌握 Zustand 的极简用法。",
       "order": 7,
       "file": "frontend/fe-state.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-store-deep",
+      "title": "前端状态管理方案对比与选型",
+      "category": "frontend",
+      "level": "advanced",
+      "readMinutes": 20,
+      "tags": [
+        "状态管理",
+        "Redux",
+        "Zustand",
+        "Context"
+      ],
+      "prereq": [
+        "frontend/fe-state"
+      ],
+      "summary": "前端状态管理方案对比与选型。",
+      "order": 31,
+      "file": "frontend/fe-store-deep.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-testing",
+      "title": "前端测试：Vitest + React Testing Library 实战",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "测试",
+        "Vitest",
+        "RTL",
+        "前端测试"
+      ],
+      "prereq": [
+        "frontend/fe-react"
+      ],
+      "summary": "前端测试：Vitest + React Testing Library 实战。",
+      "order": 23,
+      "file": "frontend/fe-testing.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-type-deep",
+      "title": "TypeScript 深入：泛型、工具类型与类型实战",
+      "category": "frontend",
+      "level": "advanced",
+      "readMinutes": 20,
+      "tags": [
+        "TypeScript",
+        "泛型",
+        "工具类型",
+        "类型体操"
+      ],
+      "prereq": [
+        "frontend/fe-typescript"
+      ],
+      "summary": "TypeScript 深入：泛型、工具类型与类型实战。",
+      "order": 27,
+      "file": "frontend/fe-type-deep.md",
       "type": "md"
     },
     {
@@ -1089,6 +1638,65 @@
       "type": "md"
     },
     {
+      "id": "python/py-celery",
+      "title": "Celery 异步任务与定时调度实战",
+      "category": "python",
+      "level": "advanced",
+      "readMinutes": 18,
+      "tags": [
+        "Celery",
+        "异步任务",
+        "定时",
+        "消息队列"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "Celery 异步任务与定时调度实战。",
+      "order": 33,
+      "file": "python/py-celery.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-cli-tools",
+      "title": "Python 命令行工具开发",
+      "category": "python",
+      "level": "beginner",
+      "readMinutes": 14,
+      "tags": [
+        "argparse",
+        "click",
+        "typer",
+        "CLI"
+      ],
+      "prereq": [],
+      "summary": "Python 命令行工具开发。",
+      "order": 32,
+      "file": "python/py-cli-tools.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-concurrency",
+      "title": "Python 并发模型详解：GIL 限制与线程/进程/协程选型",
+      "category": "python",
+      "level": "advanced",
+      "readMinutes": 22,
+      "tags": [
+        "GIL",
+        "线程",
+        "多进程",
+        "协程",
+        "asyncio"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "Python 并发模型详解：GIL 限制与线程/进程/协程选型。",
+      "order": 28,
+      "file": "python/py-concurrency.md",
+      "type": "md"
+    },
+    {
       "id": "python/py-data",
       "title": "数据处理：NumPy 与 Pandas",
       "category": "python",
@@ -1121,6 +1729,264 @@
       "summary": "理解一等函数、闭包原理，手写可用的装饰器与带参装饰器。",
       "order": 2,
       "file": "python/py-decorator.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-deploy",
+      "title": "Python 应用部署与容器化实战",
+      "category": "python",
+      "level": "advanced",
+      "readMinutes": 18,
+      "tags": [
+        "部署",
+        "gunicorn",
+        "Docker",
+        "容器化"
+      ],
+      "prereq": [
+        "python/py-web"
+      ],
+      "summary": "Python 应用部署与容器化实战。",
+      "order": 35,
+      "file": "python/py-deploy.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-design-patterns",
+      "title": "Python 设计模式实战",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "设计模式",
+        "单例",
+        "工厂",
+        "装饰器"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "Python 设计模式实战。",
+      "order": 30,
+      "file": "python/py-design-patterns.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-django-basics",
+      "title": "Django MVT 架构与快速上手",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 20,
+      "tags": [
+        "Django",
+        "MVT",
+        "ORM",
+        "Admin"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "Django MVT 架构与快速上手。",
+      "order": 21,
+      "file": "python/py-django-basics.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-django-rest",
+      "title": "Django REST Framework API 开发",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "DRF",
+        "REST",
+        "Serializer",
+        "API"
+      ],
+      "prereq": [
+        "python/py-django-basics"
+      ],
+      "summary": "Django REST Framework API 开发。",
+      "order": 23,
+      "file": "python/py-django-rest.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-fastapi",
+      "title": "FastAPI 异步 Web 框架",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "FastAPI",
+        "async",
+        "Pydantic",
+        "OpenAPI"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "FastAPI 异步 Web 框架：类型校验、自动文档与依赖注入。",
+      "order": 22,
+      "file": "python/py-fastapi.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-flask",
+      "title": "Flask 轻量 Web 框架入门",
+      "category": "python",
+      "level": "beginner",
+      "readMinutes": 16,
+      "tags": [
+        "Flask",
+        "路由",
+        "模板",
+        "WSGI"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "Flask 轻量 Web 框架入门：路由、模板渲染与请求处理。",
+      "order": 20,
+      "file": "python/py-flask.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-logging",
+      "title": "Python 日志体系与异常监控实践",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "logging",
+        "日志",
+        "结构化",
+        "监控"
+      ],
+      "prereq": [],
+      "summary": "Python 日志体系与异常监控实践。",
+      "order": 29,
+      "file": "python/py-logging.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-ml-pipeline",
+      "title": "Python 机器学习管线：scikit-learn 实战",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "sklearn",
+        "机器学习",
+        "pipeline",
+        "评估"
+      ],
+      "prereq": [
+        "python/py-data"
+      ],
+      "summary": "Python 机器学习管线：scikit-learn 实战。",
+      "order": 34,
+      "file": "python/py-ml-pipeline.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-numpy",
+      "title": "NumPy 数组操作与广播机制",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "NumPy",
+        "ndarray",
+        "广播",
+        "向量化"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "NumPy 数组操作与广播机制。",
+      "order": 26,
+      "file": "python/py-numpy.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-package",
+      "title": "Python 包管理与虚拟环境最佳实践",
+      "category": "python",
+      "level": "beginner",
+      "readMinutes": 14,
+      "tags": [
+        "pip",
+        "venv",
+        "poetry",
+        "pyproject.toml"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "Python 包管理与虚拟环境最佳实践。",
+      "order": 27,
+      "file": "python/py-package.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-pandas",
+      "title": "Pandas 数据分析核心操作",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 20,
+      "tags": [
+        "Pandas",
+        "DataFrame",
+        "数据分析",
+        "GroupBy"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "Pandas 数据分析核心操作。",
+      "order": 25,
+      "file": "python/py-pandas.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-sqlalchemy",
+      "title": "SQLAlchemy ORM 核心用法与 Alembic 数据库迁移",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "SQLAlchemy",
+        "ORM",
+        "会话",
+        "Alembic"
+      ],
+      "prereq": [
+        "python/py-basics"
+      ],
+      "summary": "SQLAlchemy ORM 核心用法与 Alembic 数据库迁移。",
+      "order": 24,
+      "file": "python/py-sqlalchemy.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-testing-deep",
+      "title": "Python 测试进阶：pytest 高级特性与 Mock 实战",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "pytest",
+        "mock",
+        "fixture",
+        "覆盖率"
+      ],
+      "prereq": [
+        "python/py-testing"
+      ],
+      "summary": "Python 测试进阶：pytest 高级特性与 Mock 实战。",
+      "order": 31,
+      "file": "python/py-testing-deep.md",
       "type": "md"
     },
     {
