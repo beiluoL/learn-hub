@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
+import BackToTop from './components/BackToTop.jsx';
 import Home from './pages/Home.jsx';
 import Category from './pages/Category.jsx';
 import ArticleDetail from './pages/ArticleDetail.jsx';
@@ -27,6 +28,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }

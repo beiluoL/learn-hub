@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink } from 'lucide-react';
 import { DIFF_MAP } from './LevelBadge.jsx';
@@ -13,19 +13,42 @@ const CAT_NAME = {
   system: '系统设计',
 };
 
+// 模块级缓存：避免折叠再展开时重复 fetch
+const answerCache = new Map();
+
 export default function InterviewCard({ item }) {
   const [open, setOpen] = useState(false);
   const [answer, setAnswer] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [hasFetched, setHasFetched] = useState(false);
   const diff = DIFF_MAP[item.difficulty] || DIFF_MAP.middle;
 
   useEffect(() => {
     if (!open) return;
+    // 命中缓存直接使用
+    if (answerCache.has(item.id)) {
+      setAnswer(answerCache.get(item.id));
+      setHasFetched(true);
+      return;
+    }
+    // 已 fetch 过但未展开时也跳过
+    if (hasFetched && answer) return;
+
     setLoading(true);
+    setError(false);
     content
       .interview(item.id)
-      .then((iv) => setAnswer(iv?.answer || ''))
-      .finally(() => setLoading(false));
+      .then((iv) => {
+        const html = iv?.answer || '';
+        setAnswer(html);
+        answerCache.set(item.id, html);
+      })
+      .catch(() => setError(true))
+      .finally(() => {
+        setLoading(false);
+        setHasFetched(true);
+      });
   }, [open, item.id]);
 
   return (
@@ -47,9 +70,20 @@ export default function InterviewCard({ item }) {
         <span className="text-text-muted text-lg shrink-0">{open ? '−' : '+'}</span>
       </button>
       {open && (
-        <div className="px-5 pb-5 mt-2 border-t border-border pt-4">
-          {loading && <p className="text-text-muted text-sm">加载答案…</p>}
-          {!loading && <Markdown html={answer} />}
+        <div className="px-5 pb-5 border-t border-border pt-4">
+          {loading && <p className="text-text-muted text-sm animate-pulse">加载答案…</p>}
+          {error && (
+            <p className="text-danger-500 text-sm">
+              加载失败，
+              <button
+                onClick={() => { setHasFetched(false); answerCache.delete(item.id); }}
+                className="underline"
+              >
+                点击重试
+              </button>
+            </p>
+          )}
+          {!loading && !error && answer && <Markdown html={answer} />}
           <div className="mt-3 text-right">
             <Link
               to={`/interview/${item.id}`}

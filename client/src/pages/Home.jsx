@@ -5,20 +5,24 @@ import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import InterviewCard from '../components/InterviewCard.jsx';
 import LINKS, { WECHAT, SocialLinkList } from '../components/AuthorSocial.jsx';
+import { ListSkeleton } from '../components/Skeleton.jsx';
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
   const [articles, setArticles] = useState([]);
   const [interviews, setInterviews] = useState([]);
   const [stats, setStats] = useState({});
+  const [loading, setLoading] = useState(true);
   const [q, setQ] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    content.categories().then(setCategories);
-    content.articles().then(setArticles);
-    content.interviews().then(setInterviews);
-    content.stats().then(setStats);
+    Promise.all([
+      content.categories().then(setCategories),
+      content.articles().then(setArticles),
+      content.interviews().then(setInterviews),
+      content.stats().then(setStats),
+    ]).finally(() => setLoading(false));
   }, []);
 
   const submit = (e) => {
@@ -119,11 +123,15 @@ export default function Home() {
       {/* 精选文章 */}
       <section className="max-w-6xl mx-auto px-4 pb-14">
         <SectionTitle title="精选文章" sub="来自各方向的实战内容" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
-          {featured.map((a) => (
-            <ArticleCard key={a.id} article={a} />
-          ))}
-        </div>
+        {loading ? (
+          <ListSkeleton count={6} />
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+            {featured.map((a) => (
+              <ArticleCard key={a.id} article={a} />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* 近期面试题 */}

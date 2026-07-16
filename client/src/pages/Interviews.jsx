@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, FileText } from 'lucide-react';
 import { content } from '../content.js';
 import InterviewCard from '../components/InterviewCard.jsx';
+import { CardSkeleton } from '../components/Skeleton.jsx';
 
 const FILTERS = [
   { id: 'all', label: '全部' },
@@ -16,10 +17,11 @@ const FILTERS = [
 export default function Interviews() {
   const [items, setItems] = useState([]);
   const [cat, setCat] = useState('all');
-  const [openAll, setOpenAll] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    content.interviews(cat).then(setItems);
+    setLoading(true);
+    content.interviews(cat).then(setItems).finally(() => setLoading(false));
   }, [cat]);
 
   return (
@@ -56,11 +58,13 @@ export default function Interviews() {
       </div>
 
       <div className="space-y-3">
-        {items.map((iv) => (
-          <InterviewCard key={iv.id} item={iv} />
-        ))}
+        {loading
+          ? Array.from({ length: 4 }).map((_, i) => <CardSkeleton key={i} />)
+          : items.map((iv) => (
+              <InterviewCard key={iv.id} item={iv} />
+            ))}
       </div>
-      {items.length === 0 && (
+      {!loading && items.length === 0 && (
         <p className="text-text-muted py-10 text-center">该方向暂无面试题。</p>
       )}
     </div>

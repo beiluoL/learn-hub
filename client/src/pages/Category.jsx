@@ -4,6 +4,7 @@ import { ArrowLeft, Code, Terminal, Globe, Brain, Server, BookOpen } from 'lucid
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import Roadmap from '../components/Roadmap.jsx';
+import { ListSkeleton } from '../components/Skeleton.jsx';
 
 const LEVELS = [
   { id: 'all', label: '全部' },
@@ -22,28 +23,39 @@ const CAT_ICONS = {
 
 export default function Category() {
   const { catId } = useParams();
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState(undefined);
   const [articles, setArticles] = useState([]);
   const [level, setLevel] = useState('all');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    content.categories().then((cs) => setCategory(cs.find((c) => c.id === catId) || null));
-    content.articles(catId).then(setArticles);
+    setLoading(true);
     setLevel('all');
+    Promise.all([
+      content.categories().then((cs) => setCategory(cs.find((c) => c.id === catId) || null)),
+      content.articles(catId).then(setArticles),
+    ]).finally(() => setLoading(false));
   }, [catId]);
 
   const filtered = level === 'all' ? articles : articles.filter((a) => a.level === level);
 
-  if (category === undefined) {
-    return <div className="max-w-6xl mx-auto px-4 py-20 text-center text-text-secondary">加载中…</div>;
+  if (loading) {
+    return (
+      <div className="max-w-6xl mx-auto px-4 py-10">
+        <div className="h-4 w-24 rounded bg-surface animate-pulse mb-6" />
+        <div className="flex items-center gap-4 mb-6 animate-pulse">
+          <div className="w-14 h-14 rounded-2xl bg-surface" />
+          <div>
+            <div className="h-6 w-32 rounded bg-surface mb-1" />
+            <div className="h-4 w-48 rounded bg-surface" />
+          </div>
+        </div>
+        <ListSkeleton count={6} />
+      </div>
+    );
   }
-  const cat = category || {
-    id: catId,
-    name: catId,
-    icon: '📁',
-    color: '#6d28d9',
-    desc: '',
-  };
+
+  const cat = category || { id: catId, name: catId, icon: '📁', color: '#6d28d9', desc: '' };
 
   const CatIcon = CAT_ICONS[catId] || BookOpen;
 
