@@ -185,9 +185,11 @@ export default function Home() {
 
             {/* 右侧：公众号 */}
             <div className="lg:w-72 bg-slate-700/40 flex flex-col items-center justify-center px-8 py-10 border-t lg:border-t-0 lg:border-l border-slate-600">
-              <div className="w-24 h-24 rounded-2xl bg-white flex items-center justify-center text-green-600 text-4xl font-extrabold shadow-lg mb-4">
-                拾
-              </div>
+              <img
+                src={`${import.meta.env.BASE_URL}qrcode-wechat.jpg`}
+                alt="公众号：北落拾光"
+                className="w-32 h-32 rounded-xl bg-white p-1.5 shadow-lg mb-4"
+              />
               <div className="text-center">
                 <div className="font-bold text-white text-lg mb-1">{WECHAT.name}</div>
                 <div className="text-sm text-gray-300 mb-3">{WECHAT.desc}</div>
