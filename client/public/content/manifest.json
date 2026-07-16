@@ -1,0 +1,607 @@
+{
+  "generatedAt": "2026-07-16T11:15:00.524Z",
+  "categories": [
+    {
+      "id": "java",
+      "name": "Java 学习",
+      "icon": "☕",
+      "color": "#f89820",
+      "desc": "从基础语法到 JVM、并发编程，系统掌握 Java 生态。"
+    },
+    {
+      "id": "python",
+      "name": "Python 学习",
+      "icon": "🐍",
+      "color": "#3776ab",
+      "desc": "语法简洁、生态丰富，覆盖脚本、数据、异步与 Web 开发。"
+    },
+    {
+      "id": "frontend",
+      "name": "前端学习",
+      "icon": "🎨",
+      "color": "#61dafb",
+      "desc": "HTML/CSS/JS 核心，框架工程化与现代前端体系。"
+    },
+    {
+      "id": "ai",
+      "name": "AI 应用开发",
+      "icon": "🤖",
+      "color": "#7c5cff",
+      "desc": "LLM、RAG、Agent、向量库与推理部署的完整链路。"
+    },
+    {
+      "id": "interview",
+      "name": "面试题",
+      "icon": "💡",
+      "color": "#22c55e",
+      "desc": "近期高频面试题与答案要点，覆盖主流方向。"
+    }
+  ],
+  "articles": [
+    {
+      "id": "ai/ai-agent",
+      "title": "Agent：智能体与工具调用",
+      "category": "ai",
+      "level": "advanced",
+      "readMinutes": 19,
+      "tags": [
+        "Agent",
+        "Tool Calling",
+        "编排",
+        "规划"
+      ],
+      "summary": "让 LLM 自主规划、调用工具、循环迭代完成复杂任务。",
+      "order": 3,
+      "file": "ai/ai-agent.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-deploy",
+      "title": "模型部署与推理优化",
+      "category": "ai",
+      "level": "advanced",
+      "readMinutes": 17,
+      "tags": [
+        "部署",
+        "推理",
+        "量化",
+        "GPU"
+      ],
+      "summary": "把大模型高效、低成本地部署到线上服务。",
+      "order": 5,
+      "file": "ai/ai-deploy.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-prompt",
+      "title": "Prompt Engineering：提示词工程",
+      "category": "ai",
+      "level": "beginner",
+      "readMinutes": 12,
+      "tags": [
+        "Prompt",
+        "LLM",
+        "入门"
+      ],
+      "summary": "掌握结构化提示词技巧，稳定提升大模型输出质量。",
+      "order": 1,
+      "file": "ai/ai-prompt.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-rag",
+      "title": "RAG：检索增强生成",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "RAG",
+        "向量库",
+        "检索",
+        "Embedding"
+      ],
+      "summary": "用私有知识 + 检索喂给 LLM，解决\"幻觉\"与知识时效问题。",
+      "order": 2,
+      "file": "ai/ai-rag.md",
+      "type": "md"
+    },
+    {
+      "id": "ai/ai-vector",
+      "title": "向量数据库与 Embedding",
+      "category": "ai",
+      "level": "intermediate",
+      "readMinutes": 15,
+      "tags": [
+        "向量库",
+        "Embedding",
+        "相似度",
+        "检索"
+      ],
+      "summary": "理解文本向量化与近似最近邻检索，支撑 RAG/Agent 记忆。",
+      "order": 4,
+      "file": "ai/ai-vector.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-dom",
+      "title": "DOM、事件与渲染机制",
+      "category": "frontend",
+      "level": "beginner",
+      "readMinutes": 13,
+      "tags": [
+        "DOM",
+        "事件",
+        "渲染",
+        "回流重绘"
+      ],
+      "summary": "理解浏览器渲染流程与事件模型，写出流畅交互。",
+      "order": 2,
+      "file": "frontend/fe-dom.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-engineering",
+      "title": "前端工程化：构建与模块化",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "Vite",
+        "Webpack",
+        "模块化",
+        "工程化"
+      ],
+      "summary": "理解 ESM、打包器与现代化构建工具链。",
+      "order": 4,
+      "file": "frontend/fe-engineering.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-js-core",
+      "title": "JavaScript 核心：闭包、原型与 this",
+      "category": "frontend",
+      "level": "beginner",
+      "readMinutes": 14,
+      "tags": [
+        "JavaScript",
+        "闭包",
+        "原型链",
+        "this"
+      ],
+      "summary": "夯实 JS 三大难点，理解语言本质而非死记语法。",
+      "order": 1,
+      "file": "frontend/fe-js-core.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-perf",
+      "title": "前端性能优化实战",
+      "category": "frontend",
+      "level": "advanced",
+      "readMinutes": 17,
+      "tags": [
+        "性能",
+        "LCP",
+        "懒加载",
+        "缓存"
+      ],
+      "summary": "从加载、渲染到运行时，系统性提升页面性能。",
+      "order": 5,
+      "file": "frontend/fe-perf.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/fe-react",
+      "title": "React 核心：组件、Hooks 与状态",
+      "category": "frontend",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "React",
+        "Hooks",
+        "状态管理",
+        "组件"
+      ],
+      "summary": "掌握函数组件与 Hooks 心智模型，理解渲染与副作用。",
+      "order": 3,
+      "file": "frontend/fe-react.md",
+      "type": "md"
+    },
+    {
+      "id": "java/add-your-own-article",
+      "title": "示例文章：如何给本网站添加你自己的内容",
+      "category": "java",
+      "level": "初级",
+      "readMinutes": 6,
+      "tags": [
+        "[教程",
+        "入门",
+        "内容管理]"
+      ],
+      "summary": "一篇用来演示的示例文章——你正在看的这篇，就是按照文末说明新建出来的。",
+      "order": 99,
+      "file": "java/add-your-own-article.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-basics",
+      "title": "Java 基础语法与数据类型",
+      "category": "java",
+      "level": "beginner",
+      "readMinutes": 12,
+      "tags": [
+        "基础",
+        "数据类型",
+        "变量"
+      ],
+      "summary": "掌握 Java 的基本类型、引用类型、运算符与控制流，搭建扎实的语法基础。",
+      "order": 1,
+      "file": "java/java-basics.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-collections",
+      "title": "集合框架：List / Set / Map",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "集合",
+        "HashMap",
+        "并发",
+        "性能"
+      ],
+      "summary": "吃透 Java 集合体系，重点理解 HashMap 的底层结构与扩容机制。",
+      "order": 3,
+      "file": "java/java-collections.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-concurrency",
+      "title": "并发编程：线程、线程池与并发容器",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 20,
+      "tags": [
+        "并发",
+        "线程池",
+        "锁",
+        "JUC"
+      ],
+      "summary": "理解线程模型、线程池参数与常见并发工具，写出安全的多线程代码。",
+      "order": 4,
+      "file": "java/java-concurrency.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-jvm",
+      "title": "JVM 内存模型与垃圾回收",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 18,
+      "tags": [
+        "JVM",
+        "GC",
+        "内存",
+        "调优"
+      ],
+      "summary": "理解运行时数据区、对象创建过程与主流垃圾回收器，具备基础调优能力。",
+      "order": 5,
+      "file": "java/java-jvm.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-oop",
+      "title": "面向对象：封装、继承、多态",
+      "category": "java",
+      "level": "beginner",
+      "readMinutes": 14,
+      "tags": [
+        "OOP",
+        "继承",
+        "多态",
+        "接口"
+      ],
+      "summary": "理解 Java 面向对象三大特性，以及接口与抽象类的取舍。",
+      "order": 2,
+      "file": "java/java-oop.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-stream",
+      "title": "Java 8+ 新特性：Lambda 与 Stream",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 13,
+      "tags": [
+        "Java8",
+        "Lambda",
+        "Stream",
+        "函数式"
+      ],
+      "summary": "用 Lambda 与 Stream 写出声明式、易并行的高可读代码。",
+      "order": 6,
+      "file": "java/java-stream.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-asyncio",
+      "title": "异步编程：asyncio 与协程",
+      "category": "python",
+      "level": "advanced",
+      "readMinutes": 17,
+      "tags": [
+        "asyncio",
+        "协程",
+        "并发",
+        "async/await"
+      ],
+      "summary": "用 async/await 处理高并发 IO，理解事件循环与协程调度。",
+      "order": 3,
+      "file": "python/py-asyncio.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-basics",
+      "title": "Python 基础语法与数据结构",
+      "category": "python",
+      "level": "beginner",
+      "readMinutes": 12,
+      "tags": [
+        "基础",
+        "数据类型",
+        "语法"
+      ],
+      "summary": "掌握变量、缩进、内置数据结构与推导式，建立 Python 直觉。",
+      "order": 1,
+      "file": "python/py-basics.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-data",
+      "title": "数据处理：NumPy 与 Pandas",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 15,
+      "tags": [
+        "NumPy",
+        "Pandas",
+        "数据分析",
+        "科学计算"
+      ],
+      "summary": "用向量化思想处理表格与数组数据，远离慢速 for 循环。",
+      "order": 5,
+      "file": "python/py-data.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-decorator",
+      "title": "函数、闭包与装饰器",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 15,
+      "tags": [
+        "装饰器",
+        "闭包",
+        "高阶函数"
+      ],
+      "summary": "理解一等函数、闭包原理，手写可用的装饰器与带参装饰器。",
+      "order": 2,
+      "file": "python/py-decorator.md",
+      "type": "md"
+    },
+    {
+      "id": "python/py-web",
+      "title": "Web 开发：FastAPI 实战",
+      "category": "python",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "FastAPI",
+        "Web",
+        "API",
+        "Pydantic"
+      ],
+      "summary": "用 FastAPI 快速构建类型安全、自带文档的异步 Web 服务。",
+      "order": 4,
+      "file": "python/py-web.md",
+      "type": "md"
+    }
+  ],
+  "interviews": [
+    {
+      "id": "interviews/iv-ai-1",
+      "question": "什么是 RAG？它解决了大模型的哪些问题？",
+      "category": "ai",
+      "difficulty": "middle",
+      "tags": [
+        "RAG",
+        "大模型",
+        "幻觉"
+      ],
+      "order": 10,
+      "file": "interviews/iv-ai-1.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-ai-2",
+      "question": "Agent（智能体）与传统 LLM 调用的区别？Tool Calling 是如何工作的？",
+      "category": "ai",
+      "difficulty": "hard",
+      "tags": [
+        "Agent",
+        "Tool Calling",
+        "编排"
+      ],
+      "order": 11,
+      "file": "interviews/iv-ai-2.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-ai-3",
+      "question": "模型量化（Quantization）是什么？INT8/INT4 有什么利弊？",
+      "category": "ai",
+      "difficulty": "middle",
+      "tags": [
+        "量化",
+        "部署",
+        "推理"
+      ],
+      "order": 12,
+      "file": "interviews/iv-ai-3.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-1",
+      "question": "var、let、const 的区别？什么是变量提升（Hoisting）？",
+      "category": "frontend",
+      "difficulty": "middle",
+      "tags": [
+        "JavaScript",
+        "作用域",
+        "ES6"
+      ],
+      "order": 7,
+      "file": "interviews/iv-fe-1.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-2",
+      "question": "React 中 useState 和 useEffect 的工作原理？为什么 useEffect 依赖数组很重要？",
+      "category": "frontend",
+      "difficulty": "hard",
+      "tags": [
+        "React",
+        "Hooks",
+        "渲染"
+      ],
+      "order": 8,
+      "file": "interviews/iv-fe-2.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-fe-3",
+      "question": "什么是回流（Reflow）和重绘（Repaint）？如何减少它们？",
+      "category": "frontend",
+      "difficulty": "middle",
+      "tags": [
+        "性能",
+        "渲染",
+        "回流"
+      ],
+      "order": 9,
+      "file": "interviews/iv-fe-3.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-1",
+      "question": "HashMap 和 ConcurrentHashMap 的区别？ConcurrentHashMap 如何保证线程安全？",
+      "category": "java",
+      "difficulty": "middle",
+      "tags": [
+        "集合",
+        "并发",
+        "HashMap"
+      ],
+      "order": 1,
+      "file": "interviews/iv-java-1.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-2",
+      "question": "Java 中 synchronized 和 ReentrantLock 的区别？锁升级过程是怎样的？",
+      "category": "java",
+      "difficulty": "hard",
+      "tags": [
+        "并发",
+        "锁",
+        "JVM"
+      ],
+      "order": 2,
+      "file": "interviews/iv-java-2.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-java-3",
+      "question": "JVM 内存结构是怎样的？哪些区域会发生 OOM？",
+      "category": "java",
+      "difficulty": "middle",
+      "tags": [
+        "JVM",
+        "内存",
+        "OOM"
+      ],
+      "order": 3,
+      "file": "interviews/iv-java-3.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-py-1",
+      "question": "Python 中 list 和 tuple 的区别？什么场景用 tuple？",
+      "category": "python",
+      "difficulty": "middle",
+      "tags": [
+        "数据类型",
+        "性能"
+      ],
+      "order": 4,
+      "file": "interviews/iv-py-1.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-py-2",
+      "question": "解释 GIL（全局解释器锁）是什么？它对多线程有什么影响？如何绕过？",
+      "category": "python",
+      "difficulty": "hard",
+      "tags": [
+        "GIL",
+        "并发",
+        "多线程"
+      ],
+      "order": 5,
+      "file": "interviews/iv-py-2.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-py-3",
+      "question": "什么是装饰器？请写出一个带参数的装饰器并说明执行顺序。",
+      "category": "python",
+      "difficulty": "middle",
+      "tags": [
+        "装饰器",
+        "闭包"
+      ],
+      "order": 6,
+      "file": "interviews/iv-py-3.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-1",
+      "question": "如何设计一个短链（短网址）服务？",
+      "category": "system",
+      "difficulty": "hard",
+      "tags": [
+        "系统设计",
+        "分布式",
+        "缓存"
+      ],
+      "order": 13,
+      "file": "interviews/iv-sys-1.md",
+      "type": "md"
+    },
+    {
+      "id": "interviews/iv-sys-2",
+      "question": "如何设计一个支持高并发的秒杀系统？",
+      "category": "system",
+      "difficulty": "hard",
+      "tags": [
+        "系统设计",
+        "高并发",
+        "削峰"
+      ],
+      "order": 14,
+      "file": "interviews/iv-sys-2.md",
+      "type": "md"
+    }
+  ]
+}

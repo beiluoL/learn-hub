@@ -1,0 +1,21 @@
+{
+  "name": "learn-hub",
+  "version": "1.0.0",
+  "description": "静态全栈学习网站：Java / Python / 前端 / AI 应用开发 / 面试题，内容以 md/html 文件维护，可部署到 GitHub Pages",
+  "type": "module",
+  "scripts": {
+    "gen": "node scripts/export-content.mjs",
+    "dev": "npm run gen && cd client && npm run dev",
+    "build": "npm run gen && cd client && npm run build",
+    "preview": "cd client && npm run preview",
+    "start": "npm run preview",
+    "serve": "node server/index.js"
+  },
+  "devDependencies": {
+    "turndown": "^7.2.0",
+    "turndown-plugin-gfm": "^1.0.2"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
