@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T13:09:20.089Z",
+  "generatedAt": "2026-07-16T13:51:33.477Z",
   "categories": [
     {
       "id": "java",
@@ -330,6 +330,68 @@
       "type": "md"
     },
     {
+      "id": "java/java-collection-concurrent",
+      "title": "并发集合：ConcurrentHashMap 与 CopyOnWrite 容器",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 20,
+      "tags": [
+        "ConcurrentHashMap",
+        "并发",
+        "CAS",
+        "阻塞队列"
+      ],
+      "prereq": [
+        "java/java-collections",
+        "java/java-concurrency"
+      ],
+      "summary": "剖析 ConcurrentHashMap 1.8 的 CAS+synchronized 实现与各类并发容器选型。",
+      "order": 21,
+      "file": "java/java-collection-concurrent.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-collection-map-deep",
+      "title": "HashMap 深度剖析：哈希扰动、扩容机制与红黑树",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 22,
+      "tags": [
+        "HashMap",
+        "哈希",
+        "扩容",
+        "红黑树",
+        "并发"
+      ],
+      "prereq": [
+        "java/java-collections"
+      ],
+      "summary": "从源码层面讲透 HashMap 的 hash 计算、扩容机制与链表转红黑树的阈值。",
+      "order": 20,
+      "file": "java/java-collection-map-deep.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-collection-queue",
+      "title": "Queue 与阻塞队列：ArrayBlockingQueue / LinkedBlockingQueue / PriorityBlockingQueue",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "队列",
+        "阻塞队列",
+        "线程池",
+        "生产者消费者"
+      ],
+      "prereq": [
+        "java/java-collections"
+      ],
+      "summary": "系统讲解 Queue 体系与阻塞队列在生产者-消费者模型中的应用。",
+      "order": 22,
+      "file": "java/java-collection-queue.md",
+      "type": "md"
+    },
+    {
       "id": "java/java-collections",
       "title": "集合框架：List / Set / Map",
       "category": "java",
@@ -405,6 +467,89 @@
       "type": "md"
     },
     {
+      "id": "java/java-jvm-classloader",
+      "title": "类加载机制：双亲委派模型与自定义类加载器",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 18,
+      "tags": [
+        "类加载",
+        "双亲委派",
+        "破坏",
+        "Tomcat"
+      ],
+      "prereq": [
+        "java/java-jvm"
+      ],
+      "summary": "讲清类加载全过程、双亲委派及其破坏场景（Tomcat）。",
+      "order": 45,
+      "file": "java/java-jvm-classloader.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-jvm-gc-deep",
+      "title": "垃圾回收深度解析：算法、收集器 G1/ZGC 与调优",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 24,
+      "tags": [
+        "GC",
+        "垃圾回收",
+        "G1",
+        "ZGC",
+        "调优"
+      ],
+      "prereq": [
+        "java/java-jvm-memory-deep"
+      ],
+      "summary": "对比 GC 算法与 Serial/CMS/G1/ZGC 收集器及调优参数。",
+      "order": 44,
+      "file": "java/java-jvm-gc-deep.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-jvm-memory-deep",
+      "title": "JVM 内存模型详解：运行时数据区与对象创建",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 20,
+      "tags": [
+        "JVM",
+        "内存模型",
+        "堆",
+        "栈",
+        "对象"
+      ],
+      "prereq": [
+        "java/java-jvm"
+      ],
+      "summary": "详解运行时数据区、对象创建过程与常见内存溢出。",
+      "order": 43,
+      "file": "java/java-jvm-memory-deep.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-jvm-troubleshoot",
+      "title": "JVM 问题排查实战：OOM、CPU 飙高与诊断工具",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 20,
+      "tags": [
+        "排障",
+        "OOM",
+        "jstack",
+        "jmap",
+        "Arthas"
+      ],
+      "prereq": [
+        "java/java-jvm-gc-deep"
+      ],
+      "summary": "用 jstack/jmap/Arthas 实战排查内存与 CPU 问题。",
+      "order": 46,
+      "file": "java/java-jvm-troubleshoot.md",
+      "type": "md"
+    },
+    {
       "id": "java/java-jvm",
       "title": "JVM 内存模型与垃圾回收",
       "category": "java",
@@ -423,6 +568,191 @@
       "type": "md"
     },
     {
+      "id": "java/java-kafka-deep",
+      "title": "Kafka 深度解析：分区、副本、消费组与消息可靠性",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 24,
+      "tags": [
+        "Kafka",
+        "分区",
+        "消费组",
+        "幂等",
+        "顺序"
+      ],
+      "prereq": [
+        "java/java-mq-overview"
+      ],
+      "summary": "剖析 Kafka 架构、分区策略、不重复不丢失与顺序消费。",
+      "order": 41,
+      "file": "java/java-kafka-deep.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-microservice-base",
+      "title": "微服务架构基础：注册发现、配置中心与拆分原则",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 20,
+      "tags": [
+        "微服务",
+        "注册中心",
+        "配置中心",
+        "架构"
+      ],
+      "prereq": [
+        "java/java-spring"
+      ],
+      "summary": "讲解微服务核心概念、服务注册发现与配置中心作用。",
+      "order": 34,
+      "file": "java/java-microservice-base.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-microservice-sentinel",
+      "title": "服务容错：Sentinel 限流、熔断与降级实战",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 18,
+      "tags": [
+        "Sentinel",
+        "限流",
+        "熔断",
+        "降级"
+      ],
+      "prereq": [
+        "java/java-springcloud"
+      ],
+      "summary": "讲解流量控制、熔断降级规则与 Sentinel 在微服务中的落地。",
+      "order": 36,
+      "file": "java/java-microservice-sentinel.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-mq-overview",
+      "title": "消息中间件选型：Kafka 与 RabbitMQ 对比与适用场景",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "消息队列",
+        "Kafka",
+        "RabbitMQ",
+        "选型"
+      ],
+      "prereq": [
+        "java/java-basics"
+      ],
+      "summary": "对比主流消息队列特性，讲清何时用哪种 MQ。",
+      "order": 40,
+      "file": "java/java-mq-overview.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-mybatis",
+      "title": "MyBatis 原理与实战：动态 SQL、缓存与整合 Spring",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "MyBatis",
+        "动态SQL",
+        "缓存",
+        "ORM"
+      ],
+      "prereq": [
+        "java/java-spring"
+      ],
+      "summary": "从执行流程、动态 SQL 到一级/二级缓存与 Spring 整合。",
+      "order": 33,
+      "file": "java/java-mybatis.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-mysql-index",
+      "title": "MySQL 索引原理：B+ 树、聚簇索引与最左前缀",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 24,
+      "tags": [
+        "MySQL",
+        "索引",
+        "B+树",
+        "最左前缀",
+        "回表"
+      ],
+      "prereq": [
+        "java/java-basics"
+      ],
+      "summary": "从 B+ 树结构讲透聚簇/非聚簇索引、回表与索引失效。",
+      "order": 50,
+      "file": "java/java-mysql-index.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-mysql-lock",
+      "title": "MySQL 锁机制：行锁、间隙锁、临键锁与死锁",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 20,
+      "tags": [
+        "MySQL",
+        "锁",
+        "行锁",
+        "间隙锁",
+        "死锁"
+      ],
+      "prereq": [
+        "java/java-mysql-transaction"
+      ],
+      "summary": "剖析 InnoDB 行锁、Next-Key 锁与死锁排查。",
+      "order": 52,
+      "file": "java/java-mysql-lock.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-mysql-optimize",
+      "title": "MySQL 慢查询与 SQL 优化：EXPLAIN 与分库分表",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 20,
+      "tags": [
+        "MySQL",
+        "慢查询",
+        "EXPLAIN",
+        "优化",
+        "分库分表"
+      ],
+      "prereq": [
+        "java/java-mysql-index"
+      ],
+      "summary": "用 EXPLAIN 分析执行计划并讲解常见 SQL 优化手段。",
+      "order": 53,
+      "file": "java/java-mysql-optimize.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-mysql-transaction",
+      "title": "MySQL 事务与 MVCC：隔离级别与 undo/redo 日志",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 22,
+      "tags": [
+        "MySQL",
+        "事务",
+        "MVCC",
+        "隔离级别",
+        "日志"
+      ],
+      "prereq": [
+        "java/java-mysql-index"
+      ],
+      "summary": "详解四种隔离级别、MVCC 实现与 undo/redo 日志作用。",
+      "order": 51,
+      "file": "java/java-mysql-transaction.md",
+      "type": "md"
+    },
+    {
       "id": "java/java-oop",
       "title": "面向对象：封装、继承、多态",
       "category": "java",
@@ -438,6 +768,149 @@
       "summary": "理解 Java 面向对象三大特性，以及接口与抽象类的取舍。",
       "order": 2,
       "file": "java/java-oop.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-rabbitmq-deep",
+      "title": "RabbitMQ 实战：交换机、死信队列、延迟与幂等",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 22,
+      "tags": [
+        "RabbitMQ",
+        "交换机",
+        "死信队列",
+        "幂等"
+      ],
+      "prereq": [
+        "java/java-mq-overview"
+      ],
+      "summary": "讲透交换机类型、死信/延迟队列与消息幂等处理。",
+      "order": 42,
+      "file": "java/java-rabbitmq-deep.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-redis-basics",
+      "title": "Redis 数据类型与底层结构：String/Hash/List/Set/ZSet",
+      "category": "java",
+      "level": "beginner",
+      "readMinutes": 18,
+      "tags": [
+        "Redis",
+        "数据类型",
+        "应用场景",
+        "底层"
+      ],
+      "prereq": [
+        "java/java-basics"
+      ],
+      "summary": "讲解五种数据类型、底层编码与典型业务场景。",
+      "order": 54,
+      "file": "java/java-redis-basics.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-redis-cache",
+      "title": "Redis 缓存经典问题：穿透、击穿、雪崩与一致性",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 22,
+      "tags": [
+        "Redis",
+        "缓存穿透",
+        "击穿",
+        "雪崩",
+        "布隆过滤器"
+      ],
+      "prereq": [
+        "java/java-redis-basics"
+      ],
+      "summary": "剖析三大缓存问题与双写一致性，给出布隆过滤器方案。",
+      "order": 55,
+      "file": "java/java-redis-cache.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-redis-distlock",
+      "title": "Redis 分布式锁实战：Redisson、看门狗与红锁",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 20,
+      "tags": [
+        "Redis",
+        "分布式锁",
+        "Redisson",
+        "红锁"
+      ],
+      "prereq": [
+        "java/java-redis-basics"
+      ],
+      "summary": "手写分布式锁的坑、Redisson 看门狗机制与红锁取舍。",
+      "order": 56,
+      "file": "java/java-redis-distlock.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-redis-persist-cluster",
+      "title": "Redis 持久化与高可用：RDB/AOF、主从、哨兵与集群",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 20,
+      "tags": [
+        "Redis",
+        "RDB",
+        "AOF",
+        "主从",
+        "哨兵",
+        "集群"
+      ],
+      "prereq": [
+        "java/java-redis-basics"
+      ],
+      "summary": "讲解持久化机制与哨兵、Cluster 集群的高可用方案。",
+      "order": 57,
+      "file": "java/java-redis-persist-cluster.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-spring-aop",
+      "title": "Spring AOP 与动态代理：JDK 与 CGLIB、切面实战",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 20,
+      "tags": [
+        "AOP",
+        "动态代理",
+        "切面",
+        "事务"
+      ],
+      "prereq": [
+        "java/java-spring"
+      ],
+      "summary": "讲透 AOP 概念、JDK 与 CGLIB 代理差异及典型应用场景。",
+      "order": 30,
+      "file": "java/java-spring-aop.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-spring-transaction",
+      "title": "Spring 事务管理：传播行为、隔离级别与失效场景",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 22,
+      "tags": [
+        "事务",
+        "传播行为",
+        "失效",
+        "@Transactional"
+      ],
+      "prereq": [
+        "java/java-spring"
+      ],
+      "summary": "详解七种传播行为、隔离级别及 @Transactional 不生效的常见坑。",
+      "order": 32,
+      "file": "java/java-spring-transaction.md",
       "type": "md"
     },
     {
@@ -462,6 +935,46 @@
       "type": "md"
     },
     {
+      "id": "java/java-springboot",
+      "title": "SpringBoot 自动装配原理与启动流程",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "SpringBoot",
+        "自动装配",
+        "Starter",
+        "启动流程"
+      ],
+      "prereq": [
+        "java/java-spring"
+      ],
+      "summary": "剖析 @SpringBootApplication、SPI 机制与 Starter 自动配置。",
+      "order": 31,
+      "file": "java/java-springboot.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-springcloud",
+      "title": "SpringCloud 组件全景：Eureka / Gateway / OpenFeign",
+      "category": "java",
+      "level": "intermediate",
+      "readMinutes": 20,
+      "tags": [
+        "SpringCloud",
+        "Eureka",
+        "Gateway",
+        "OpenFeign"
+      ],
+      "prereq": [
+        "java/java-microservice-base"
+      ],
+      "summary": "梳理 SpringCloud 主流组件与微服务通信、网关路由。",
+      "order": 35,
+      "file": "java/java-springcloud.md",
+      "type": "md"
+    },
+    {
       "id": "java/java-stream",
       "title": "Java 8+ 新特性：Lambda 与 Stream",
       "category": "java",
@@ -477,6 +990,67 @@
       "summary": "用 Lambda 与 Stream 写出声明式、易并行的高可读代码。",
       "order": 6,
       "file": "java/java-stream.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-thread-base",
+      "title": "线程基础：创建方式、生命周期与 wait/notify、ThreadLocal",
+      "category": "java",
+      "level": "beginner",
+      "readMinutes": 18,
+      "tags": [
+        "线程",
+        "生命周期",
+        "通信",
+        "ThreadLocal"
+      ],
+      "prereq": [
+        "java/java-basics"
+      ],
+      "summary": "从线程的创建、状态流转到线程间通信与 ThreadLocal 原理。",
+      "order": 23,
+      "file": "java/java-thread-base.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-thread-lock",
+      "title": "锁机制：synchronized 锁升级与 ReentrantLock / AQS",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 24,
+      "tags": [
+        "synchronized",
+        "锁升级",
+        "AQS",
+        "ReentrantLock",
+        "读写锁"
+      ],
+      "prereq": [
+        "java/java-concurrency"
+      ],
+      "summary": "深入对象头、锁升级过程与 AQS 队列同步器实现读写锁。",
+      "order": 24,
+      "file": "java/java-thread-lock.md",
+      "type": "md"
+    },
+    {
+      "id": "java/java-thread-pool-deep",
+      "title": "线程池深度实战：ThreadPoolExecutor 参数、拒绝策略与调优",
+      "category": "java",
+      "level": "advanced",
+      "readMinutes": 22,
+      "tags": [
+        "线程池",
+        "拒绝策略",
+        "Executors",
+        "调优"
+      ],
+      "prereq": [
+        "java/java-concurrency"
+      ],
+      "summary": "拆解 ThreadPoolExecutor 七大参数、四种拒绝策略与 Executors 的隐患。",
+      "order": 25,
+      "file": "java/java-thread-pool-deep.md",
       "type": "md"
     },
     {
