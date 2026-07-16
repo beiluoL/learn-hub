@@ -62,8 +62,8 @@ export default function Roadmap({ articles, color = '#7c3aed' }) {
             >
               <ChevronRight
                 size={16}
-                className="shrink-0 transition-transform"
-                style={{ color, transform: open ? 'rotate(90deg)' : 'none' }}
+                className={`shrink-0 transition-transform duration-200 ${open ? 'rotate-90' : 'rotate-0'}`}
+                style={{ color }}
               />
               <span className="text-sm font-bold" style={{ color }}>
                 {g.label}
@@ -73,7 +73,11 @@ export default function Roadmap({ articles, color = '#7c3aed' }) {
               <span className="flex-1 h-px bg-border" />
             </button>
 
-            {open && (
+            <div
+              className={`overflow-hidden transition-all duration-300 ${
+                open ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
               <ol
                 className="relative border-l-2 border-brand-200 border-dashed ml-4 mt-2"
                 style={{ borderColor: `${color}55` }}
@@ -107,7 +111,7 @@ export default function Roadmap({ articles, color = '#7c3aed' }) {
                     </li>
                   ))}
               </ol>
-            )}
+            </div>
           </div>
         );
       })}

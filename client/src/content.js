@@ -81,6 +81,49 @@ async function loadManifest() {
   return _manifest;
 }
 
+// 搜索评分：对每个关键词，命中 title/question 加 5 分、summary 加 3 分、tags 加 2 分、category 加 1 分
+function matchScore(item, keywords) {
+  let score = 0;
+  const title = (item.title || item.question || '').toLowerCase();
+  const summary = (item.summary || '').toLowerCase();
+  const tags = Array.isArray(item.tags)
+    ? item.tags.join(' ').toLowerCase()
+    : String(item.tags || '').toLowerCase();
+  const cat = (item.category || '').toLowerCase();
+
+  for (const kw of keywords) {
+    if (title.includes(kw)) score += 5;
+    if (summary.includes(kw)) score += 3;
+    if (tags.includes(kw)) score += 2;
+    if (cat.includes(kw)) score += 1;
+  }
+  return score;
+}
+
+// 提取包含关键词的文本片段（前后各 20 字），没有 body/answer 则回退到 summary
+function snippet(item, keywords) {
+  const bodyText = item.body || item.answer || item.summary || '';
+  if (!bodyText) return '';
+
+  // 去 HTML 标签
+  const text = bodyText.replace(/<[^>]*>/g, '');
+  const lower = text.toLowerCase();
+
+  for (const kw of keywords) {
+    const idx = lower.indexOf(kw);
+    if (idx >= 0) {
+      const start = Math.max(0, idx - 20);
+      const end = Math.min(text.length, idx + kw.length + 20);
+      let s = text.slice(start, end);
+      if (start > 0) s = '…' + s;
+      if (end < text.length) s = s + '…';
+      return s;
+    }
+  }
+
+  return text.slice(0, 100) + (text.length > 100 ? '…' : '');
+}
+
 export const content = {
   url: fileUrl,
 
@@ -145,30 +188,24 @@ export const content = {
   },
 
   async search(q) {
-    const term = (q || '').trim().toLowerCase();
-    const m = await loadManifest();
-    if (!term) return { articles: [], interviews: [], total: 0 };
-    const articles = m.articles
-      .filter((a) => {
-        const hay = [
-          a.title,
-          a.summary,
-          (a.tags || []).join(' '),
-          a.category,
-        ]
-          .join(' ')
-          .toLowerCase();
-        return hay.includes(term);
-      })
-      .map((a) => ({ ...a, tags: splitTags(a.tags) }));
-    const interviews = m.interviews
-      .filter((i) => {
-        const hay = [i.question, (i.tags || []).join(' '), i.category]
-          .join(' ')
-          .toLowerCase();
-        return hay.includes(term);
-      })
-      .map((i) => ({ ...i, tags: splitTags(i.tags) }));
-    return { articles, interviews, total: articles.length + interviews.length };
+    const term = q.trim().toLowerCase();
+    if (!term) return [];
+    const data = await loadManifest();
+    const keywords = term.split(/[\s,，、]+/).filter(Boolean);
+
+    const results = [];
+    // 搜索文章
+    for (const a of data.articles) {
+      const score = matchScore(a, keywords);
+      if (score > 0) results.push({ ...a, tags: splitTags(a.tags), _type: 'article', _score: score, _snippet: snippet(a, keywords) });
+    }
+    // 搜索面试题
+    for (const iv of data.interviews) {
+      const score = matchScore(iv, keywords);
+      if (score > 0) results.push({ ...iv, tags: splitTags(iv.tags), _type: 'interview', _score: score, _snippet: snippet(iv, keywords) });
+    }
+    // 按分数降序
+    results.sort((a, b) => b._score - a._score);
+    return results;
   },
 };

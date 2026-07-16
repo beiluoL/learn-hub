@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Code, Terminal, Globe, Brain, Server, BookOpen } from 'lucide-react';
+import { useParams } from 'react-router-dom';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import Roadmap from '../components/Roadmap.jsx';
+import CatIcon from '../components/CatIcon.jsx';
+import Breadcrumb from '../components/Breadcrumb.jsx';
 import { ListSkeleton } from '../components/Skeleton.jsx';
 
 const LEVELS = [
@@ -12,14 +13,6 @@ const LEVELS = [
   { id: 'intermediate', label: '进阶' },
   { id: 'advanced', label: '高级' },
 ];
-
-const CAT_ICONS = {
-  java: Code,
-  python: Terminal,
-  frontend: Globe,
-  ai: Brain,
-  system: Server,
-};
 
 export default function Category() {
   const { catId } = useParams();
@@ -57,14 +50,12 @@ export default function Category() {
 
   const cat = category || { id: catId, name: catId, icon: '📁', color: '#6d28d9', desc: '' };
 
-  const CatIcon = CAT_ICONS[catId] || BookOpen;
-
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <Link to="/" className="inline-flex items-center gap-1 text-sm text-text-muted hover:text-brand-600">
-        <ArrowLeft size={14} />
-        返回首页
-      </Link>
+      <Breadcrumb items={[
+        { label: '首页', to: '/' },
+        { label: cat.name },
+      ]} />
       <div className="flex items-center gap-4 mt-4 mb-6">
         <div
           className="w-14 h-14 rounded-2xl grid place-items-center"

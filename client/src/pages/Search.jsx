@@ -1,78 +1,135 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { ArrowLeft, BookOpen, Lightbulb, Search as SearchIcon } from 'lucide-react';
+import { BookOpen, Lightbulb, Search as SearchIcon } from 'lucide-react';
 import { content } from '../content.js';
-import ArticleCard from '../components/ArticleCard.jsx';
-import InterviewCard from '../components/InterviewCard.jsx';
+import Breadcrumb from '../components/Breadcrumb.jsx';
+
+function highlightSnippet(text, keywords) {
+  if (!text || !keywords.length) return text;
+  const escaped = keywords.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const regex = new RegExp(`(${escaped.join('|')})`, 'gi');
+  const parts = text.split(regex);
+  return parts.map((part, i) => {
+    const lower = part.toLowerCase();
+    const isMatch = keywords.some((k) => lower === k);
+    return isMatch ? (
+      <mark key={i} className="bg-yellow-200 text-inherit rounded-sm px-0.5">
+        {part}
+      </mark>
+    ) : (
+      part
+    );
+  });
+}
 
 export default function Search() {
   const [params] = useSearchParams();
   const q = params.get('q') || '';
-  const [result, setResult] = useState(null);
+  const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const keywords = useMemo(() => {
+    if (!q) return [];
+    return q
+      .trim()
+      .toLowerCase()
+      .split(/[\s,，、]+/)
+      .filter(Boolean);
+  }, [q]);
 
   useEffect(() => {
     if (!q) {
-      setResult({ articles: [], interviews: [], total: 0 });
+      setResults([]);
       setLoading(false);
       return;
     }
     setLoading(true);
     content
       .search(q)
-      .then(setResult)
+      .then(setResults)
       .finally(() => setLoading(false));
   }, [q]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
-      <Link to="/" className="inline-flex items-center gap-1 text-sm text-text-muted hover:text-brand-600">
-        <ArrowLeft size={14} />
-        返回首页
-      </Link>
+      <Breadcrumb items={[
+        { label: '首页', to: '/' },
+        { label: '搜索结果' },
+      ]} />
       <h1 className="text-2xl font-extrabold text-text-primary mt-4">
-        搜索 "<span className="text-brand-600">{q}</span>"
+        搜索 &quot;<span className="text-brand-600">{q}</span>&quot;
       </h1>
 
       {loading && <p className="text-text-secondary mt-6">搜索中…</p>}
-      {!loading && result && (
+
+      {!loading && results !== null && (
         <p className="text-text-secondary mt-1">
-          共找到 <b className="text-text-primary">{result.total}</b> 条结果
+          共找到 <b className="text-text-primary">{results.length}</b> 条结果
         </p>
       )}
 
-      {!loading && result && result.articles.length > 0 && (
-        <section className="mt-6">
-          <h2 className="flex items-center gap-2 font-bold text-text-primary mb-3">
-            <BookOpen size={16} className="text-brand-500" />
-            文章 ({result.articles.length})
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {result.articles.map((a) => (
-              <ArticleCard key={a.id} article={a} />
-            ))}
-          </div>
-        </section>
+      {!loading && results && results.length > 0 && (
+        <div className="mt-6 space-y-4">
+          {results.map((item) => (
+            <Link
+              key={item._type + '-' + item.id}
+              to={
+                item._type === 'article'
+                  ? `/article/${item.id}`
+                  : `/interview/${item.id}`
+              }
+              className="group block bg-card rounded-2xl p-5 border border-border shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition"
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <span
+                  className={`text-xs font-semibold px-2 py-0.5 rounded-full inline-flex items-center gap-1 ${
+                    item._type === 'article'
+                      ? 'bg-brand-50 text-brand-600'
+                      : 'bg-warning-50 text-warning-600'
+                  }`}
+                >
+                  {item._type === 'article' ? (
+                    <BookOpen size={11} />
+                  ) : (
+                    <Lightbulb size={11} />
+                  )}
+                  {item._type === 'article' ? '文章' : '面试题'}
+                </span>
+                <span className="text-xs text-text-muted">
+                  {item.category}
+                </span>
+              </div>
+              <h3 className="font-bold text-text-primary group-hover:text-brand-600 transition">
+                {item.title || item.question}
+              </h3>
+              {item._snippet && (
+                <p className="text-sm text-text-secondary mt-1.5">
+                  {highlightSnippet(item._snippet, keywords)}
+                </p>
+              )}
+              {item.tags?.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {item.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="text-[11px] text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full"
+                    >
+                      #{t}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </Link>
+          ))}
+        </div>
       )}
 
-      {!loading && result && result.interviews.length > 0 && (
-        <section className="mt-8">
-          <h2 className="flex items-center gap-2 font-bold text-text-primary mb-3">
-            <Lightbulb size={16} className="text-warning-500" />
-            面试题 ({result.interviews.length})
-          </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            {result.interviews.map((iv) => (
-              <InterviewCard key={iv.id} item={iv} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {!loading && result && result.total === 0 && (
+      {!loading && results && results.length === 0 && (
         <div className="text-center py-16">
           <SearchIcon size={48} className="mx-auto mb-3 text-text-muted" />
-          <p className="text-text-secondary">没有找到相关内容，换个关键词试试？</p>
+          <p className="text-text-secondary">
+            没有找到相关内容，换个关键词试试？
+          </p>
         </div>
       )}
     </div>

@@ -4,6 +4,7 @@ import { BookOpen, Map } from 'lucide-react';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import InterviewCard from '../components/InterviewCard.jsx';
+import CatIcon from '../components/CatIcon.jsx';
 import LINKS, { WECHAT, SocialLinkList } from '../components/AuthorSocial.jsx';
 import { ListSkeleton } from '../components/Skeleton.jsx';
 
@@ -87,10 +88,10 @@ export default function Home() {
                 className="group bg-card rounded-2xl p-6 border border-border shadow-card hover:-translate-y-0.5 hover:shadow-card-hover transition"
               >
                 <div
-                  className="w-12 h-12 rounded-xl grid place-items-center text-2xl mb-4"
-                  style={{ background: `${c.color}1a` }}
+                  className="w-12 h-12 rounded-xl grid place-items-center mb-4"
+                  style={{ background: `${c.color}1a`, color: c.color }}
                 >
-                  {c.icon}
+                  <CatIcon catId={c.id} size={28} />
                 </div>
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-text-primary group-hover:text-brand-600">

@@ -138,6 +138,7 @@ export default function KnowledgeGraph() {
         alpha: 1,
         running: false,
         raf: 0,
+        touchState: null,
       };
 
       setCats([...new Set(nodes.map((n) => n.category))]);
@@ -453,6 +454,80 @@ export default function KnowledgeGraph() {
     draw();
   }
 
+  function onTouchStart(e) {
+    const s = sim.current;
+    if (!s) return;
+    e.preventDefault();
+    const touches = e.touches;
+    const rect = canvasRef.current.getBoundingClientRect();
+    if (touches.length === 1) {
+      s.touchState = {
+        type: 'pan',
+        x: touches[0].clientX - rect.left,
+        y: touches[0].clientY - rect.top,
+        tx: s.view.tx,
+        ty: s.view.ty,
+      };
+    } else if (touches.length === 2) {
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      const dist = Math.hypot(dx, dy);
+      s.touchState = {
+        type: 'pinch',
+        dist,
+        scale: s.view.scale,
+        tx: s.view.tx,
+        ty: s.view.ty,
+        cx: (touches[0].clientX + touches[1].clientX) / 2 - rect.left,
+        cy: (touches[0].clientY + touches[1].clientY) / 2 - rect.top,
+      };
+    }
+    ensureLoop();
+  }
+
+  function onTouchMove(e) {
+    const s = sim.current;
+    if (!s) return;
+    e.preventDefault();
+    const touches = e.touches;
+    const ts = s.touchState;
+    if (!ts) return;
+    const rect = canvasRef.current.getBoundingClientRect();
+
+    if (touches.length === 1 && ts.type === 'pan') {
+      const mx = touches[0].clientX - rect.left;
+      const my = touches[0].clientY - rect.top;
+      s.view.tx = ts.tx + (mx - ts.x);
+      s.view.ty = ts.ty + (my - ts.y);
+      draw();
+      return;
+    }
+
+    if (touches.length === 2) {
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      const dist = Math.hypot(dx, dy);
+      const mx = (touches[0].clientX + touches[1].clientX) / 2 - rect.left;
+      const my = (touches[0].clientY + touches[1].clientY) / 2 - rect.top;
+
+      if (ts.type === 'pinch' && Math.abs(dist - ts.dist) > 5) {
+        const ratio = dist / ts.dist;
+        s.view.scale = Math.min(3, Math.max(0.3, ts.scale * ratio));
+      }
+
+      s.view.tx = ts.tx + (mx - ts.cx);
+      s.view.ty = ts.ty + (my - ts.cy);
+      draw();
+    }
+  }
+
+  function onTouchEnd(e) {
+    const s = sim.current;
+    if (!s) return;
+    s.touchState = null;
+    if (e.touches.length === 0) ensureLoop();
+  }
+
   const byDifficulty = colorMode === 'difficulty';
 
   return (
@@ -489,20 +564,34 @@ export default function KnowledgeGraph() {
         </button>
 
         <div className="flex flex-wrap gap-1.5 ml-auto">
-          <FilterChip active={filter === null} color="#8B5CF6" label="全部" onClick={() => setFilter(null)} />
-          {cats.map((c) => (
-            <FilterChip
-              key={c}
-              active={filter === c}
-              color={CAT_COLORS[c] || '#7c3aed'}
-              label={CAT_NAMES[c] || c}
-              onClick={() => setFilter(filter === c ? null : c)}
-            />
-          ))}
+          {/* 桌面端：分类筛选按钮 */}
+          <div className="hidden sm:flex flex-wrap gap-1.5">
+            <FilterChip active={filter === null} color="#8B5CF6" label="全部" onClick={() => setFilter(null)} />
+            {cats.map((c) => (
+              <FilterChip
+                key={c}
+                active={filter === c}
+                color={CAT_COLORS[c] || '#7c3aed'}
+                label={CAT_NAMES[c] || c}
+                onClick={() => setFilter(filter === c ? null : c)}
+              />
+            ))}
+          </div>
+          {/* 移动端：下拉选择 */}
+          <select
+            className="sm:hidden text-xs bg-card border border-border rounded-lg px-2 py-1.5 text-text-secondary"
+            value={filter || ''}
+            onChange={(e) => setFilter(e.target.value || null)}
+          >
+            <option value="">全部方向</option>
+            {cats.map((c) => (
+              <option key={c} value={c}>{CAT_NAMES[c] || c}</option>
+            ))}
+          </select>
         </div>
       </div>
 
-      <div ref={wrapRef} className="relative h-[540px] bg-surface">
+      <div ref={wrapRef} className="relative h-[min(540px,60vh)] bg-surface">
         <canvas
           ref={canvasRef}
           className="absolute inset-0 touch-none"
@@ -512,6 +601,9 @@ export default function KnowledgeGraph() {
           onPointerUp={onPointerUp}
           onPointerLeave={onPointerLeave}
           onWheel={onWheel}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
         />
         {/* 难度着色图例 */}
         {byDifficulty && (

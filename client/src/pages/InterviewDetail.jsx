@@ -4,6 +4,8 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { content } from '../content.js';
 import { DIFF_MAP } from '../components/LevelBadge.jsx';
 import Markdown from '../components/Markdown.jsx';
+import Breadcrumb from '../components/Breadcrumb.jsx';
+import ShareButton from '../components/ShareButton.jsx';
 
 const CAT_NAME = {
   java: 'Java',
@@ -56,19 +58,22 @@ export default function InterviewDetail() {
 
   return (
     <article className="max-w-3xl mx-auto px-4 py-10">
-      <Link to="/interviews" className="inline-flex items-center gap-1 text-sm text-text-muted hover:text-brand-600">
-        <ArrowLeft size={14} />
-        返回面试题
-      </Link>
+      <Breadcrumb items={[
+        { label: '首页', to: '/' },
+        { label: '面试题', to: '/interviews' },
+      ]} />
       <div className="flex items-center gap-3 mt-4 mb-3">
         <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${diff.cls}`}>
           {diff.label}
         </span>
         <span className="text-sm text-text-muted">{CAT_NAME[iv.category] || iv.category}</span>
       </div>
-      <h1 className="text-2xl md:text-3xl font-extrabold text-text-primary leading-snug">
-        {iv.question}
-      </h1>
+      <div className="flex items-start justify-between gap-4">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-text-primary leading-snug flex-1">
+          {iv.question}
+        </h1>
+        <ShareButton />
+      </div>
       <div className="flex flex-wrap gap-1.5 my-4">
         {iv.tags?.map((t) => (
           <span key={t} className="text-xs text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full">

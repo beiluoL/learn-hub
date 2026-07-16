@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, CheckCircle, Circle } from 'lucide-react';
 import { DIFF_MAP } from './LevelBadge.jsx';
 import { content } from '../content.js';
 import Markdown from './Markdown.jsx';
@@ -16,7 +16,7 @@ const CAT_NAME = {
 // 模块级缓存：避免折叠再展开时重复 fetch
 const answerCache = new Map();
 
-export default function InterviewCard({ item }) {
+export default function InterviewCard({ item, isMastered, onToggleMastered }) {
   const [open, setOpen] = useState(false);
   const [answer, setAnswer] = useState('');
   const [loading, setLoading] = useState(false);
@@ -68,6 +68,22 @@ export default function InterviewCard({ item }) {
           </span>
         </span>
         <span className="text-text-muted text-lg shrink-0">{open ? '−' : '+'}</span>
+        {onToggleMastered && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleMastered();
+            }}
+            className="shrink-0 ml-1"
+            title={isMastered ? '已掌握' : '标记为已掌握'}
+          >
+            {isMastered ? (
+              <CheckCircle size={18} className="text-success-500" />
+            ) : (
+              <Circle size={18} className="text-text-muted" />
+            )}
+          </button>
+        )}
       </button>
       {open && (
         <div className="px-5 pb-5 border-t border-border pt-4">

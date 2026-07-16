@@ -8,7 +8,23 @@ export default function Markdown({ html, className = '' }) {
 
   useEffect(() => {
     if (!ref.current) return;
-    ref.current.querySelectorAll('pre code').forEach((block) => {
+    const container = ref.current;
+
+    // 给 h2/h3 添加 id（用于 ToC 锚点定位）
+    container.querySelectorAll('h2, h3').forEach((el, i) => {
+      if (!el.id) {
+        el.id =
+          'h-' +
+          i +
+          '-' +
+          el.textContent
+            .replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '')
+            .slice(0, 20);
+      }
+    });
+
+    // 代码块语法高亮
+    container.querySelectorAll('pre code').forEach((block) => {
       try {
         hljs.highlightElement(block);
       } catch {
