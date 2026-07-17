@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T16:53:59.404Z",
+  "generatedAt": "2026-07-17T15:48:25.120Z",
   "categories": [
     {
       "id": "java",
@@ -20,7 +20,86 @@
       "name": "前端学习",
       "icon": "🎨",
       "color": "#61dafb",
-      "desc": "HTML/CSS/JS 核心，框架工程化与现代前端体系。"
+      "desc": "HTML/CSS/JS 核心，框架工程化与现代前端体系。",
+      "modules": [
+        {
+          "id": "vue",
+          "name": "Vue 学习",
+          "icon": "vue",
+          "color": "#42b883",
+          "desc": "渐进式框架 Vue 3 全家桶：组合式 API、Pinia、Router"
+        },
+        {
+          "id": "react",
+          "name": "React 学习",
+          "icon": "react",
+          "color": "#61dafb",
+          "desc": "组件化与 Hooks，前端主流框架之一"
+        },
+        {
+          "id": "miniprogram",
+          "name": "小程序学习",
+          "icon": "miniprogram",
+          "color": "#07c160",
+          "desc": "微信小程序开发与实战"
+        },
+        {
+          "id": "uniapp",
+          "name": "uni-app 学习",
+          "icon": "uniapp",
+          "color": "#1677ff",
+          "desc": "跨端框架 uni-app，一次开发多端运行"
+        },
+        {
+          "id": "html",
+          "name": "HTML 学习",
+          "icon": "html5",
+          "color": "#e34f26",
+          "desc": "语义化标签、表单与无障碍"
+        },
+        {
+          "id": "css",
+          "name": "CSS 学习",
+          "icon": "css3",
+          "color": "#1572b6",
+          "desc": "布局、动画与工程化"
+        },
+        {
+          "id": "javascript",
+          "name": "JavaScript 学习",
+          "icon": "javascript",
+          "color": "#f7df1e",
+          "desc": "语言核心、异步与 DOM"
+        },
+        {
+          "id": "typescript",
+          "name": "TypeScript 学习",
+          "icon": "typescript",
+          "color": "#3178c6",
+          "desc": "类型系统与工程实践"
+        },
+        {
+          "id": "nextjs",
+          "name": "Next.js 学习",
+          "icon": "nextjs",
+          "color": "#111827",
+          "desc": "React 全栈框架，SSR / SSG"
+        },
+        {
+          "id": "vite",
+          "name": "Vite 学习",
+          "icon": "vite",
+          "color": "#646cff",
+          "desc": "极速构建工具与开发服务器"
+        },
+        {
+          "id": "engineering",
+          "name": "前端工程化",
+          "icon": "engineering",
+          "color": "#f97316",
+          "desc": "打包、CI/CD、规范化与 monorepo"
+        }
+      ]
     },
     {
       "id": "ai",
@@ -42,6 +121,8 @@
       "id": "ai/ai-agent-framework",
       "title": "AI Agent 框架与多智能体协作",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 20,
       "tags": [
@@ -54,6 +135,7 @@
         "ai/ai-agent"
       ],
       "summary": "AI Agent 框架对比与多智能体协作。",
+      "timeline": false,
       "order": 30,
       "file": "ai/ai-agent-framework.md",
       "type": "md"
@@ -62,6 +144,8 @@
       "id": "ai/ai-agent",
       "title": "Agent：智能体与工具调用",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 19,
       "tags": [
@@ -72,6 +156,7 @@
       ],
       "prereq": [],
       "summary": "让 LLM 自主规划、调用工具、循环迭代完成复杂任务。",
+      "timeline": false,
       "order": 3,
       "file": "ai/ai-agent.md",
       "type": "md"
@@ -80,6 +165,8 @@
       "id": "ai/ai-deploy",
       "title": "模型部署与推理优化",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 17,
       "tags": [
@@ -90,6 +177,7 @@
       ],
       "prereq": [],
       "summary": "把大模型高效、低成本地部署到线上服务。",
+      "timeline": false,
       "order": 5,
       "file": "ai/ai-deploy.md",
       "type": "md"
@@ -98,6 +186,8 @@
       "id": "ai/ai-dl-basics",
       "title": "深度学习基础",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 20,
       "tags": [
@@ -110,6 +200,7 @@
         "ai/ai-ml-basics"
       ],
       "summary": "深度学习基础：神经网络架构、反向传播与激活函数。",
+      "timeline": false,
       "order": 21,
       "file": "ai/ai-dl-basics.md",
       "type": "md"
@@ -118,6 +209,8 @@
       "id": "ai/ai-embedding",
       "title": "嵌入技术原理与语义搜索",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -130,6 +223,7 @@
         "ai/ai-vector"
       ],
       "summary": "嵌入技术原理与语义搜索实战。",
+      "timeline": false,
       "order": 29,
       "file": "ai/ai-embedding.md",
       "type": "md"
@@ -138,6 +232,8 @@
       "id": "ai/ai-ethics",
       "title": "AI 伦理与安全",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 14,
       "tags": [
@@ -148,6 +244,7 @@
       ],
       "prereq": [],
       "summary": "AI 伦理与安全：偏见、幻觉与对齐问题。",
+      "timeline": false,
       "order": 31,
       "file": "ai/ai-ethics.md",
       "type": "md"
@@ -156,6 +253,8 @@
       "id": "ai/ai-eval",
       "title": "大模型应用评估：如何衡量效果",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 10,
       "tags": [
@@ -167,6 +266,7 @@
         "ai/ai-rag"
       ],
       "summary": "建立可量化的评估体系，用离线指标 + LLM 裁判 + 人工抽检衡量 LLM 应用质量。",
+      "timeline": false,
       "order": 7,
       "file": "ai/ai-eval.md",
       "type": "md"
@@ -175,6 +275,8 @@
       "id": "ai/ai-finetune",
       "title": "模型微调：Fine-tuning 与 LoRA",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 12,
       "tags": [
@@ -187,6 +289,7 @@
         "ai/ai-prompt"
       ],
       "summary": "理解全量微调与参数高效微调（LoRA）的取舍，以及何时该微调、何时该用 RAG。",
+      "timeline": false,
       "order": 6,
       "file": "ai/ai-finetune.md",
       "type": "md"
@@ -195,6 +298,8 @@
       "id": "ai/ai-huggingface",
       "title": "Hugging Face 生态实战",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -205,6 +310,7 @@
       ],
       "prereq": [],
       "summary": "Hugging Face 生态实战：模型查找、加载与使用。",
+      "timeline": false,
       "order": 27,
       "file": "ai/ai-huggingface.md",
       "type": "md"
@@ -213,6 +319,8 @@
       "id": "ai/ai-langchain",
       "title": "LangChain 框架深入",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -225,6 +333,7 @@
         "ai/ai-prompt"
       ],
       "summary": "LangChain 框架深入：Chain、Agent 与 Tool 体系。",
+      "timeline": false,
       "order": 23,
       "file": "ai/ai-langchain.md",
       "type": "md"
@@ -233,6 +342,8 @@
       "id": "ai/ai-llamaindex",
       "title": "LlamaIndex RAG 框架深入",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -245,6 +356,7 @@
         "ai/ai-rag"
       ],
       "summary": "LlamaIndex RAG 框架深入。",
+      "timeline": false,
       "order": 28,
       "file": "ai/ai-llamaindex.md",
       "type": "md"
@@ -253,6 +365,8 @@
       "id": "ai/ai-ml-basics",
       "title": "机器学习核心概念",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 18,
       "tags": [
@@ -263,6 +377,7 @@
       ],
       "prereq": [],
       "summary": "机器学习核心概念：监督/非监督/强化学习与常见算法。",
+      "timeline": false,
       "order": 20,
       "file": "ai/ai-ml-basics.md",
       "type": "md"
@@ -271,6 +386,8 @@
       "id": "ai/ai-model-deploy",
       "title": "大模型本地部署与服务化",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 18,
       "tags": [
@@ -284,6 +401,7 @@
         "ai/ai-deploy"
       ],
       "summary": "大模型本地部署与服务化方案。",
+      "timeline": false,
       "order": 26,
       "file": "ai/ai-model-deploy.md",
       "type": "md"
@@ -292,6 +410,8 @@
       "id": "ai/ai-prompt-deep",
       "title": "提示工程进阶",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -304,6 +424,7 @@
         "ai/ai-prompt"
       ],
       "summary": "提示工程进阶：思维链、少样本与结构化输出。",
+      "timeline": false,
       "order": 25,
       "file": "ai/ai-prompt-deep.md",
       "type": "md"
@@ -312,6 +433,8 @@
       "id": "ai/ai-prompt",
       "title": "Prompt Engineering：提示词工程",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 12,
       "tags": [
@@ -321,6 +444,7 @@
       ],
       "prereq": [],
       "summary": "掌握结构化提示词技巧，稳定提升大模型输出质量。",
+      "timeline": false,
       "order": 1,
       "file": "ai/ai-prompt.md",
       "type": "md"
@@ -329,6 +453,8 @@
       "id": "ai/ai-rag",
       "title": "RAG：检索增强生成",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -339,6 +465,7 @@
       ],
       "prereq": [],
       "summary": "用私有知识 + 检索喂给 LLM，解决\"幻觉\"与知识时效问题。",
+      "timeline": false,
       "order": 2,
       "file": "ai/ai-rag.md",
       "type": "md"
@@ -347,6 +474,8 @@
       "id": "ai/ai-transformer",
       "title": "Transformer 架构与 Attention 机制",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 22,
       "tags": [
@@ -357,6 +486,7 @@
       ],
       "prereq": [],
       "summary": "Transformer 架构与 Attention 机制深度解析。",
+      "timeline": false,
       "order": 22,
       "file": "ai/ai-transformer.md",
       "type": "md"
@@ -365,6 +495,8 @@
       "id": "ai/ai-vector",
       "title": "向量数据库与 Embedding",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 15,
       "tags": [
@@ -375,6 +507,7 @@
       ],
       "prereq": [],
       "summary": "理解文本向量化与近似最近邻检索，支撑 RAG/Agent 记忆。",
+      "timeline": false,
       "order": 4,
       "file": "ai/ai-vector.md",
       "type": "md"
@@ -383,6 +516,8 @@
       "id": "ai/ai-vectordb",
       "title": "向量数据库选型与实战",
       "category": "ai",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -395,6 +530,7 @@
         "ai/ai-vector"
       ],
       "summary": "向量数据库选型与实战对比。",
+      "timeline": false,
       "order": 24,
       "file": "ai/ai-vectordb.md",
       "type": "md"
@@ -403,6 +539,8 @@
       "id": "frontend/fe-animation",
       "title": "前端动画与动效设计",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 14,
       "tags": [
@@ -413,6 +551,7 @@
       ],
       "prereq": [],
       "summary": "前端动画与动效设计。",
+      "timeline": false,
       "order": 34,
       "file": "frontend/fe-animation.md",
       "type": "md"
@@ -421,6 +560,8 @@
       "id": "frontend/fe-api-design",
       "title": "前端 API 通信方案对比：REST、GraphQL 与 tRPC",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -434,6 +575,7 @@
         "frontend/fe-react"
       ],
       "summary": "前端 API 通信方案对比：REST、GraphQL 与 tRPC。",
+      "timeline": false,
       "order": 33,
       "file": "frontend/fe-api-design.md",
       "type": "md"
@@ -442,6 +584,8 @@
       "id": "frontend/fe-bundlers",
       "title": "前端构建工具原理与对比",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -455,6 +599,7 @@
         "frontend/fe-engineering"
       ],
       "summary": "前端构建工具原理与对比。",
+      "timeline": false,
       "order": 25,
       "file": "frontend/fe-bundlers.md",
       "type": "md"
@@ -463,6 +608,8 @@
       "id": "frontend/fe-css-engineering",
       "title": "现代 CSS 工程化方案：Tailwind/CSS Modules/PostCSS 对比上手",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -475,6 +622,7 @@
         "frontend/fe-js-core"
       ],
       "summary": "现代 CSS 工程化方案：Tailwind/CSS Modules/PostCSS 对比上手。",
+      "timeline": false,
       "order": 20,
       "file": "frontend/fe-css-engineering.md",
       "type": "md"
@@ -483,6 +631,8 @@
       "id": "frontend/fe-debugging",
       "title": "前端调试技巧与 Chrome DevTools 深度使用",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 14,
       "tags": [
@@ -493,6 +643,7 @@
       ],
       "prereq": [],
       "summary": "前端调试技巧与 Chrome DevTools 深度使用。",
+      "timeline": false,
       "order": 26,
       "file": "frontend/fe-debugging.md",
       "type": "md"
@@ -501,6 +652,8 @@
       "id": "frontend/fe-dom",
       "title": "DOM、事件与渲染机制",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 13,
       "tags": [
@@ -511,6 +664,7 @@
       ],
       "prereq": [],
       "summary": "理解浏览器渲染流程与事件模型，写出流畅交互。",
+      "timeline": false,
       "order": 2,
       "file": "frontend/fe-dom.md",
       "type": "md"
@@ -519,6 +673,8 @@
       "id": "frontend/fe-engineering",
       "title": "前端工程化：构建与模块化",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -529,6 +685,7 @@
       ],
       "prereq": [],
       "summary": "理解 ESM、打包器与现代化构建工具链。",
+      "timeline": false,
       "order": 4,
       "file": "frontend/fe-engineering.md",
       "type": "md"
@@ -537,6 +694,8 @@
       "id": "frontend/fe-form",
       "title": "前端表单最优实践：React Hook Form + Zod",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -549,6 +708,7 @@
         "frontend/fe-react"
       ],
       "summary": "前端表单最优实践：React Hook Form + Zod。",
+      "timeline": false,
       "order": 30,
       "file": "frontend/fe-form.md",
       "type": "md"
@@ -557,6 +717,8 @@
       "id": "frontend/fe-js-core",
       "title": "JavaScript 核心：闭包、原型与 this",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 14,
       "tags": [
@@ -567,6 +729,7 @@
       ],
       "prereq": [],
       "summary": "夯实 JS 三大难点，理解语言本质而非死记语法。",
+      "timeline": false,
       "order": 1,
       "file": "frontend/fe-js-core.md",
       "type": "md"
@@ -575,6 +738,8 @@
       "id": "frontend/fe-monitoring",
       "title": "前端错误监控与性能追踪",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -587,6 +752,7 @@
         "frontend/fe-js-core"
       ],
       "summary": "前端错误监控与性能追踪。",
+      "timeline": false,
       "order": 28,
       "file": "frontend/fe-monitoring.md",
       "type": "md"
@@ -595,6 +761,8 @@
       "id": "frontend/fe-nextjs",
       "title": "Next.js 服务端渲染与全栈开发",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 20,
       "tags": [
@@ -608,6 +776,7 @@
         "frontend/fe-react"
       ],
       "summary": "Next.js 服务端渲染与全栈开发。",
+      "timeline": false,
       "order": 22,
       "file": "frontend/fe-nextjs.md",
       "type": "md"
@@ -616,6 +785,8 @@
       "id": "frontend/fe-perf",
       "title": "前端性能优化实战",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 17,
       "tags": [
@@ -626,6 +797,7 @@
       ],
       "prereq": [],
       "summary": "从加载、渲染到运行时，系统性提升页面性能。",
+      "timeline": false,
       "order": 5,
       "file": "frontend/fe-perf.md",
       "type": "md"
@@ -634,6 +806,8 @@
       "id": "frontend/fe-pwa",
       "title": "PWA 渐进式 Web 应用与离线化",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -644,6 +818,7 @@
       ],
       "prereq": [],
       "summary": "PWA 渐进式 Web 应用与离线化。",
+      "timeline": false,
       "order": 35,
       "file": "frontend/fe-pwa.md",
       "type": "md"
@@ -652,6 +827,8 @@
       "id": "frontend/fe-react-hooks-deep",
       "title": "React Hooks 深入：缓存优化、Ref 妙用与自定义 Hook",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 20,
       "tags": [
@@ -665,6 +842,7 @@
         "frontend/fe-react"
       ],
       "summary": "React Hooks 深入：缓存优化、Ref 妙用与自定义 Hook。",
+      "timeline": false,
       "order": 21,
       "file": "frontend/fe-react-hooks-deep.md",
       "type": "md"
@@ -673,6 +851,8 @@
       "id": "frontend/fe-react",
       "title": "React 核心：组件、Hooks 与状态",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -683,6 +863,7 @@
       ],
       "prereq": [],
       "summary": "掌握函数组件与 Hooks 心智模型，理解渲染与副作用。",
+      "timeline": false,
       "order": 3,
       "file": "frontend/fe-react.md",
       "type": "md"
@@ -691,6 +872,8 @@
       "id": "frontend/fe-responsive",
       "title": "响应式设计与移动端适配实战",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 14,
       "tags": [
@@ -701,6 +884,7 @@
       ],
       "prereq": [],
       "summary": "响应式设计与移动端适配实战。",
+      "timeline": false,
       "order": 32,
       "file": "frontend/fe-responsive.md",
       "type": "md"
@@ -709,6 +893,8 @@
       "id": "frontend/fe-routing-deep",
       "title": "前端路由原理与 React Router 进阶",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -721,6 +907,7 @@
         "frontend/fe-react"
       ],
       "summary": "前端路由原理与 React Router 进阶。",
+      "timeline": false,
       "order": 29,
       "file": "frontend/fe-routing-deep.md",
       "type": "md"
@@ -729,6 +916,8 @@
       "id": "frontend/fe-security",
       "title": "前端 Web 安全攻防实战",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 18,
       "tags": [
@@ -741,6 +930,7 @@
         "frontend/fe-js-core"
       ],
       "summary": "前端 Web 安全攻防实战。",
+      "timeline": false,
       "order": 24,
       "file": "frontend/fe-security.md",
       "type": "md"
@@ -749,6 +939,8 @@
       "id": "frontend/fe-state",
       "title": "React 状态管理：从 Context 到 Zustand",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 10,
       "tags": [
@@ -761,6 +953,7 @@
         "frontend/fe-react"
       ],
       "summary": "厘清何时用本地状态、Context 还是外部状态库，掌握 Zustand 的极简用法。",
+      "timeline": false,
       "order": 7,
       "file": "frontend/fe-state.md",
       "type": "md"
@@ -769,6 +962,8 @@
       "id": "frontend/fe-store-deep",
       "title": "前端状态管理方案对比与选型",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 20,
       "tags": [
@@ -781,6 +976,7 @@
         "frontend/fe-state"
       ],
       "summary": "前端状态管理方案对比与选型。",
+      "timeline": false,
       "order": 31,
       "file": "frontend/fe-store-deep.md",
       "type": "md"
@@ -789,6 +985,8 @@
       "id": "frontend/fe-testing",
       "title": "前端测试：Vitest + React Testing Library 实战",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -801,6 +999,7 @@
         "frontend/fe-react"
       ],
       "summary": "前端测试：Vitest + React Testing Library 实战。",
+      "timeline": false,
       "order": 23,
       "file": "frontend/fe-testing.md",
       "type": "md"
@@ -809,6 +1008,8 @@
       "id": "frontend/fe-type-deep",
       "title": "TypeScript 深入：泛型、工具类型与类型实战",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 20,
       "tags": [
@@ -821,6 +1022,7 @@
         "frontend/fe-typescript"
       ],
       "summary": "TypeScript 深入：泛型、工具类型与类型实战。",
+      "timeline": false,
       "order": 27,
       "file": "frontend/fe-type-deep.md",
       "type": "md"
@@ -829,6 +1031,8 @@
       "id": "frontend/fe-typescript",
       "title": "TypeScript 基础：类型系统入门",
       "category": "frontend",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 11,
       "tags": [
@@ -840,14 +1044,349 @@
         "frontend/fe-js-core"
       ],
       "summary": "从 JS 到 TS，掌握基础类型、接口、联合类型、泛型与类型收窄。",
+      "timeline": false,
       "order": 6,
       "file": "frontend/fe-typescript.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/cases/vue3-practice-api",
+      "title": "练习 3 · axios 封装与接口调用",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "cases",
+      "level": "intermediate",
+      "readMinutes": 10,
+      "tags": [
+        "axios",
+        "网络请求",
+        "拦截器",
+        "练习"
+      ],
+      "prereq": [],
+      "summary": "封装一个带 baseURL、请求/响应拦截器的 axios 实例，并在用户 Store 的登录 action 里真正发起请求（用 jsonplaceholder 兜底）。",
+      "timeline": false,
+      "order": 4,
+      "file": "frontend/vue/cases/vue3-practice-api.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/cases/vue3-practice-comms",
+      "title": "练习 4 · 组件通信实战",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "cases",
+      "level": "intermediate",
+      "readMinutes": 11,
+      "tags": [
+        "组件通信",
+        "props",
+        "emits",
+        "slots",
+        "provide/inject",
+        "练习"
+      ],
+      "prereq": [],
+      "summary": "用一个小项目串联四种 Vue 组件通信方式：props/$emit、v-model、插槽、provide/inject，弄清各自适用场景。",
+      "timeline": false,
+      "order": 5,
+      "file": "frontend/vue/cases/vue3-practice-comms.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/cases/vue3-practice-composable",
+      "title": "练习 5 · 组合式函数 useFetch 抽离数据逻辑",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "cases",
+      "level": "intermediate",
+      "readMinutes": 9,
+      "tags": [
+        "composable",
+        "组合式函数",
+        "useFetch",
+        "练习"
+      ],
+      "prereq": [],
+      "summary": "把「请求数据 + loading + error」的重复逻辑抽成组合式函数 useFetch，在多个视图里复用，体会 Vue 3 组合式思维的精髓。",
+      "timeline": false,
+      "order": 6,
+      "file": "frontend/vue/cases/vue3-practice-composable.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/cases/vue3-practice-login",
+      "title": "练习 1 · 登录守卫 + 用户 Store",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "cases",
+      "level": "intermediate",
+      "readMinutes": 10,
+      "tags": [
+        "Pinia",
+        "路由守卫",
+        "登录鉴权",
+        "练习"
+      ],
+      "prereq": [],
+      "summary": "在骨架基础上新增用户 Store（含异步登录），并用路由前置守卫实现登录拦截，掌握 Pinia 异步 action 与导航守卫的配合。",
+      "timeline": false,
+      "order": 2,
+      "file": "frontend/vue/cases/vue3-practice-login.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/cases/vue3-practice-ui",
+      "title": "练习 2 · 接入 Element Plus 组件库",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "cases",
+      "level": "intermediate",
+      "readMinutes": 9,
+      "tags": [
+        "Element Plus",
+        "UI 库",
+        "组件",
+        "练习"
+      ],
+      "prereq": [],
+      "summary": "在骨架里集成 Element Plus，用 el-button / el-card / el-form 统一界面风格，并了解按需自动引入的进阶姿势。",
+      "timeline": false,
+      "order": 3,
+      "file": "frontend/vue/cases/vue3-practice-ui.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/cases/vue3-skeleton",
+      "title": "Vue3 最小练手骨架（Vite + Pinia + Router + TS）",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "cases",
+      "level": "beginner",
+      "readMinutes": 8,
+      "tags": [
+        "Vue3",
+        "Vite",
+        "Pinia",
+        "Router",
+        "练手骨架"
+      ],
+      "prereq": [],
+      "summary": "一个真能跑的 Vue3 最小练手骨架，集成 Vite + Pinia + Vue Router + TypeScript，开箱即跑，作为后续练习章节的底座。",
+      "timeline": false,
+      "order": 1,
+      "file": "frontend/vue/cases/vue3-skeleton.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/roadmap/vue-ch0-prebasic",
+      "title": "第 0 章 · 前置基础与环境搭建",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "roadmap",
+      "level": "beginner",
+      "readMinutes": 14,
+      "tags": [
+        "Vue",
+        "环境",
+        "Vite",
+        "前置"
+      ],
+      "prereq": [
+        "frontend/vue/roadmap/vue-roadmap"
+      ],
+      "summary": "搭好 HTML/CSS/JS 基础与 Vite 工程化环境，跑起第一个 Vue 项目，并对比原生写法体会响应式的价值。",
+      "timeline": false,
+      "order": 2,
+      "file": "frontend/vue/roadmap/vue-ch0-prebasic.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/roadmap/vue-ch1-core",
+      "title": "第 1 章 · Vue 核心基础",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "roadmap",
+      "level": "beginner",
+      "readMinutes": 16,
+      "tags": [
+        "Vue",
+        "模板",
+        "指令",
+        "响应式"
+      ],
+      "prereq": [
+        "frontend/vue/roadmap/vue-ch0-prebasic"
+      ],
+      "summary": "掌握模板语法、常用指令、ref/reactive 响应式、computed、watch 与生命周期，搭好 Vue 开发的地基。",
+      "timeline": false,
+      "order": 3,
+      "file": "frontend/vue/roadmap/vue-ch1-core.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/roadmap/vue-ch2-component",
+      "title": "第 2 章 · 组件化开发",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "roadmap",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "Vue",
+        "组件",
+        "props",
+        "slot"
+      ],
+      "prereq": [
+        "frontend/vue/roadmap/vue-ch1-core"
+      ],
+      "summary": "学会把界面拆成可复用组件，掌握 props 传参、emit 回传、插槽复用结构与 provide/inject 跨层通信。",
+      "timeline": false,
+      "order": 4,
+      "file": "frontend/vue/roadmap/vue-ch2-component.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/roadmap/vue-ch3-composition",
+      "title": "第 3 章 · Composition API",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "roadmap",
+      "level": "intermediate",
+      "readMinutes": 15,
+      "tags": [
+        "Vue",
+        "Composition",
+        "script setup"
+      ],
+      "prereq": [
+        "frontend/vue/roadmap/vue-ch2-component"
+      ],
+      "summary": "用 <script setup> 语法糖组织逻辑，理解 ref/reactive 取舍，并学会把通用逻辑抽成组合式函数。",
+      "timeline": false,
+      "order": 5,
+      "file": "frontend/vue/roadmap/vue-ch3-composition.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/roadmap/vue-ch4-router",
+      "title": "第 4 章 · Vue Router 路由",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "roadmap",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "Vue",
+        "Router",
+        "路由",
+        "守卫"
+      ],
+      "prereq": [
+        "frontend/vue/roadmap/vue-ch3-composition"
+      ],
+      "summary": "用 Vue Router 搭建多页应用，掌握动态路由、嵌套路由、编程式导航、路由守卫与懒加载。",
+      "timeline": false,
+      "order": 6,
+      "file": "frontend/vue/roadmap/vue-ch4-router.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/roadmap/vue-ch5-pinia",
+      "title": "第 5 章 · Pinia 状态管理",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "roadmap",
+      "level": "intermediate",
+      "readMinutes": 15,
+      "tags": [
+        "Vue",
+        "Pinia",
+        "状态管理"
+      ],
+      "prereq": [
+        "frontend/vue/roadmap/vue-ch4-router"
+      ],
+      "summary": "用 Pinia 管理跨组件全局状态，掌握 state/getters/actions、storeToRefs、异步 action 与数据持久化。",
+      "timeline": false,
+      "order": 7,
+      "file": "frontend/vue/roadmap/vue-ch5-pinia.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/roadmap/vue-ch6-ecosystem",
+      "title": "第 6 章 · 生态与工程化",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "roadmap",
+      "level": "advanced",
+      "readMinutes": 16,
+      "tags": [
+        "Vue",
+        "Vite",
+        "TypeScript",
+        "工程化"
+      ],
+      "prereq": [
+        "frontend/vue/roadmap/vue-ch5-pinia"
+      ],
+      "summary": "掌握 Vite 配置、TypeScript 接入、axios 封装、UI 库选型与 Vitest 单元测试，让项目可维护可协作。",
+      "timeline": false,
+      "order": 8,
+      "file": "frontend/vue/roadmap/vue-ch6-ecosystem.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/roadmap/vue-ch7-principle",
+      "title": "第 7 章 · 进阶原理与性能优化",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "roadmap",
+      "level": "advanced",
+      "readMinutes": 15,
+      "tags": [
+        "Vue",
+        "原理",
+        "响应式",
+        "性能"
+      ],
+      "prereq": [
+        "frontend/vue/roadmap/vue-ch6-ecosystem"
+      ],
+      "summary": "理解 Vue 3 响应式（Proxy）、虚拟 DOM 与 diff、编译时优化，并掌握常用性能优化手段。",
+      "timeline": false,
+      "order": 9,
+      "file": "frontend/vue/roadmap/vue-ch7-principle.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/vue/roadmap/vue-roadmap",
+      "title": "Vue 3 系统学习路线（含打卡清单）",
+      "category": "frontend",
+      "module": "vue",
+      "subcat": "roadmap",
+      "level": "beginner",
+      "readMinutes": 12,
+      "tags": [
+        "Vue",
+        "学习路线",
+        "路线图",
+        "打卡"
+      ],
+      "prereq": [],
+      "summary": "从前置基础到实战项目的 9 阶段 Vue 3 学习路线，每个阶段拆成可勾选任务，方便对照打卡。",
+      "timeline": true,
+      "order": 1,
+      "file": "frontend/vue/roadmap/vue-roadmap.md",
       "type": "md"
     },
     {
       "id": "java/add-your-own-article",
       "title": "示例文章：如何给本网站添加你自己的内容",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 6,
       "tags": [
@@ -857,6 +1396,7 @@
       ],
       "prereq": [],
       "summary": "一篇用来演示的示例文章——你正在看的这篇，就是按照文末说明新建出来的。",
+      "timeline": false,
       "order": 99,
       "file": "java/add-your-own-article.md",
       "type": "md"
@@ -865,6 +1405,8 @@
       "id": "java/java-basics",
       "title": "Java 基础语法与数据类型",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 12,
       "tags": [
@@ -874,6 +1416,7 @@
       ],
       "prereq": [],
       "summary": "掌握 Java 的基本类型、引用类型、运算符与控制流，搭建扎实的语法基础。",
+      "timeline": false,
       "order": 1,
       "file": "java/java-basics.md",
       "type": "md"
@@ -882,6 +1425,8 @@
       "id": "java/java-collection-concurrent",
       "title": "并发集合：ConcurrentHashMap 与 CopyOnWrite 容器",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 20,
       "tags": [
@@ -895,6 +1440,7 @@
         "java/java-concurrency"
       ],
       "summary": "剖析 ConcurrentHashMap 1.8 的 CAS+synchronized 实现与各类并发容器选型。",
+      "timeline": false,
       "order": 21,
       "file": "java/java-collection-concurrent.md",
       "type": "md"
@@ -903,6 +1449,8 @@
       "id": "java/java-collection-map-deep",
       "title": "HashMap 深度剖析：哈希扰动、扩容机制与红黑树",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 22,
       "tags": [
@@ -916,6 +1464,7 @@
         "java/java-collections"
       ],
       "summary": "从源码层面讲透 HashMap 的 hash 计算、扩容机制与链表转红黑树的阈值。",
+      "timeline": false,
       "order": 20,
       "file": "java/java-collection-map-deep.md",
       "type": "md"
@@ -924,6 +1473,8 @@
       "id": "java/java-collection-queue",
       "title": "Queue 与阻塞队列：ArrayBlockingQueue / LinkedBlockingQueue / PriorityBlockingQueue",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -936,6 +1487,7 @@
         "java/java-collections"
       ],
       "summary": "系统讲解 Queue 体系与阻塞队列在生产者-消费者模型中的应用。",
+      "timeline": false,
       "order": 22,
       "file": "java/java-collection-queue.md",
       "type": "md"
@@ -944,6 +1496,8 @@
       "id": "java/java-collections",
       "title": "集合框架：List / Set / Map",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -954,6 +1508,7 @@
       ],
       "prereq": [],
       "summary": "吃透 Java 集合体系，重点理解 HashMap 的底层结构与扩容机制。",
+      "timeline": false,
       "order": 3,
       "file": "java/java-collections.md",
       "type": "md"
@@ -962,6 +1517,8 @@
       "id": "java/java-concurrency",
       "title": "并发编程：线程、线程池与并发容器",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 20,
       "tags": [
@@ -972,6 +1529,7 @@
       ],
       "prereq": [],
       "summary": "理解线程模型、线程池参数与常见并发工具，写出安全的多线程代码。",
+      "timeline": false,
       "order": 4,
       "file": "java/java-concurrency.md",
       "type": "md"
@@ -980,6 +1538,8 @@
       "id": "java/java-exception",
       "title": "异常处理：Checked、Unchecked 与最佳实践",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 8,
       "tags": [
@@ -991,6 +1551,7 @@
         "java/java-basics"
       ],
       "summary": "搞清 Checked / Unchecked 异常的区别，掌握 try-with-resources 与异常处理的工程实践。",
+      "timeline": false,
       "order": 7,
       "file": "java/java-exception.md",
       "type": "md"
@@ -999,6 +1560,8 @@
       "id": "java/java-generics",
       "title": "泛型与通配符：PECS 原则",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 10,
       "tags": [
@@ -1011,6 +1574,7 @@
         "java/java-collections"
       ],
       "summary": "理解类型擦除、上下界通配符，掌握\"生产者 extends、消费者 super\"的 PECS 原则。",
+      "timeline": false,
       "order": 8,
       "file": "java/java-generics.md",
       "type": "md"
@@ -1019,6 +1583,8 @@
       "id": "java/java-jvm-classloader",
       "title": "类加载机制：双亲委派模型与自定义类加载器",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 18,
       "tags": [
@@ -1031,6 +1597,7 @@
         "java/java-jvm"
       ],
       "summary": "讲清类加载全过程、双亲委派及其破坏场景（Tomcat）。",
+      "timeline": false,
       "order": 45,
       "file": "java/java-jvm-classloader.md",
       "type": "md"
@@ -1039,6 +1606,8 @@
       "id": "java/java-jvm-gc-deep",
       "title": "垃圾回收深度解析：算法、收集器 G1/ZGC 与调优",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 24,
       "tags": [
@@ -1052,6 +1621,7 @@
         "java/java-jvm-memory-deep"
       ],
       "summary": "对比 GC 算法与 Serial/CMS/G1/ZGC 收集器及调优参数。",
+      "timeline": false,
       "order": 44,
       "file": "java/java-jvm-gc-deep.md",
       "type": "md"
@@ -1060,6 +1630,8 @@
       "id": "java/java-jvm-memory-deep",
       "title": "JVM 内存模型详解：运行时数据区与对象创建",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 20,
       "tags": [
@@ -1073,6 +1645,7 @@
         "java/java-jvm"
       ],
       "summary": "详解运行时数据区、对象创建过程与常见内存溢出。",
+      "timeline": false,
       "order": 43,
       "file": "java/java-jvm-memory-deep.md",
       "type": "md"
@@ -1081,6 +1654,8 @@
       "id": "java/java-jvm-troubleshoot",
       "title": "JVM 问题排查实战：OOM、CPU 飙高与诊断工具",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 20,
       "tags": [
@@ -1094,6 +1669,7 @@
         "java/java-jvm-gc-deep"
       ],
       "summary": "用 jstack/jmap/Arthas 实战排查内存与 CPU 问题。",
+      "timeline": false,
       "order": 46,
       "file": "java/java-jvm-troubleshoot.md",
       "type": "md"
@@ -1102,6 +1678,8 @@
       "id": "java/java-jvm",
       "title": "JVM 内存模型与垃圾回收",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 18,
       "tags": [
@@ -1112,6 +1690,7 @@
       ],
       "prereq": [],
       "summary": "理解运行时数据区、对象创建过程与主流垃圾回收器，具备基础调优能力。",
+      "timeline": false,
       "order": 5,
       "file": "java/java-jvm.md",
       "type": "md"
@@ -1120,6 +1699,8 @@
       "id": "java/java-kafka-deep",
       "title": "Kafka 深度解析：分区、副本、消费组与消息可靠性",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 24,
       "tags": [
@@ -1133,6 +1714,7 @@
         "java/java-mq-overview"
       ],
       "summary": "剖析 Kafka 架构、分区策略、不重复不丢失与顺序消费。",
+      "timeline": false,
       "order": 41,
       "file": "java/java-kafka-deep.md",
       "type": "md"
@@ -1141,6 +1723,8 @@
       "id": "java/java-microservice-base",
       "title": "微服务架构基础：注册发现、配置中心与拆分原则",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 20,
       "tags": [
@@ -1153,6 +1737,7 @@
         "java/java-spring"
       ],
       "summary": "讲解微服务核心概念、服务注册发现与配置中心作用。",
+      "timeline": false,
       "order": 34,
       "file": "java/java-microservice-base.md",
       "type": "md"
@@ -1161,6 +1746,8 @@
       "id": "java/java-microservice-sentinel",
       "title": "服务容错：Sentinel 限流、熔断与降级实战",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 18,
       "tags": [
@@ -1173,6 +1760,7 @@
         "java/java-springcloud"
       ],
       "summary": "讲解流量控制、熔断降级规则与 Sentinel 在微服务中的落地。",
+      "timeline": false,
       "order": 36,
       "file": "java/java-microservice-sentinel.md",
       "type": "md"
@@ -1181,6 +1769,8 @@
       "id": "java/java-mq-overview",
       "title": "消息中间件选型：Kafka 与 RabbitMQ 对比与适用场景",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -1193,6 +1783,7 @@
         "java/java-basics"
       ],
       "summary": "对比主流消息队列特性，讲清何时用哪种 MQ。",
+      "timeline": false,
       "order": 40,
       "file": "java/java-mq-overview.md",
       "type": "md"
@@ -1201,6 +1792,8 @@
       "id": "java/java-mybatis",
       "title": "MyBatis 原理与实战：动态 SQL、缓存与整合 Spring",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -1213,6 +1806,7 @@
         "java/java-spring"
       ],
       "summary": "从执行流程、动态 SQL 到一级/二级缓存与 Spring 整合。",
+      "timeline": false,
       "order": 33,
       "file": "java/java-mybatis.md",
       "type": "md"
@@ -1221,6 +1815,8 @@
       "id": "java/java-mysql-index",
       "title": "MySQL 索引原理：B+ 树、聚簇索引与最左前缀",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 24,
       "tags": [
@@ -1234,6 +1830,7 @@
         "java/java-basics"
       ],
       "summary": "从 B+ 树结构讲透聚簇/非聚簇索引、回表与索引失效。",
+      "timeline": false,
       "order": 50,
       "file": "java/java-mysql-index.md",
       "type": "md"
@@ -1242,6 +1839,8 @@
       "id": "java/java-mysql-lock",
       "title": "MySQL 锁机制：行锁、间隙锁、临键锁与死锁",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 20,
       "tags": [
@@ -1255,6 +1854,7 @@
         "java/java-mysql-transaction"
       ],
       "summary": "剖析 InnoDB 行锁、Next-Key 锁与死锁排查。",
+      "timeline": false,
       "order": 52,
       "file": "java/java-mysql-lock.md",
       "type": "md"
@@ -1263,6 +1863,8 @@
       "id": "java/java-mysql-optimize",
       "title": "MySQL 慢查询与 SQL 优化：EXPLAIN 与分库分表",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 20,
       "tags": [
@@ -1276,6 +1878,7 @@
         "java/java-mysql-index"
       ],
       "summary": "用 EXPLAIN 分析执行计划并讲解常见 SQL 优化手段。",
+      "timeline": false,
       "order": 53,
       "file": "java/java-mysql-optimize.md",
       "type": "md"
@@ -1284,6 +1887,8 @@
       "id": "java/java-mysql-transaction",
       "title": "MySQL 事务与 MVCC：隔离级别与 undo/redo 日志",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 22,
       "tags": [
@@ -1297,6 +1902,7 @@
         "java/java-mysql-index"
       ],
       "summary": "详解四种隔离级别、MVCC 实现与 undo/redo 日志作用。",
+      "timeline": false,
       "order": 51,
       "file": "java/java-mysql-transaction.md",
       "type": "md"
@@ -1305,6 +1911,8 @@
       "id": "java/java-oop",
       "title": "面向对象：封装、继承、多态",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 14,
       "tags": [
@@ -1315,6 +1923,7 @@
       ],
       "prereq": [],
       "summary": "理解 Java 面向对象三大特性，以及接口与抽象类的取舍。",
+      "timeline": false,
       "order": 2,
       "file": "java/java-oop.md",
       "type": "md"
@@ -1323,6 +1932,8 @@
       "id": "java/java-rabbitmq-deep",
       "title": "RabbitMQ 实战：交换机、死信队列、延迟与幂等",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 22,
       "tags": [
@@ -1335,6 +1946,7 @@
         "java/java-mq-overview"
       ],
       "summary": "讲透交换机类型、死信/延迟队列与消息幂等处理。",
+      "timeline": false,
       "order": 42,
       "file": "java/java-rabbitmq-deep.md",
       "type": "md"
@@ -1343,6 +1955,8 @@
       "id": "java/java-redis-basics",
       "title": "Redis 数据类型与底层结构：String/Hash/List/Set/ZSet",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 18,
       "tags": [
@@ -1355,6 +1969,7 @@
         "java/java-basics"
       ],
       "summary": "讲解五种数据类型、底层编码与典型业务场景。",
+      "timeline": false,
       "order": 54,
       "file": "java/java-redis-basics.md",
       "type": "md"
@@ -1363,6 +1978,8 @@
       "id": "java/java-redis-cache",
       "title": "Redis 缓存经典问题：穿透、击穿、雪崩与一致性",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 22,
       "tags": [
@@ -1376,6 +1993,7 @@
         "java/java-redis-basics"
       ],
       "summary": "剖析三大缓存问题与双写一致性，给出布隆过滤器方案。",
+      "timeline": false,
       "order": 55,
       "file": "java/java-redis-cache.md",
       "type": "md"
@@ -1384,6 +2002,8 @@
       "id": "java/java-redis-distlock",
       "title": "Redis 分布式锁实战：Redisson、看门狗与红锁",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 20,
       "tags": [
@@ -1396,6 +2016,7 @@
         "java/java-redis-basics"
       ],
       "summary": "手写分布式锁的坑、Redisson 看门狗机制与红锁取舍。",
+      "timeline": false,
       "order": 56,
       "file": "java/java-redis-distlock.md",
       "type": "md"
@@ -1404,6 +2025,8 @@
       "id": "java/java-redis-persist-cluster",
       "title": "Redis 持久化与高可用：RDB/AOF、主从、哨兵与集群",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 20,
       "tags": [
@@ -1418,6 +2041,7 @@
         "java/java-redis-basics"
       ],
       "summary": "讲解持久化机制与哨兵、Cluster 集群的高可用方案。",
+      "timeline": false,
       "order": 57,
       "file": "java/java-redis-persist-cluster.md",
       "type": "md"
@@ -1426,6 +2050,8 @@
       "id": "java/java-spring-aop",
       "title": "Spring AOP 与动态代理：JDK 与 CGLIB、切面实战",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 20,
       "tags": [
@@ -1438,6 +2064,7 @@
         "java/java-spring"
       ],
       "summary": "讲透 AOP 概念、JDK 与 CGLIB 代理差异及典型应用场景。",
+      "timeline": false,
       "order": 30,
       "file": "java/java-spring-aop.md",
       "type": "md"
@@ -1446,6 +2073,8 @@
       "id": "java/java-spring-transaction",
       "title": "Spring 事务管理：传播行为、隔离级别与失效场景",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 22,
       "tags": [
@@ -1458,6 +2087,7 @@
         "java/java-spring"
       ],
       "summary": "详解七种传播行为、隔离级别及 @Transactional 不生效的常见坑。",
+      "timeline": false,
       "order": 32,
       "file": "java/java-spring-transaction.md",
       "type": "md"
@@ -1466,6 +2096,8 @@
       "id": "java/java-spring",
       "title": "Spring 核心：IoC 容器与依赖注入",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 12,
       "tags": [
@@ -1479,6 +2111,7 @@
         "java/java-collections"
       ],
       "summary": "理解控制反转与依赖注入的本质，掌握 Bean 生命周期、作用域与三种注入方式。",
+      "timeline": false,
       "order": 9,
       "file": "java/java-spring.md",
       "type": "md"
@@ -1487,6 +2120,8 @@
       "id": "java/java-springboot",
       "title": "SpringBoot 自动装配原理与启动流程",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -1499,6 +2134,7 @@
         "java/java-spring"
       ],
       "summary": "剖析 @SpringBootApplication、SPI 机制与 Starter 自动配置。",
+      "timeline": false,
       "order": 31,
       "file": "java/java-springboot.md",
       "type": "md"
@@ -1507,6 +2143,8 @@
       "id": "java/java-springcloud",
       "title": "SpringCloud 组件全景：Eureka / Gateway / OpenFeign",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 20,
       "tags": [
@@ -1519,6 +2157,7 @@
         "java/java-microservice-base"
       ],
       "summary": "梳理 SpringCloud 主流组件与微服务通信、网关路由。",
+      "timeline": false,
       "order": 35,
       "file": "java/java-springcloud.md",
       "type": "md"
@@ -1527,6 +2166,8 @@
       "id": "java/java-stream",
       "title": "Java 8+ 新特性：Lambda 与 Stream",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 13,
       "tags": [
@@ -1537,6 +2178,7 @@
       ],
       "prereq": [],
       "summary": "用 Lambda 与 Stream 写出声明式、易并行的高可读代码。",
+      "timeline": false,
       "order": 6,
       "file": "java/java-stream.md",
       "type": "md"
@@ -1545,6 +2187,8 @@
       "id": "java/java-thread-base",
       "title": "线程基础：创建方式、生命周期与 wait/notify、ThreadLocal",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 18,
       "tags": [
@@ -1557,6 +2201,7 @@
         "java/java-basics"
       ],
       "summary": "从线程的创建、状态流转到线程间通信与 ThreadLocal 原理。",
+      "timeline": false,
       "order": 23,
       "file": "java/java-thread-base.md",
       "type": "md"
@@ -1565,6 +2210,8 @@
       "id": "java/java-thread-lock",
       "title": "锁机制：synchronized 锁升级与 ReentrantLock / AQS",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 24,
       "tags": [
@@ -1578,6 +2225,7 @@
         "java/java-concurrency"
       ],
       "summary": "深入对象头、锁升级过程与 AQS 队列同步器实现读写锁。",
+      "timeline": false,
       "order": 24,
       "file": "java/java-thread-lock.md",
       "type": "md"
@@ -1586,6 +2234,8 @@
       "id": "java/java-thread-pool-deep",
       "title": "线程池深度实战：ThreadPoolExecutor 参数、拒绝策略与调优",
       "category": "java",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 22,
       "tags": [
@@ -1598,6 +2248,7 @@
         "java/java-concurrency"
       ],
       "summary": "拆解 ThreadPoolExecutor 七大参数、四种拒绝策略与 Executors 的隐患。",
+      "timeline": false,
       "order": 25,
       "file": "java/java-thread-pool-deep.md",
       "type": "md"
@@ -1606,6 +2257,8 @@
       "id": "python/py-asyncio",
       "title": "异步编程：asyncio 与协程",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 17,
       "tags": [
@@ -1616,6 +2269,7 @@
       ],
       "prereq": [],
       "summary": "用 async/await 处理高并发 IO，理解事件循环与协程调度。",
+      "timeline": false,
       "order": 3,
       "file": "python/py-asyncio.md",
       "type": "md"
@@ -1624,6 +2278,8 @@
       "id": "python/py-basics",
       "title": "Python 基础语法与数据结构",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 12,
       "tags": [
@@ -1633,6 +2289,7 @@
       ],
       "prereq": [],
       "summary": "掌握变量、缩进、内置数据结构与推导式，建立 Python 直觉。",
+      "timeline": false,
       "order": 1,
       "file": "python/py-basics.md",
       "type": "md"
@@ -1641,6 +2298,8 @@
       "id": "python/py-celery",
       "title": "Celery 异步任务与定时调度实战",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 18,
       "tags": [
@@ -1653,6 +2312,7 @@
         "python/py-basics"
       ],
       "summary": "Celery 异步任务与定时调度实战。",
+      "timeline": false,
       "order": 33,
       "file": "python/py-celery.md",
       "type": "md"
@@ -1661,6 +2321,8 @@
       "id": "python/py-cli-tools",
       "title": "Python 命令行工具开发",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 14,
       "tags": [
@@ -1671,6 +2333,7 @@
       ],
       "prereq": [],
       "summary": "Python 命令行工具开发。",
+      "timeline": false,
       "order": 32,
       "file": "python/py-cli-tools.md",
       "type": "md"
@@ -1679,6 +2342,8 @@
       "id": "python/py-concurrency",
       "title": "Python 并发模型详解：GIL 限制与线程/进程/协程选型",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 22,
       "tags": [
@@ -1692,6 +2357,7 @@
         "python/py-basics"
       ],
       "summary": "Python 并发模型详解：GIL 限制与线程/进程/协程选型。",
+      "timeline": false,
       "order": 28,
       "file": "python/py-concurrency.md",
       "type": "md"
@@ -1700,6 +2366,8 @@
       "id": "python/py-data",
       "title": "数据处理：NumPy 与 Pandas",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 15,
       "tags": [
@@ -1710,6 +2378,7 @@
       ],
       "prereq": [],
       "summary": "用向量化思想处理表格与数组数据，远离慢速 for 循环。",
+      "timeline": false,
       "order": 5,
       "file": "python/py-data.md",
       "type": "md"
@@ -1718,6 +2387,8 @@
       "id": "python/py-decorator",
       "title": "函数、闭包与装饰器",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 15,
       "tags": [
@@ -1727,6 +2398,7 @@
       ],
       "prereq": [],
       "summary": "理解一等函数、闭包原理，手写可用的装饰器与带参装饰器。",
+      "timeline": false,
       "order": 2,
       "file": "python/py-decorator.md",
       "type": "md"
@@ -1735,6 +2407,8 @@
       "id": "python/py-deploy",
       "title": "Python 应用部署与容器化实战",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "advanced",
       "readMinutes": 18,
       "tags": [
@@ -1747,6 +2421,7 @@
         "python/py-web"
       ],
       "summary": "Python 应用部署与容器化实战。",
+      "timeline": false,
       "order": 35,
       "file": "python/py-deploy.md",
       "type": "md"
@@ -1755,6 +2430,8 @@
       "id": "python/py-design-patterns",
       "title": "Python 设计模式实战",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -1767,6 +2444,7 @@
         "python/py-basics"
       ],
       "summary": "Python 设计模式实战。",
+      "timeline": false,
       "order": 30,
       "file": "python/py-design-patterns.md",
       "type": "md"
@@ -1775,6 +2453,8 @@
       "id": "python/py-django-basics",
       "title": "Django MVT 架构与快速上手",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 20,
       "tags": [
@@ -1787,6 +2467,7 @@
         "python/py-basics"
       ],
       "summary": "Django MVT 架构与快速上手。",
+      "timeline": false,
       "order": 21,
       "file": "python/py-django-basics.md",
       "type": "md"
@@ -1795,6 +2476,8 @@
       "id": "python/py-django-rest",
       "title": "Django REST Framework API 开发",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -1807,6 +2490,7 @@
         "python/py-django-basics"
       ],
       "summary": "Django REST Framework API 开发。",
+      "timeline": false,
       "order": 23,
       "file": "python/py-django-rest.md",
       "type": "md"
@@ -1815,6 +2499,8 @@
       "id": "python/py-fastapi",
       "title": "FastAPI 异步 Web 框架",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -1827,6 +2513,7 @@
         "python/py-basics"
       ],
       "summary": "FastAPI 异步 Web 框架：类型校验、自动文档与依赖注入。",
+      "timeline": false,
       "order": 22,
       "file": "python/py-fastapi.md",
       "type": "md"
@@ -1835,6 +2522,8 @@
       "id": "python/py-flask",
       "title": "Flask 轻量 Web 框架入门",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 16,
       "tags": [
@@ -1847,6 +2536,7 @@
         "python/py-basics"
       ],
       "summary": "Flask 轻量 Web 框架入门：路由、模板渲染与请求处理。",
+      "timeline": false,
       "order": 20,
       "file": "python/py-flask.md",
       "type": "md"
@@ -1855,6 +2545,8 @@
       "id": "python/py-logging",
       "title": "Python 日志体系与异常监控实践",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -1865,6 +2557,7 @@
       ],
       "prereq": [],
       "summary": "Python 日志体系与异常监控实践。",
+      "timeline": false,
       "order": 29,
       "file": "python/py-logging.md",
       "type": "md"
@@ -1873,6 +2566,8 @@
       "id": "python/py-ml-pipeline",
       "title": "Python 机器学习管线：scikit-learn 实战",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -1885,6 +2580,7 @@
         "python/py-data"
       ],
       "summary": "Python 机器学习管线：scikit-learn 实战。",
+      "timeline": false,
       "order": 34,
       "file": "python/py-ml-pipeline.md",
       "type": "md"
@@ -1893,6 +2589,8 @@
       "id": "python/py-numpy",
       "title": "NumPy 数组操作与广播机制",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -1905,6 +2603,7 @@
         "python/py-basics"
       ],
       "summary": "NumPy 数组操作与广播机制。",
+      "timeline": false,
       "order": 26,
       "file": "python/py-numpy.md",
       "type": "md"
@@ -1913,6 +2612,8 @@
       "id": "python/py-package",
       "title": "Python 包管理与虚拟环境最佳实践",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "beginner",
       "readMinutes": 14,
       "tags": [
@@ -1925,6 +2626,7 @@
         "python/py-basics"
       ],
       "summary": "Python 包管理与虚拟环境最佳实践。",
+      "timeline": false,
       "order": 27,
       "file": "python/py-package.md",
       "type": "md"
@@ -1933,6 +2635,8 @@
       "id": "python/py-pandas",
       "title": "Pandas 数据分析核心操作",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 20,
       "tags": [
@@ -1945,6 +2649,7 @@
         "python/py-basics"
       ],
       "summary": "Pandas 数据分析核心操作。",
+      "timeline": false,
       "order": 25,
       "file": "python/py-pandas.md",
       "type": "md"
@@ -1953,6 +2658,8 @@
       "id": "python/py-sqlalchemy",
       "title": "SQLAlchemy ORM 核心用法与 Alembic 数据库迁移",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -1965,6 +2672,7 @@
         "python/py-basics"
       ],
       "summary": "SQLAlchemy ORM 核心用法与 Alembic 数据库迁移。",
+      "timeline": false,
       "order": 24,
       "file": "python/py-sqlalchemy.md",
       "type": "md"
@@ -1973,6 +2681,8 @@
       "id": "python/py-testing-deep",
       "title": "Python 测试进阶：pytest 高级特性与 Mock 实战",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 18,
       "tags": [
@@ -1985,6 +2695,7 @@
         "python/py-testing"
       ],
       "summary": "Python 测试进阶：pytest 高级特性与 Mock 实战。",
+      "timeline": false,
       "order": 31,
       "file": "python/py-testing-deep.md",
       "type": "md"
@@ -1993,6 +2704,8 @@
       "id": "python/py-testing",
       "title": "单元测试：pytest 实战",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 10,
       "tags": [
@@ -2005,6 +2718,7 @@
         "python/py-basics"
       ],
       "summary": "用 pytest 写清爽的测试，掌握 fixture、参数化与 mock，建立可靠的测试习惯。",
+      "timeline": false,
       "order": 7,
       "file": "python/py-testing.md",
       "type": "md"
@@ -2013,6 +2727,8 @@
       "id": "python/py-typing",
       "title": "类型注解与 dataclass",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 9,
       "tags": [
@@ -2024,6 +2740,7 @@
         "python/py-basics"
       ],
       "summary": "用类型提示提升可读性与工具支持，用 dataclass 优雅地定义数据类。",
+      "timeline": false,
       "order": 6,
       "file": "python/py-typing.md",
       "type": "md"
@@ -2032,6 +2749,8 @@
       "id": "python/py-web",
       "title": "Web 开发：FastAPI 实战",
       "category": "python",
+      "module": "",
+      "subcat": "general",
       "level": "intermediate",
       "readMinutes": 16,
       "tags": [
@@ -2042,6 +2761,7 @@
       ],
       "prereq": [],
       "summary": "用 FastAPI 快速构建类型安全、自带文档的异步 Web 服务。",
+      "timeline": false,
       "order": 4,
       "file": "python/py-web.md",
       "type": "md"

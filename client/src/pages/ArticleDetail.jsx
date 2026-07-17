@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Clock, Lightbulb } from 'lucide-react';
 import { content } from '../content.js';
 import LevelBadge from '../components/LevelBadge.jsx';
 import Markdown from '../components/Markdown.jsx';
+import Timeline from '../components/Timeline.jsx';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import ReadingProgress from '../components/ReadingProgress.jsx';
 import ShareButton from '../components/ShareButton.jsx';
@@ -60,7 +61,8 @@ export default function ArticleDetail() {
     return result;
   }, [article?.content]);
 
-  const showToc = headings.length > 0;
+  const isTimeline = article?.timeline === true;
+  const showToc = headings.length > 0 && !isTimeline;
 
   // IntersectionObserver：监视所有 h2/h3，当前可见标题在 ToC 中高亮
   const visibleMap = useRef({});
@@ -139,7 +141,11 @@ export default function ArticleDetail() {
           ))}
         </div>
         <hr className="border-border my-5" />
-        <Markdown html={article.content} />
+        {isTimeline ? (
+          <Timeline markdown={article.body} />
+        ) : (
+          <Markdown html={article.content} />
+        )}
         <div className="mt-10 p-4 rounded-2xl bg-brand-50 text-sm text-brand-700">
           <span className="inline-flex items-center gap-1.5 font-semibold">
             <Lightbulb size={14} />

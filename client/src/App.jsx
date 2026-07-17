@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import BackToTop from './components/BackToTop.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import { PageSkeleton } from './components/Skeleton.jsx';
 
@@ -28,6 +29,7 @@ export default function App() {
         跳到主要内容
       </a>
       <Header />
+      <ScrollToTop />
       <main id="main-content" className="flex-1">
         <ErrorBoundary>
           <Suspense fallback={<PageSkeleton />}>
@@ -35,6 +37,7 @@ export default function App() {
               <Routes location={location}>
                 <Route path="/" element={<Home />} />
                 <Route path="/category/:catId" element={<Category />} />
+                <Route path="/category/:catId/:moduleId" element={<Category />} />
                 <Route path="/article/*" element={<ArticleDetail />} />
                 <Route path="/interviews" element={<Interviews />} />
                 <Route path="/interview/*" element={<InterviewDetail />} />

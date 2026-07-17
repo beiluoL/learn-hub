@@ -95,7 +95,7 @@ export default function Home() {
               <Link
                 key={c.id}
                 to={to}
-                className="group bg-card rounded-2xl p-6 border border-border shadow-card hover:-translate-y-0.5 hover:shadow-card-hover transition"
+                className="group flex flex-col h-full bg-card rounded-2xl p-6 border border-border shadow-card hover:-translate-y-0.5 hover:shadow-card-hover transition"
               >
                 <div
                   className="w-12 h-12 rounded-lg grid place-items-center mb-4"

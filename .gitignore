@@ -15,3 +15,6 @@ npm-debug.log*
 
 # 本地项目记忆（含私人记忆，勿提交）
 .workbuddy/
+
+# Vite 构建临时文件
+client/vite.config.js.timestamp-*.mjs

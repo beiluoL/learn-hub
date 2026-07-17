@@ -182,6 +182,9 @@ for (const { full, rel } of found) {
       id: rel.replace(/\.(md|html?)$/i, ''),
       title: data.title || rel,
       category: data.category || rel.split('/')[0],
+      // 前端子模块：module=子模块 id（如 vue），subcat=roadmap(学习路线)/cases(项目案例)/general(通用)
+      module: (data.module || '').trim(),
+      subcat: (data.subcat || 'general').trim(),
       level: data.level || 'beginner',
       readMinutes: Number(data.readMinutes) || 10,
       tags: (data.tags || '')
@@ -195,6 +198,8 @@ for (const { full, rel } of found) {
         .map((t) => t.trim())
         .filter(Boolean),
       summary: data.summary || '',
+      // 是否为「总览路线图」：详情页据此用时间轴渲染，普通章节用普通文章渲染
+      timeline: data.timeline === 'true',
       order: Number(data.order) || 999,
       file: rel,
       type,

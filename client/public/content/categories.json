@@ -18,7 +18,20 @@
     "name": "前端学习",
     "icon": "🎨",
     "color": "#61dafb",
-    "desc": "HTML/CSS/JS 核心，框架工程化与现代前端体系。"
+    "desc": "HTML/CSS/JS 核心，框架工程化与现代前端体系。",
+    "modules": [
+      { "id": "vue", "name": "Vue 学习", "icon": "vue", "color": "#42b883", "desc": "渐进式框架 Vue 3 全家桶：组合式 API、Pinia、Router" },
+      { "id": "react", "name": "React 学习", "icon": "react", "color": "#61dafb", "desc": "组件化与 Hooks，前端主流框架之一" },
+      { "id": "miniprogram", "name": "小程序学习", "icon": "miniprogram", "color": "#07c160", "desc": "微信小程序开发与实战" },
+      { "id": "uniapp", "name": "uni-app 学习", "icon": "uniapp", "color": "#1677ff", "desc": "跨端框架 uni-app，一次开发多端运行" },
+      { "id": "html", "name": "HTML 学习", "icon": "html5", "color": "#e34f26", "desc": "语义化标签、表单与无障碍" },
+      { "id": "css", "name": "CSS 学习", "icon": "css3", "color": "#1572b6", "desc": "布局、动画与工程化" },
+      { "id": "javascript", "name": "JavaScript 学习", "icon": "javascript", "color": "#f7df1e", "desc": "语言核心、异步与 DOM" },
+      { "id": "typescript", "name": "TypeScript 学习", "icon": "typescript", "color": "#3178c6", "desc": "类型系统与工程实践" },
+      { "id": "nextjs", "name": "Next.js 学习", "icon": "nextjs", "color": "#111827", "desc": "React 全栈框架，SSR / SSG" },
+      { "id": "vite", "name": "Vite 学习", "icon": "vite", "color": "#646cff", "desc": "极速构建工具与开发服务器" },
+      { "id": "engineering", "name": "前端工程化", "icon": "engineering", "color": "#f97316", "desc": "打包、CI/CD、规范化与 monorepo" }
+    ]
   },
   {
     "id": "ai",

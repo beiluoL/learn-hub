@@ -167,7 +167,7 @@ export const content = {
     if (!meta) return null;
     const raw = await fetch(fileUrl(meta.file)).then((r) => r.text());
     const { body } = parseFrontmatter(raw);
-    return { ...meta, tags: splitTags(meta.tags), content: renderBody(body, meta.type) };
+    return { ...meta, tags: splitTags(meta.tags), content: renderBody(body, meta.type), body };
   },
 
   async interviews(category) {
