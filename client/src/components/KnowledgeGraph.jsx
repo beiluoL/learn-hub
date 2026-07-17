@@ -36,6 +36,23 @@ export default function KnowledgeGraph() {
   const sim = useRef(null);
   const filterRef = useRef(null);
   const colorModeRef = useRef('category');
+  const focusRef = useRef(null);
+  const [focusedId, setFocusedId] = useState(null);
+
+  // 键盘聚焦节点：同步 ref 并把视图平移到该节点居中
+  function setFocus(id) {
+    focusRef.current = id;
+    setFocusedId(id);
+    const s = sim.current;
+    if (s && id) {
+      const n = s.nodes.find((x) => x.id === id);
+      if (n) {
+        s.view.tx = -n.x * s.view.scale;
+        s.view.ty = -n.y * s.view.scale;
+      }
+    }
+    if (s) ensureLoop();
+  }
 
   useEffect(() => {
     let alive = true;
@@ -272,7 +289,9 @@ export default function KnowledgeGraph() {
     const active = filterRef.current;
     const visible = (n) => !active || n.category === active;
     const hover = s.hover;
-    const neighbors = hover ? s.adj.get(hover) : null;
+    const focus = focusRef.current;
+    const activeId = hover || focus;
+    const neighbors = activeId ? s.adj.get(activeId) : null;
 
     // 边
     s.links.forEach((l) => {
@@ -283,8 +302,8 @@ export default function KnowledgeGraph() {
       let alpha = isPrereq ? 0.5 : 0.16;
       let color = isPrereq ? '#F59E0B' : '#8B5CF6';
       let width = isPrereq ? 1.6 : 1;
-      const related = hover && (l.source.id === hover || l.target.id === hover);
-      if (hover) {
+      const related = activeId && (l.source.id === activeId || l.target.id === activeId);
+      if (activeId) {
         if (related) {
           alpha = 0.95;
           color = isPrereq ? '#D97706' : nodeColor(l.source);
@@ -324,7 +343,7 @@ export default function KnowledgeGraph() {
       const p = toScreen(n);
       const r = n.type === 'interview' ? 7 : 9;
       let alpha = 1;
-      if (hover && hover !== n.id && !(neighbors && neighbors.has(n.id))) alpha = 0.22;
+      if (activeId && activeId !== n.id && !(neighbors && neighbors.has(n.id))) alpha = 0.22;
       ctx.globalAlpha = alpha;
       ctx.beginPath();
       ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
@@ -333,8 +352,16 @@ export default function KnowledgeGraph() {
       ctx.lineWidth = 2;
       ctx.strokeStyle = '#ffffff';
       ctx.stroke();
+      // 键盘聚焦节点：品牌色外环
+      if (focus === n.id) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r + 4, 0, Math.PI * 2);
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = '#3B6FE0';
+        ctx.stroke();
+      }
       // 标签
-      if (!hover || hover === n.id || (neighbors && neighbors.has(n.id))) {
+      if (!activeId || activeId === n.id || (neighbors && neighbors.has(n.id))) {
         ctx.globalAlpha = alpha;
         ctx.font = '11px system-ui, -apple-system, sans-serif';
         ctx.fillStyle = '#1A1F2E';
@@ -429,6 +456,7 @@ export default function KnowledgeGraph() {
       n.fy = null;
       s.drag = null;
       if (wasClick) {
+        setFocus(n.id);
         navigate(n.type === 'article' ? `/article/${n.id}` : `/interview/${n.id}`);
       }
     }
@@ -442,6 +470,32 @@ export default function KnowledgeGraph() {
     if (s.hover) {
       s.hover = null;
       ensureLoop();
+    }
+  }
+
+  // 键盘可访问：方向键浏览节点，回车/空格打开，Esc 取消聚焦
+  function onKeyDown(e) {
+    const s = sim.current;
+    if (!s || s.nodes.length === 0) return;
+    const nodes = s.nodes;
+    const cur = focusRef.current;
+    let idx = nodes.findIndex((n) => n.id === cur);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      idx = idx < 0 ? 0 : (idx + 1) % nodes.length;
+      setFocus(nodes[idx].id);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      idx = idx <= 0 ? nodes.length - 1 : idx - 1;
+      setFocus(nodes[idx].id);
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      const target = cur || (nodes[0] && nodes[0].id);
+      const n = nodes.find((x) => x.id === target);
+      if (n) navigate(n.type === 'article' ? `/article/${n.id}` : `/interview/${n.id}`);
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      setFocus(null);
     }
   }
 
@@ -594,8 +648,11 @@ export default function KnowledgeGraph() {
       <div ref={wrapRef} className="relative h-[min(540px,60vh)] bg-surface">
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 touch-none"
+          className="absolute inset-0 touch-none outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-lg"
           style={{ cursor: 'grab' }}
+          tabIndex={0}
+          role="application"
+          aria-label="学习知识点地图，使用方向键浏览节点，回车或空格打开对应内容"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -604,6 +661,7 @@ export default function KnowledgeGraph() {
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
+          onKeyDown={onKeyDown}
         />
         {/* 难度着色图例 */}
         {byDifficulty && (
@@ -622,6 +680,20 @@ export default function KnowledgeGraph() {
             正在生成知识图谱…
           </div>
         )}
+        {/* 键盘聚焦提示（可见）+ 无障碍实时播报（屏幕阅读器） */}
+        {focusedId && (
+          <div className="absolute bottom-3 left-3 bg-card/95 backdrop-blur rounded-xl border border-border shadow-card px-3 py-2 text-xs text-text-secondary no-print pointer-events-none">
+            <span className="font-medium text-text-primary">
+              {sim.current?.nodes.find((n) => n.id === focusedId)?.title}
+            </span>
+            <span className="ml-1">· 方向键浏览，回车打开</span>
+          </div>
+        )}
+        <div className="sr-only" aria-live="polite">
+          {focusedId
+            ? `已聚焦节点：${sim.current?.nodes.find((n) => n.id === focusedId)?.title}`
+            : ''}
+        </div>
       </div>
 
       <div className="px-5 py-3 text-xs text-text-muted border-t border-border">

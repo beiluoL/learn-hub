@@ -12,24 +12,40 @@ export default function Header() {
   const [q, setQ] = useState('');
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') === 'dark';
-    }
-    return false;
+    if (typeof window === 'undefined') return false;
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') return true;
+    if (saved === 'light') return false;
+    // 未显式设置时跟随系统主题
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (dark) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+    document.documentElement.classList.toggle('dark', dark);
   }, [dark]);
+
+  // 监听系统主题变化：仅当用户未显式选择时自动跟随
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = (e) => {
+      if (!localStorage.getItem('theme')) setDark(e.matches);
+    };
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  // 用户点击切换：显式持久化选择
+  const toggleDark = () => {
+    setDark((d) => {
+      const next = !d;
+      try {
+        localStorage.setItem('theme', next ? 'dark' : 'light');
+      } catch (e) {}
+      return next;
+    });
+  };
 
   const submit = (e) => {
     e.preventDefault();
@@ -94,7 +110,7 @@ export default function Header() {
 
         {/* Dark mode toggle */}
         <button
-          onClick={() => setDark(!dark)}
+          onClick={toggleDark}
           className="p-2 rounded-lg text-text-muted hover:bg-brand-50 hover:text-brand-600 transition"
           aria-label="切换暗色模式"
         >

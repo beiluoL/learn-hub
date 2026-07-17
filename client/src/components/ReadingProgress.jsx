@@ -4,11 +4,19 @@ export default function ReadingProgress() {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => {
+    let ticking = false;
+    const update = () => {
       const scrollY = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const pct = scrollHeight > 0 ? Math.min(100, (scrollY / scrollHeight) * 100) : 0;
       setWidth(pct);
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();

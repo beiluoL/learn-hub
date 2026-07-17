@@ -61,7 +61,7 @@ export default function Category() {
           className="w-14 h-14 rounded-lg grid place-items-center"
           style={{ background: `${cat.color}1a` }}
         >
-          <CatIcon size={28} style={{ color: cat.color }} />
+          <CatIcon catId={cat.id} size={28} style={{ color: cat.color }} />
         </div>
         <div>
           <h1 className="text-2xl font-extrabold text-text-primary">{cat.name}</h1>

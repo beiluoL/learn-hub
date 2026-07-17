@@ -186,9 +186,9 @@ export default function ArticleDetail() {
         )}
       </article>
 
-      {/* 悬浮 ToC 侧栏（桌面端固定右侧） */}
+      {/* 悬浮 ToC 侧栏（平板及以上固定右侧显示） */}
       {showToc && (
-        <aside className="hidden lg:block fixed right-[max(1rem,calc((100vw-72rem)/2))] top-24 w-52">
+        <aside className="hidden md:block fixed right-[max(1rem,calc((100vw-72rem)/2))] top-24 w-48">
           <nav className="sticky top-24 max-h-[70vh] overflow-y-auto text-sm">
             <h4 className="font-semibold text-text-primary mb-2">目录</h4>
             {headings.map((h) => (

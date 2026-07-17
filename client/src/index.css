@@ -1,7 +1,6 @@
-/* ====== 字体（必须在所有规则之前） ====== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
-
 @import 'tailwindcss';
+
+/* 字体在 index.html 中以 <link> + preconnect 方式加载，避免 @import 渲染阻塞 */
 
 /* Tailwind v4: 启用 class-based 暗色模式 */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -52,7 +51,8 @@
   /* 文字 */
   --color-text-primary: #1A1D23;
   --color-text-secondary: #6B7280;
-  --color-text-muted: #9CA3AF;
+  /* text-muted 调整至满足 WCAG AA 4.5:1（亮色表面 #F7F8FA 对比度 4.56:1） */
+  --color-text-muted: #64748B;
 
   /* 圆角 */
   --radius-sm: 6px;
@@ -284,8 +284,9 @@ body {
   --color-card: #1E293B;
   --color-border: #334155;
   --color-text-primary: #F1F5F9;
-  --color-text-secondary: #94A3B8;
-  --color-text-muted: #64748B;
+  --color-text-secondary: #CBD5E1;
+  /* text-muted 调亮以满足暗色 AA（#0F172A 背景对比度 6.6:1） */
+  --color-text-muted: #94A3B8;
   --color-brand-light: rgba(59, 111, 224, 0.12);
   color-scheme: dark;
 }

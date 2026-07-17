@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LearnHub · 全栈学习网站</title>
     <meta name="description" content="Java / Python / 前端 / AI 应用开发 / 面试题 一站式学习平台" />
+    <!-- 主题色（亮/暗随系统切换） -->
+    <meta name="theme-color" content="#F7F8FA" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)" />
+    <!-- 防暗色模式闪烁：在 React 挂载前应用主题 class -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+    <!-- 字体：preconnect + link 并行加载，消除 @import 渲染阻塞 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+    />
   </head>
   <body>
     <div id="root"></div>
