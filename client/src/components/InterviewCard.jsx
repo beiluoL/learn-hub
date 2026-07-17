@@ -52,7 +52,7 @@ export default function InterviewCard({ item, isMastered, onToggleMastered }) {
   }, [open, item.id]);
 
   return (
-    <div className="bg-card rounded-2xl border border-border shadow-card overflow-hidden min-h-[132px]">
+    <div className="bg-card rounded-2xl border border-border shadow-card overflow-hidden">
       <div className="p-5 flex items-start gap-3">
         <button
           onClick={() => setOpen((v) => !v)}
@@ -64,7 +64,7 @@ export default function InterviewCard({ item, isMastered, onToggleMastered }) {
             {diff.label}
           </span>
           <span className="flex-1">
-            <span className="font-semibold text-text-primary">{item.question}</span>
+            <span className="font-semibold text-text-primary block line-clamp-2 min-h-[3rem]">{item.question}</span>
             <span className="block mt-1 text-xs text-text-muted">
               {CAT_NAME[item.category] || item.category}
               {item.tags?.map((t) => ` · #${t}`).join('')}
