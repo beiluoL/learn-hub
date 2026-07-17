@@ -63,7 +63,7 @@ export default function Search() {
 
       {loading && <SearchResultSkeleton />}
 
-      {!loading && results !== null && (
+      {!loading && q !== '' && results !== null && (
         <p className="text-text-secondary mt-1">
           共找到 <b className="text-text-primary">{results.length}</b> 条结果
         </p>
@@ -125,7 +125,26 @@ export default function Search() {
         </div>
       )}
 
-      {!loading && results && results.length === 0 && (
+      {!loading && q === '' && (
+        <div className="text-center py-16">
+          <SearchIcon size={48} className="mx-auto mb-3 text-text-muted" />
+          <p className="text-text-secondary mb-1">输入关键词，搜索全站文章与面试题</p>
+          <p className="text-text-muted text-sm mb-5">例如：HashMap、装饰器、RAG、微服务、JVM 调优</p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {['HashMap', '装饰器', 'RAG', '微服务', 'MySQL 索引', 'React Hooks'].map((t) => (
+              <Link
+                key={t}
+                to={`/search?q=${encodeURIComponent(t)}`}
+                className="text-sm text-brand-600 bg-brand-50 px-3 py-1 rounded-full hover:bg-brand-100 transition"
+              >
+                {t}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {!loading && q !== '' && results && results.length === 0 && (
         <div className="text-center py-16">
           <SearchIcon size={48} className="mx-auto mb-3 text-text-muted" />
           <p className="text-text-secondary">

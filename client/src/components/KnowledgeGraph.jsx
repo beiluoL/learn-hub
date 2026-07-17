@@ -25,6 +25,123 @@ const LEVEL_COLORS = { beginner: '#10B981', intermediate: '#F59E0B', advanced: '
 const LEVEL_NAMES = { beginner: '入门 / 简单', intermediate: '进阶 / 中等', advanced: '高级 / 困难' };
 const DIFF_TO_LEVEL = { easy: 'beginner', middle: 'intermediate', hard: 'advanced' };
 
+// Barnes-Hut 四叉树：把两两斥力 O(n²) 近似为 O(n log n)，100+ 节点首屏不再卡顿
+const BH_THETA = 0.9;
+const REPULSION = 5200;
+
+function makeNode(x, y, w) {
+  return { x, y, w, particles: [], children: null, mass: 0, cx: 0, cy: 0 };
+}
+function quadOf(node, p) {
+  const mx = node.x + node.w / 2;
+  const my = node.y + node.w / 2;
+  return (p.y >= my ? 2 : 0) + (p.x >= mx ? 1 : 0);
+}
+function childBounds(node, q) {
+  const hw = node.w / 2;
+  const mx = node.x + hw;
+  const my = node.y + hw;
+  if (q === 0) return { x: node.x, y: node.y, w: hw };
+  if (q === 1) return { x: mx, y: node.y, w: hw };
+  if (q === 2) return { x: node.x, y: my, w: hw };
+  return { x: mx, y: my, w: hw };
+}
+function bhInsert(node, p, depth) {
+  if (node.children === null) {
+    if (node.particles.length === 0 || depth >= 24) {
+      node.particles.push(p);
+      return;
+    }
+    const existing = node.particles;
+    node.particles = [];
+    node.children = [null, null, null, null];
+    for (const ep of existing) {
+      const q = quadOf(node, ep);
+      if (!node.children[q]) node.children[q] = makeNode(...Object.values(childBounds(node, q)));
+      bhInsert(node.children[q], ep, depth + 1);
+    }
+  }
+  const q = quadOf(node, p);
+  if (!node.children[q]) node.children[q] = makeNode(...Object.values(childBounds(node, q)));
+  bhInsert(node.children[q], p, depth + 1);
+}
+function bhAccumulate(node) {
+  if (node.children === null) {
+    node.mass = node.particles.length;
+    let sx = 0;
+    let sy = 0;
+    for (const p of node.particles) {
+      sx += p.x;
+      sy += p.y;
+    }
+    node.cx = node.mass ? sx / node.mass : 0;
+    node.cy = node.mass ? sy / node.mass : 0;
+    return;
+  }
+  let sx = 0;
+  let sy = 0;
+  let m = 0;
+  for (const c of node.children) {
+    if (!c) continue;
+    bhAccumulate(c);
+    sx += c.cx * c.mass;
+    sy += c.cy * c.mass;
+    m += c.mass;
+  }
+  node.mass = m;
+  node.cx = m ? sx / m : 0;
+  node.cy = m ? sy / m : 0;
+}
+function bhRepulse(node, p, out) {
+  if (node.mass === 0) return;
+  if (node.children === null) {
+    for (const q of node.particles) {
+      if (q === p) continue;
+      let dx = p.x - q.x;
+      let dy = p.y - q.y;
+      let d2 = dx * dx + dy * dy;
+      if (d2 < 0.01) {
+        dx = (Math.random() - 0.5) * 0.1;
+        dy = (Math.random() - 0.5) * 0.1;
+        d2 = dx * dx + dy * dy + 0.01;
+      }
+      const d = Math.sqrt(d2);
+      const f = REPULSION / d2;
+      out.fx += (dx / d) * f;
+      out.fy += (dy / d) * f;
+    }
+    return;
+  }
+  const dx = p.x - node.cx;
+  const dy = p.y - node.cy;
+  const d2 = dx * dx + dy * dy || 0.01;
+  if (node.w * node.w < BH_THETA * BH_THETA * d2) {
+    const d = Math.sqrt(d2);
+    const f = (REPULSION * node.mass) / d2;
+    out.fx += (dx / d) * f;
+    out.fy += (dy / d) * f;
+  } else {
+    for (const c of node.children) if (c) bhRepulse(c, p, out);
+  }
+}
+function bhBuildTree(ns) {
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  for (const n of ns) {
+    if (n.x < minX) minX = n.x;
+    if (n.y < minY) minY = n.y;
+    if (n.x > maxX) maxX = n.x;
+    if (n.y > maxY) maxY = n.y;
+  }
+  const size = Math.max(maxX - minX, maxY - minY, 1) * 1.02;
+  const root = makeNode(minX, minY, size);
+  for (const n of ns) bhInsert(root, n, 0);
+  bhAccumulate(root);
+  return root;
+}
+
 // 力导向知识图谱（类 Obsidian）：节点=文章/面试题，边=学习链路 + 共享标签 + 前置依赖。
 export default function KnowledgeGraph() {
   const wrapRef = useRef(null);
@@ -196,28 +313,15 @@ export default function KnowledgeGraph() {
     if (!s) return;
     if (s.alpha > 0.005) {
       const ns = s.nodes;
-      // 斥力（所有节点两两）
+      // 斥力：Barnes-Hut 四叉树近似（O(n log n)，替代 O(n²) 两两计算）
+      const tree = bhBuildTree(ns);
+      const acc = { fx: 0, fy: 0 };
       for (let i = 0; i < ns.length; i++) {
-        for (let j = i + 1; j < ns.length; j++) {
-          const a = ns[i];
-          const b = ns[j];
-          let dx = a.x - b.x;
-          let dy = a.y - b.y;
-          let d2 = dx * dx + dy * dy;
-          if (d2 < 0.01) {
-            dx = (Math.random() - 0.5) * 0.1;
-            dy = (Math.random() - 0.5) * 0.1;
-            d2 = dx * dx + dy * dy + 0.01;
-          }
-          const d = Math.sqrt(d2);
-          const f = 5200 / d2;
-          const fx = (dx / d) * f;
-          const fy = (dy / d) * f;
-          a.vx += fx;
-          a.vy += fy;
-          b.vx -= fx;
-          b.vy -= fy;
-        }
+        acc.fx = 0;
+        acc.fy = 0;
+        bhRepulse(tree, ns[i], acc);
+        ns[i].vx += acc.fx;
+        ns[i].vy += acc.fy;
       }
       // 弹簧（边）
       s.links.forEach((l) => {
@@ -252,7 +356,7 @@ export default function KnowledgeGraph() {
         n.x += n.vx;
         n.y += n.vy;
       });
-      s.alpha *= 0.985;
+      s.alpha *= 0.975;
     }
 
     draw();

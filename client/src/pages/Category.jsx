@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { FileQuestion } from 'lucide-react';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import Roadmap from '../components/Roadmap.jsx';
@@ -44,6 +45,24 @@ export default function Category() {
           </div>
         </div>
         <ListSkeleton count={6} />
+      </div>
+    );
+  }
+
+  if (!loading && category === null) {
+    return (
+      <div className="max-w-6xl mx-auto px-4 py-20 text-center">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#FEE2E2] text-[#EF4444] mb-4">
+          <FileQuestion size={30} />
+        </div>
+        <h1 className="text-2xl font-extrabold text-text-primary mb-2">未找到该分类</h1>
+        <p className="text-text-secondary mb-6">
+          分类「<span className="font-semibold text-text-primary">{catId}</span>」不存在，或该分类下暂未发布文章。
+        </p>
+        <div className="flex flex-wrap justify-center gap-3">
+          <Link to="/" className="btn-primary">返回首页</Link>
+          <Link to="/interviews" className="btn-ghost border border-border">浏览面试题</Link>
+        </div>
       </div>
     );
   }
