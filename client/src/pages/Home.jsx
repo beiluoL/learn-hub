@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { BookOpen, Map, QrCode } from 'lucide-react';
+import { BookOpen, Network, QrCode } from 'lucide-react';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import InterviewCard from '../components/InterviewCard.jsx';
@@ -122,7 +122,7 @@ export default function Home() {
           to="/map"
           className="flex items-center gap-4 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-2xl p-5 shadow-soft hover:-translate-y-0.5 transition"
         >
-          <Map size={28} />
+          <Network size={28} />
           <div className="flex-1">
             <div className="font-bold">学习知识点地图</div>
             <div className="text-white/80 text-sm">像 Obsidian 关系图谱一样，把文章与面试题连成知识网</div>
