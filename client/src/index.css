@@ -337,6 +337,35 @@ body {
   background: var(--color-border);
 }
 
+/* ====== 骨架屏流光（Shimmer） ====== */
+@keyframes shimmer {
+  0% {
+    background-position: -480px 0;
+  }
+  100% {
+    background-position: 480px 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 25%,
+    #eaeef4 37%,
+    var(--color-surface) 63%
+  );
+  background-size: 960px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+.dark .skeleton {
+  background: linear-gradient(
+    90deg,
+    #1e293b 25%,
+    #2b3a52 37%,
+    #1e293b 63%
+  );
+  background-size: 960px 100%;
+}
+
 /* ====== 打印样式 ====== */
 @media print {
   header,
