@@ -53,32 +53,38 @@ export default function InterviewCard({ item, isMastered, onToggleMastered }) {
 
   return (
     <div className="bg-card rounded-2xl border border-border shadow-card overflow-hidden">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="w-full text-left p-5 flex items-start gap-3"
-      >
-        <span className={`shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full mt-0.5 ${diff.cls}`}>
-          {diff.label}
-        </span>
-        <span className="flex-1">
-          <span className="font-semibold text-text-primary">{item.question}</span>
-          <span className="block mt-1 text-xs text-text-muted">
-            {CAT_NAME[item.category] || item.category}
-            {item.tags?.map((t) => ` · #${t}`).join('')}
+      <div className="p-5 flex items-start gap-3">
+        <button
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label={open ? '收起答案' : '展开答案'}
+          className="flex-1 text-left flex items-start gap-3"
+        >
+          <span className={`shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full mt-0.5 ${diff.cls}`}>
+            {diff.label}
           </span>
-        </span>
-        <ChevronDown
-          size={18}
-          className={`shrink-0 text-text-muted transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
-        />
+          <span className="flex-1">
+            <span className="font-semibold text-text-primary">{item.question}</span>
+            <span className="block mt-1 text-xs text-text-muted">
+              {CAT_NAME[item.category] || item.category}
+              {item.tags?.map((t) => ` · #${t}`).join('')}
+            </span>
+          </span>
+          <ChevronDown
+            size={18}
+            className={`shrink-0 text-text-muted transition-transform duration-200 mt-0.5 ${open ? 'rotate-180' : ''}`}
+          />
+        </button>
         {onToggleMastered && (
           <button
             onClick={(e) => {
               e.stopPropagation();
               onToggleMastered();
             }}
-            className="shrink-0 ml-1"
+            className="shrink-0 ml-1 mt-0.5"
+            aria-pressed={isMastered}
             title={isMastered ? '已掌握' : '标记为已掌握'}
+            aria-label={isMastered ? '取消已掌握标记' : '标记为已掌握'}
           >
             {isMastered ? (
               <CheckCircle size={18} className="text-success-500" />
@@ -87,7 +93,7 @@ export default function InterviewCard({ item, isMastered, onToggleMastered }) {
             )}
           </button>
         )}
-      </button>
+      </div>
       {open && (
         <div className="px-5 pb-5 border-t border-border pt-4">
           {loading && <p className="text-text-muted text-sm animate-pulse">加载答案…</p>}

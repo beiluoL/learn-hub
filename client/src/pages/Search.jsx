@@ -3,6 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { BookOpen, Lightbulb, Search as SearchIcon } from 'lucide-react';
 import { content } from '../content.js';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import { SearchResultSkeleton } from '../components/Skeleton.jsx';
 
 function highlightSnippet(text, keywords) {
   if (!text || !keywords.length) return text;
@@ -60,7 +61,7 @@ export default function Search() {
         搜索 &quot;<span className="text-brand-600">{q}</span>&quot;
       </h1>
 
-      {loading && <p className="text-text-secondary mt-6">搜索中…</p>}
+      {loading && <SearchResultSkeleton />}
 
       {!loading && results !== null && (
         <p className="text-text-secondary mt-1">

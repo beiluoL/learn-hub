@@ -10,7 +10,12 @@ export default function BackToTop() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollTop = () => {
+    const reduceMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  };
 
   return (
     <button

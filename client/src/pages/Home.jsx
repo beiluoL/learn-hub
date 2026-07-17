@@ -60,8 +60,10 @@ export default function Home() {
             体系化学习路线、实战示例与高频面试题，帮你从入门到进阶，从容应对技术面试。
           </p>
           <form onSubmit={submit} className="mt-8 max-w-xl mx-auto">
+            <label htmlFor="home-search" className="sr-only">搜索</label>
             <div className="flex bg-card rounded-lg p-1.5 shadow-lg">
               <input
+                id="home-search"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="搜点什么？比如 HashMap、装饰器、RAG…"

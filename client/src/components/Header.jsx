@@ -79,9 +79,11 @@ export default function Header() {
 
         {/* Search */}
         <form onSubmit={submit} className="ml-auto flex-1 max-w-md">
+          <label htmlFor="hd-search" className="sr-only">搜索</label>
           <div className="relative">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
             <input
+              id="hd-search"
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="搜索 Java / Python / 前端 / AI…"

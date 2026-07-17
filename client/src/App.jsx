@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import BackToTop from './components/BackToTop.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
 import Home from './pages/Home.jsx';
 import Category from './pages/Category.jsx';
 import ArticleDetail from './pages/ArticleDetail.jsx';
@@ -16,16 +17,18 @@ export default function App() {
     <div className="flex flex-col min-h-full">
       <Header />
       <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/category/:catId" element={<Category />} />
-          <Route path="/article/*" element={<ArticleDetail />} />
-          <Route path="/interviews" element={<Interviews />} />
-          <Route path="/interview/*" element={<InterviewDetail />} />
-          <Route path="/map" element={<KnowledgeMap />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/category/:catId" element={<Category />} />
+            <Route path="/article/*" element={<ArticleDetail />} />
+            <Route path="/interviews" element={<Interviews />} />
+            <Route path="/interview/*" element={<InterviewDetail />} />
+            <Route path="/map" element={<KnowledgeMap />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ErrorBoundary>
       </main>
       <Footer />
       <BackToTop />

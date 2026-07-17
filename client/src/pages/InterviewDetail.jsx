@@ -6,6 +6,7 @@ import { DIFF_MAP } from '../components/LevelBadge.jsx';
 import Markdown from '../components/Markdown.jsx';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import ShareButton from '../components/ShareButton.jsx';
+import { InterviewDetailSkeleton } from '../components/Skeleton.jsx';
 
 const CAT_NAME = {
   java: 'Java',
@@ -38,7 +39,7 @@ export default function InterviewDetail() {
   }, [id]);
 
   if (loading) {
-    return <div className="max-w-3xl mx-auto px-4 py-20 text-center text-text-secondary">加载中…</div>;
+    return <InterviewDetailSkeleton />;
   }
   if (!iv) {
     return (

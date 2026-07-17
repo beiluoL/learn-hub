@@ -84,6 +84,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ====== 键盘焦点可见性（WCAG 2.4.7） ====== */
+/* 鼠标点击不显示描边，键盘 Tab 导航时显示清晰焦点环 */
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+  border-radius: inherit;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ====== 尊重「减少动态效果」系统偏好（WCAG 2.3.3） ====== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ====== 按钮组件 ====== */
 .btn {
   display: inline-flex;
