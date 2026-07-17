@@ -153,7 +153,7 @@ export default function Home() {
               查看全部 →
             </Link>
           </div>
-          <div className="grid md:grid-cols-2 gap-4 mt-6">
+          <div className="grid md:grid-cols-2 gap-4 mt-6 items-start">
             {recentIv.map((iv) => (
               <InterviewCard key={iv.id} item={iv} />
             ))}
