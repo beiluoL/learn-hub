@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { BookOpen, Map } from 'lucide-react';
+import { BookOpen, Map, QrCode } from 'lucide-react';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import InterviewCard from '../components/InterviewCard.jsx';
@@ -10,6 +10,7 @@ import { ListSkeleton } from '../components/Skeleton.jsx';
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
+  const [qrError, setQrError] = useState(false);
   const [articles, setArticles] = useState([]);
   const [interviews, setInterviews] = useState([]);
   const [stats, setStats] = useState({});
@@ -204,11 +205,29 @@ export default function Home() {
 
             {/* 右侧：公众号 */}
             <div className="lg:w-72 bg-slate-700/40 flex flex-col items-center justify-center px-8 py-10 border-t lg:border-t-0 lg:border-l border-slate-600">
-              <img
-                src={`${import.meta.env.BASE_URL}qrcode-wechat.jpg`}
-                alt="公众号：北落拾光"
-                className="w-32 h-32 rounded-lg bg-white p-1.5 shadow-lg mb-4"
-              />
+              {qrError ? (
+                <div
+                  role="img"
+                  aria-label="公众号二维码加载失败"
+                  className="w-32 h-32 rounded-lg bg-white/90 flex flex-col items-center justify-center gap-1 p-1.5 shadow-lg mb-4"
+                >
+                  <QrCode size={36} className="text-slate-400" />
+                  <span className="text-[11px] text-slate-500 text-center leading-tight px-1">
+                    二维码暂不可用
+                    <br />
+                    请搜索「{WECHAT.name}」
+                  </span>
+                </div>
+              ) : (
+                <img
+                  src={`${import.meta.env.BASE_URL}qrcode-wechat.jpg`}
+                  alt="公众号：北落拾光"
+                  loading="lazy"
+                  decoding="async"
+                  onError={() => setQrError(true)}
+                  className="w-32 h-32 rounded-lg bg-white p-1.5 shadow-lg mb-4"
+                />
+              )}
               <div className="text-center">
                 <div className="font-bold text-white text-lg mb-1">{WECHAT.name}</div>
                 <div className="text-sm text-gray-300 mb-3">{WECHAT.desc}</div>
