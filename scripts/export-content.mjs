@@ -185,7 +185,10 @@ for (const { full, rel } of found) {
       // 前端子模块：module=子模块 id（如 vue），subcat=roadmap(学习路线)/cases(项目案例)/general(通用)
       module: (data.module || '').trim(),
       subcat: (data.subcat || 'general').trim(),
-      level: data.level || 'beginner',
+      // 重要度/层级：基础(basic)/核心(core)/重点(key)/拓展(extend)，默认核心
+      tier: (data.tier || 'core').trim(),
+      // 难度/复杂度：简单(easy)/中等(medium)/复杂(complex)
+      level: data.level || 'easy',
       readMinutes: Number(data.readMinutes) || 10,
       tags: (data.tags || '')
         .split(',')

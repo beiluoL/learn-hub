@@ -11,10 +11,18 @@ import Breadcrumb from '../components/Breadcrumb.jsx';
 import { ListSkeleton } from '../components/Skeleton.jsx';
 
 const LEVELS = [
-  { id: 'all', label: '全部' },
-  { id: 'beginner', label: '入门' },
-  { id: 'intermediate', label: '进阶' },
-  { id: 'advanced', label: '高级' },
+  { id: 'all', label: '全部难度' },
+  { id: 'easy', label: '简单' },
+  { id: 'medium', label: '中等' },
+  { id: 'complex', label: '复杂' },
+];
+
+const TIERS = [
+  { id: 'all', label: '全部层级' },
+  { id: 'basic', label: '基础' },
+  { id: 'core', label: '核心' },
+  { id: 'key', label: '重点' },
+  { id: 'extend', label: '拓展' },
 ];
 
 export default function Category() {
@@ -22,18 +30,18 @@ export default function Category() {
   const [category, setCategory] = useState(undefined);
   const [articles, setArticles] = useState([]);
   const [level, setLevel] = useState('all');
+  const [tier, setTier] = useState('all');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
     setLevel('all');
+    setTier('all');
     Promise.all([
       content.categories().then((cs) => setCategory(cs.find((c) => c.id === catId) || null)),
       content.articles(catId).then(setArticles),
     ]).finally(() => setLoading(false));
   }, [catId]);
-
-  const filtered = level === 'all' ? articles : articles.filter((a) => a.level === level);
 
   if (loading) {
     return (
@@ -69,55 +77,46 @@ export default function Category() {
     );
   }
 
-  const cat = category || { id: catId, name: catId, icon: '📁', color: '#6d28d9', desc: '' };
+  const cat = category || { id: catId, name: catId, icon: '📁', color: '#6d28d9', desc: '', modules: [] };
 
-  // 前端学习：无 moduleId → 渲染子模块 hub
-  if (catId === 'frontend' && !moduleId) {
-    return <FrontendHub cat={cat} articles={articles} />;
+  // 有 modules 的分类：无 moduleId → 模块 Hub；有 moduleId → 模块详情
+  if (cat.modules?.length && !moduleId) {
+    return <ModuleHub cat={cat} articles={articles} />;
   }
-
-  // 前端学习：有 moduleId → 渲染该模块的「学习路线 / 项目案例」
-  if (catId === 'frontend' && moduleId) {
+  if (cat.modules?.length && moduleId) {
     const mod = (cat.modules || []).find((m) => m.id === moduleId);
     if (!mod) {
       return (
         <div className="max-w-6xl mx-auto px-4 py-20 text-center">
           <h1 className="text-2xl font-extrabold text-text-primary mb-2">未找到该模块</h1>
           <p className="text-text-secondary mb-6">模块「{moduleId}」不存在。</p>
-          <Link to="/category/frontend" className="btn-primary">返回前端学习</Link>
+          <Link to={`/category/${cat.id}`} className="btn-primary">返回{cat.name}</Link>
         </div>
       );
     }
-    return <ModuleDetail cat={cat} mod={mod} articles={articles} />;
+    return (
+      <ModuleDetail
+        cat={cat}
+        mod={mod}
+        articles={articles}
+        level={level}
+        setLevel={setLevel}
+        tier={tier}
+        setTier={setTier}
+      />
+    );
   }
 
-  // 其它分类（Java / Python / AI）：原逻辑
+  // 其余分类（无 modules）：通用列表 + 难度筛选（兼容旧逻辑）
+  const filtered = articles.filter(
+    (a) => (level === 'all' || a.level === level) && (tier === 'all' || a.tier === tier)
+  );
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <Breadcrumb items={[
-        { label: '首页', to: '/' },
-        { label: cat.name },
-      ]} />
+      <Breadcrumb items={[{ label: '首页', to: '/' }, { label: cat.name }]} />
       <CatHeader name={cat.name} desc={cat.desc} color={cat.color} iconId={cat.id} />
-
       <Roadmap articles={articles} color={cat.color} />
-
-      <div className="flex flex-wrap gap-2 mb-6">
-        {LEVELS.map((l) => (
-          <button
-            key={l.id}
-            onClick={() => setLevel(l.id)}
-            className={`px-4 py-1.5 rounded-lg text-sm font-medium transition ${
-              level === l.id
-                ? 'bg-brand-500 text-white'
-                : 'btn-ghost border border-border'
-            }`}
-          >
-            {l.label}
-          </button>
-        ))}
-      </div>
-
+      <FilterBar level={level} setLevel={setLevel} tier={tier} setTier={setTier} />
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filtered.map((a, i) => (
           <Reveal key={a.id} delay={i * 50}>
@@ -126,7 +125,7 @@ export default function Category() {
         ))}
       </div>
       {filtered.length === 0 && (
-        <p className="text-text-muted py-10 text-center">该难度下暂无文章。</p>
+        <p className="text-text-muted py-10 text-center">该筛选下暂无文章。</p>
       )}
     </div>
   );
@@ -150,20 +149,56 @@ function CatHeader({ name, desc, color, iconId }) {
   );
 }
 
-function SectionTitle({ title, sub, action }) {
+function SectionTitle({ title, sub }) {
   return (
     <div className="flex items-end justify-between mt-10 mb-4">
       <div>
         <h2 className="text-xl font-extrabold text-text-primary">{title}</h2>
         {sub && <p className="text-text-secondary text-sm mt-0.5">{sub}</p>}
       </div>
-      {action}
     </div>
   );
 }
 
-/* 前端学习 Hub：子模块卡片网格 + 前端综合 */
-function FrontendHub({ cat, articles }) {
+/* 二维筛选条：重要度(基础/核心/重点/拓展) × 难度(简单/中等/复杂) */
+function FilterBar({ level, setLevel, tier, setTier }) {
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6">
+      <div className="flex flex-wrap gap-2">
+        <span className="text-xs text-text-muted self-center mr-1">层级</span>
+        {TIERS.map((t) => (
+          <Chip key={t.id} active={tier === t.id} onClick={() => setTier(t.id)}>
+            {t.label}
+          </Chip>
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-2">
+        <span className="text-xs text-text-muted self-center mr-1">难度</span>
+        {LEVELS.map((l) => (
+          <Chip key={l.id} active={level === l.id} onClick={() => setLevel(l.id)}>
+            {l.label}
+          </Chip>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Chip({ active, onClick, children }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+        active ? 'bg-brand-500 text-white' : 'btn-ghost border border-border'
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+/* 模块 Hub：子模块卡片网格 + 综合（若有） */
+function ModuleHub({ cat, articles }) {
   const modules = cat.modules || [];
   const general = articles.filter((a) => !a.module);
 
@@ -182,7 +217,7 @@ function FrontendHub({ cat, articles }) {
           return (
             <Link
               key={m.id}
-              to={`/category/frontend/${m.id}`}
+              to={`/category/${cat.id}/${m.id}`}
               className="group flex flex-col h-full bg-card rounded-2xl p-6 border border-border shadow-card hover:-translate-y-0.5 hover:shadow-card-hover transition"
             >
               <div
@@ -209,7 +244,7 @@ function FrontendHub({ cat, articles }) {
 
       {general.length > 0 && (
         <>
-          <SectionTitle title="前端综合" sub="语言与框架之外的通用前端知识" />
+          <SectionTitle title="综合" sub={`${cat.name}的通用知识`} />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
             {general.map((a, i) => (
               <Reveal key={a.id} delay={i * 50}>
@@ -223,22 +258,28 @@ function FrontendHub({ cat, articles }) {
   );
 }
 
-/* 前端模块详情：学习路线 + 项目案例 */
-function ModuleDetail({ cat, mod, articles }) {
+/* 模块详情：学习路线（时间轴） + 项目案例，支持二维筛选 */
+function ModuleDetail({ cat, mod, articles, level, setLevel, tier, setTier }) {
   const inMod = articles.filter((a) => a.module === mod.id);
-  const roadmap = inMod.filter((a) => a.subcat === 'roadmap');
-  const cases = inMod.filter((a) => a.subcat === 'cases');
+  const roadmapAll = inMod.filter((a) => a.subcat === 'roadmap');
+  const casesAll = inMod.filter((a) => a.subcat === 'cases');
+
+  const match = (a) =>
+    (level === 'all' || a.level === level) && (tier === 'all' || a.tier === tier);
+  const roadmap = roadmapAll.filter(match);
+  const cases = casesAll.filter(match);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       <Breadcrumb items={[
         { label: '首页', to: '/' },
-        { label: '前端学习', to: '/category/frontend' },
+        { label: cat.name, to: `/category/${cat.id}` },
         { label: mod.name },
       ]} />
       <CatHeader name={mod.name} desc={mod.desc} color={mod.color} iconId={mod.icon || mod.id} />
 
       <SectionTitle title="学习路线" sub="从总览到逐章拆解：点开任意节点开始学习" />
+      <FilterBar level={level} setLevel={setLevel} tier={tier} setTier={setTier} />
       {roadmap.length > 0 ? (
         <RoadmapList items={roadmap} />
       ) : (

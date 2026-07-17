@@ -17,6 +17,8 @@ export default function ArticleDetail() {
   const [prevArticle, setPrevArticle] = useState(null);
   const [nextArticle, setNextArticle] = useState(null);
   const [activeId, setActiveId] = useState('');
+  const [catName, setCatName] = useState('');
+  const [moduleName, setModuleName] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -39,6 +41,20 @@ export default function ArticleDetail() {
       .catch(() => setArticle(null))
       .finally(() => setLoading(false));
   }, [id]);
+
+  // 解析分类名 + 模块名，用于面包屑（前端模块文章需补「模块」层级）
+  useEffect(() => {
+    if (!article) return;
+    content.categories().then((cs) => {
+      const c = cs.find((x) => x.id === article.category);
+      if (!c) return;
+      setCatName(c.name || article.category);
+      if (article.category === 'frontend' && article.module) {
+        const mod = (c.modules || []).find((m) => m.id === article.module);
+        setModuleName(mod?.name || article.module);
+      }
+    });
+  }, [article]);
 
   // 从 article.content（HTML 字符串）提取 h2/h3 标题
   const headings = useMemo(() => {
@@ -63,6 +79,25 @@ export default function ArticleDetail() {
 
   const isTimeline = article?.timeline === true;
   const showToc = headings.length > 0 && !isTimeline;
+
+  // 构造面包屑：前端模块文章补「模块」层级，其余显示分类名。
+  // 注意：本组件所有 hooks（含下方的 useRef / useEffect）必须无条件执行，
+  // 因此「守卫（loading / !article）」放在文件末尾所有 hooks 之后；
+  // 这里用 article?. 做 null 保护，article 为 null 时仅生成首页这一级，不会崩溃。
+  const crumbs = [{ label: '首页', to: '/' }];
+  if (article?.category === 'frontend') {
+    crumbs.push({ label: '前端学习', to: '/category/frontend' });
+    if (article?.module) {
+      crumbs.push({
+        label: moduleName || article.module,
+        to: `/category/frontend/${article.module}`,
+      });
+    }
+  } else if (catName) {
+    crumbs.push({ label: catName, to: `/category/${article.category}` });
+  } else if (article?.category) {
+    crumbs.push({ label: article.category, to: `/category/${article.category}` });
+  }
 
   // IntersectionObserver：监视所有 h2/h3，当前可见标题在 ToC 中高亮
   const visibleMap = useRef({});
@@ -112,10 +147,7 @@ export default function ArticleDetail() {
     <>
       <ReadingProgress />
       <article className="max-w-3xl mx-auto px-4 py-10">
-        <Breadcrumb items={[
-          { label: '首页', to: '/' },
-          { label: article.category, to: `/category/${article.category}` },
-        ]} />
+        <Breadcrumb items={crumbs} />
         <div className="flex items-center gap-3 mt-4 mb-2">
           <LevelBadge level={article.level} />
           <span className="inline-flex items-center gap-1 text-sm text-text-muted">

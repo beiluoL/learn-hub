@@ -4,14 +4,38 @@
     "name": "Java 学习",
     "icon": "☕",
     "color": "#f89820",
-    "desc": "从基础语法到 JVM、并发编程，系统掌握 Java 生态。"
+    "desc": "从基础语法到 JVM、并发编程，系统掌握 Java 生态。",
+    "modules": [
+      { "id": "java-basics", "name": "Java 基础语法", "icon": "java-basics", "color": "#f89820", "desc": "变量、类型、流程控制、数组与字符串，筑牢语言地基" },
+      { "id": "java-oop", "name": "面向对象", "icon": "java-oop", "color": "#e76f00", "desc": "类与对象、继承多态、接口、抽象与包" },
+      { "id": "java-collection", "name": "集合框架", "icon": "java-collection", "color": "#ff9f1c", "desc": "List/Set/Map/Queue 体系、源码与泛型" },
+      { "id": "java-io", "name": "异常与 IO", "icon": "java-io", "color": "#f4a261", "desc": "异常体系、IO/NIO 与序列化" },
+      { "id": "java-juc", "name": "并发编程", "icon": "java-juc", "color": "#e76f51", "desc": "线程、锁、JUC 工具类与线程池" },
+      { "id": "java-jvm", "name": "JVM 与调优", "icon": "java-jvm", "color": "#c2410c", "desc": "内存模型、GC、类加载与调优" },
+      { "id": "java-jdbc", "name": "数据库与 JDBC", "icon": "java-jdbc", "color": "#ea580c", "desc": "SQL、JDBC、连接池与事务" },
+      { "id": "java-spring", "name": "Spring / Boot", "icon": "java-spring", "color": "#16a34a", "desc": "IoC、AOP、Spring Boot 自动配置" },
+      { "id": "java-mybatis", "name": "MyBatis", "icon": "java-mybatis", "color": "#0d9488", "desc": "ORM 映射、动态 SQL 与缓存" },
+      { "id": "java-micro", "name": "微服务", "icon": "java-micro", "color": "#0891b2", "desc": "Spring Cloud、网关、注册中心与熔断" }
+    ]
   },
   {
     "id": "python",
     "name": "Python 学习",
     "icon": "🐍",
     "color": "#3776ab",
-    "desc": "语法简洁、生态丰富，覆盖脚本、数据、异步与 Web 开发。"
+    "desc": "语法简洁、生态丰富，覆盖脚本、数据、异步与 Web 开发。",
+    "modules": [
+      { "id": "py-basics", "name": "Python 基础语法", "icon": "py-basics", "color": "#3776ab", "desc": "变量、类型、流程、函数与模块" },
+      { "id": "py-oop", "name": "面向对象", "icon": "py-oop", "color": "#2563eb", "desc": "类、继承、魔术方法与装饰器" },
+      { "id": "py-dsa", "name": "数据结构与算法", "icon": "py-dsa", "color": "#0ea5e9", "desc": "内置数据结构、复杂度与常用算法" },
+      { "id": "py-fp", "name": "函数式特性", "icon": "py-fp", "color": "#06b6d4", "desc": "lambda、迭代器、生成器与推导式" },
+      { "id": "py-web", "name": "Web 开发", "icon": "py-web", "color": "#10b981", "desc": "Flask / FastAPI / Django 与异步" },
+      { "id": "py-data", "name": "数据分析", "icon": "py-data", "color": "#14b8a6", "desc": "NumPy、Pandas 与 Matplotlib" },
+      { "id": "py-crawler", "name": "爬虫", "icon": "py-crawler", "color": "#22c55e", "desc": "requests、bs4、selenium 与反爬" },
+      { "id": "py-auto", "name": "自动化运维", "icon": "py-auto", "color": "#84cc16", "desc": "脚本、文件批处理与定时任务" },
+      { "id": "py-ml", "name": "ML / DL 基础", "icon": "py-ml", "color": "#8b5cf6", "desc": "scikit-learn、TensorFlow 与 PyTorch" },
+      { "id": "py-async", "name": "异步与并发", "icon": "py-async", "color": "#6366f1", "desc": "asyncio、多线程与多进程" }
+    ]
   },
   {
     "id": "frontend",
@@ -38,13 +62,33 @@
     "name": "AI 应用开发",
     "icon": "🤖",
     "color": "#7c5cff",
-    "desc": "LLM、RAG、Agent、向量库与推理部署的完整链路。"
+    "desc": "LLM、RAG、Agent、向量库与推理部署的完整链路。",
+    "modules": [
+      { "id": "ai-math", "name": "Python 与数学基础", "icon": "ai-math", "color": "#7c5cff", "desc": "NumPy、线性代数与概率统计" },
+      { "id": "ai-ml", "name": "机器学习", "icon": "ai-ml", "color": "#6d28d9", "desc": "监督/无监督、特征工程与模型评估" },
+      { "id": "ai-dl", "name": "深度学习", "icon": "ai-dl", "color": "#8b5cf6", "desc": "神经网络、CNN、RNN 与 Transformer" },
+      { "id": "ai-nlp", "name": "NLP 自然语言", "icon": "ai-nlp", "color": "#a855f7", "desc": "分词、词向量与预训练模型" },
+      { "id": "ai-cv", "name": "计算机视觉", "icon": "ai-cv", "color": "#d946ef", "desc": "图像分类、检测与分割" },
+      { "id": "ai-llm", "name": "大模型 LLM", "icon": "ai-llm", "color": "#ec4899", "desc": "Prompt、微调与 RAG" },
+      { "id": "ai-agent", "name": "Agent 智能体", "icon": "ai-agent", "color": "#f43f5e", "desc": "工具调用、规划与记忆" },
+      { "id": "ai-deploy", "name": "推理部署", "icon": "ai-deploy", "color": "#ef4444", "desc": "ONNX、Triton、量化与向量库" }
+    ]
   },
   {
     "id": "interview",
     "name": "面试题",
     "icon": "💡",
     "color": "#22c55e",
-    "desc": "近期高频面试题与答案要点，覆盖主流方向。"
+    "desc": "按方向系统复习的高频面试题与答案要点。",
+    "modules": [
+      { "id": "iv-java", "name": "Java 面试", "icon": "iv-java", "color": "#22c55e", "desc": "JVM、并发、集合与 Spring 高频考点" },
+      { "id": "iv-fe", "name": "前端面试", "icon": "iv-fe", "color": "#16a34a", "desc": "JS 进阶、浏览器、框架与工程化" },
+      { "id": "iv-py", "name": "Python 面试", "icon": "iv-py", "color": "#15803d", "desc": "语言特性、GIL、装饰器与异步" },
+      { "id": "iv-algo", "name": "算法与数据结构", "icon": "iv-algo", "color": "#0ea5e9", "desc": "数组、链表、树、图与动态规划" },
+      { "id": "iv-osnet", "name": "操作系统与网络", "icon": "iv-osnet", "color": "#6366f1", "desc": "进程线程、锁、TCP/IP 与 HTTP" },
+      { "id": "iv-mysql", "name": "MySQL 面试", "icon": "iv-mysql", "color": "#0ea5e9", "desc": "索引、事务、锁与慢查询优化" },
+      { "id": "iv-redis", "name": "Redis 面试", "icon": "iv-redis", "color": "#dc2626", "desc": "数据结构、持久化、缓存与高可用" },
+      { "id": "iv-spring", "name": "Spring 面试", "icon": "iv-spring", "color": "#16a34a", "desc": "IoC、AOP、循环依赖与事务传播" }
+    ]
   }
 ]

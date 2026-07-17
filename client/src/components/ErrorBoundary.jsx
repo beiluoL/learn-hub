@@ -21,7 +21,7 @@ export default class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="max-w-2xl mx-auto px-4 py-20 text-center" role="alert">
+        <div className="max-w-3xl mx-auto px-4 py-20 text-center" role="alert">
           <div className="text-5xl mb-4">⚠️</div>
           <h1 className="text-2xl font-extrabold text-text-primary">页面出错了</h1>
           <p className="text-text-secondary mt-2">

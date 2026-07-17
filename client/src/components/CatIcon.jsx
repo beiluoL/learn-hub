@@ -109,7 +109,20 @@ const MAP = {
   engineering: Wrench,
 };
 
+// 模块 id 前缀 → 分类 logo（新模块统一继承分类图标，颜色由调用方指定）
+const PREFIX = {
+  'java-': JavaLogo,
+  'py-': PythonLogo,
+  'ai-': Bot,
+  'iv-': Lightbulb,
+};
+
 export default function CatIcon({ catId, size = 24, ...rest }) {
-  const Icon = MAP[catId] || BookOpen;
+  let Icon = MAP[catId];
+  if (!Icon) {
+    // 新模块按 id 前缀回退到所属分类的 logo（java-/py-/ai-/iv-）
+    const prefix = Object.keys(PREFIX).find((k) => catId && catId.startsWith(k));
+    Icon = prefix ? PREFIX[prefix] : BookOpen;
+  }
   return <Icon size={size} {...rest} />;
 }
