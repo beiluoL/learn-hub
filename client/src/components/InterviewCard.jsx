@@ -52,7 +52,7 @@ export default function InterviewCard({ item, isMastered, onToggleMastered }) {
   }, [open, item.id]);
 
   return (
-    <div className="bg-card rounded-2xl border border-border shadow-card overflow-hidden">
+    <div className="bg-card rounded-2xl border border-border shadow-card overflow-hidden hover:-translate-y-0.5 hover:shadow-card-hover transition">
       <div className="p-5 flex items-start gap-3">
         <button
           onClick={() => setOpen((v) => !v)}

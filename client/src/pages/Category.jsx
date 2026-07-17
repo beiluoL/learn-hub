@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { FileQuestion } from 'lucide-react';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
+import Reveal from '../components/Reveal.jsx';
 import Roadmap from '../components/Roadmap.jsx';
 import CatIcon from '../components/CatIcon.jsx';
 import Breadcrumb from '../components/Breadcrumb.jsx';
@@ -108,8 +109,10 @@ export default function Category() {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {filtered.map((a) => (
-          <ArticleCard key={a.id} article={a} />
+        {filtered.map((a, i) => (
+          <Reveal key={a.id} delay={i * 50}>
+            <ArticleCard article={a} />
+          </Reveal>
         ))}
       </div>
       {filtered.length === 0 && (

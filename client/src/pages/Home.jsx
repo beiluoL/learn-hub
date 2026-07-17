@@ -4,6 +4,7 @@ import { BookOpen, Map, QrCode } from 'lucide-react';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import InterviewCard from '../components/InterviewCard.jsx';
+import Reveal from '../components/Reveal.jsx';
 import CatIcon from '../components/CatIcon.jsx';
 import LINKS, { WECHAT, SocialLinkList } from '../components/AuthorSocial.jsx';
 import { ListSkeleton } from '../components/Skeleton.jsx';
@@ -62,13 +63,13 @@ export default function Home() {
           </p>
           <form onSubmit={submit} className="mt-8 max-w-xl mx-auto">
             <label htmlFor="home-search" className="sr-only">搜索</label>
-            <div className="flex bg-card rounded-lg p-1.5 shadow-lg">
+            <div className="flex bg-card rounded-lg p-1.5 shadow-lg border border-transparent transition focus-within:border-brand-400 focus-within:ring-2 focus-within:ring-brand-200">
               <input
                 id="home-search"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="搜点什么？比如 HashMap、装饰器、RAG…"
-                className="flex-1 px-4 py-3 text-gray-700 outline-none bg-transparent"
+                className="search-input flex-1 px-4 py-3 text-gray-700 outline-none bg-transparent rounded-lg"
               />
               <button className="btn-primary px-6 py-3 rounded-lg font-semibold">
                 搜索
@@ -137,8 +138,10 @@ export default function Home() {
           <ListSkeleton count={6} />
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
-            {featured.map((a) => (
-              <ArticleCard key={a.id} article={a} />
+            {featured.map((a, i) => (
+              <Reveal key={a.id} delay={i * 60}>
+                <ArticleCard article={a} />
+              </Reveal>
             ))}
           </div>
         )}
@@ -154,8 +157,10 @@ export default function Home() {
             </Link>
           </div>
           <div className="grid md:grid-cols-2 gap-4 mt-6 items-start">
-            {recentIv.map((iv) => (
-              <InterviewCard key={iv.id} item={iv} />
+            {recentIv.map((iv, i) => (
+              <Reveal key={iv.id} delay={i * 60}>
+                <InterviewCard item={iv} />
+              </Reveal>
             ))}
           </div>
         </div>

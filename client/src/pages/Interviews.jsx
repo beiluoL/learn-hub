@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FileText } from 'lucide-react';
 import { content } from '../content.js';
 import InterviewCard from '../components/InterviewCard.jsx';
+import Reveal from '../components/Reveal.jsx';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import { CardSkeleton } from '../components/Skeleton.jsx';
 
@@ -88,13 +89,14 @@ export default function Interviews() {
       <div className="space-y-3">
         {loading
           ? Array.from({ length: 4 }).map((_, i) => <CardSkeleton key={i} />)
-          : filtered.map((iv) => (
-              <InterviewCard
-                key={iv.id}
-                item={iv}
-                isMastered={mastered.has(iv.id)}
-                onToggleMastered={() => toggleMastered(iv.id)}
-              />
+          : filtered.map((iv, i) => (
+              <Reveal key={iv.id} delay={i * 50}>
+                <InterviewCard
+                  item={iv}
+                  isMastered={mastered.has(iv.id)}
+                  onToggleMastered={() => toggleMastered(iv.id)}
+                />
+              </Reveal>
             ))}
       </div>
       {!loading && filtered.length === 0 && (

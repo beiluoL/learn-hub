@@ -3,6 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { BookOpen, Lightbulb, Search as SearchIcon } from 'lucide-react';
 import { content } from '../content.js';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import Reveal from '../components/Reveal.jsx';
 import { SearchResultSkeleton } from '../components/Skeleton.jsx';
 
 function highlightSnippet(text, keywords) {
@@ -71,56 +72,57 @@ export default function Search() {
 
       {!loading && results && results.length > 0 && (
         <div className="mt-6 space-y-4">
-          {results.map((item) => (
-            <Link
-              key={item._type + '-' + item.id}
-              to={
-                item._type === 'article'
-                  ? `/article/${item.id}`
-                  : `/interview/${item.id}`
-              }
-              className="group block bg-card rounded-2xl p-5 border border-border shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition"
-            >
-              <div className="flex items-center gap-2 mb-1">
-                <span
-                  className={`text-xs font-semibold px-2 py-0.5 rounded-full inline-flex items-center gap-1 ${
-                    item._type === 'article'
-                      ? 'bg-brand-50 text-brand-600'
-                      : 'bg-warning-50 text-warning-600'
-                  }`}
-                >
-                  {item._type === 'article' ? (
-                    <BookOpen size={11} />
-                  ) : (
-                    <Lightbulb size={11} />
-                  )}
-                  {item._type === 'article' ? '文章' : '面试题'}
-                </span>
-                <span className="text-xs text-text-muted">
-                  {item.category}
-                </span>
-              </div>
-              <h3 className="font-bold text-text-primary group-hover:text-brand-600 transition">
-                {item.title || item.question}
-              </h3>
-              {item._snippet && (
-                <p className="text-sm text-text-secondary mt-1.5">
-                  {highlightSnippet(item._snippet, keywords)}
-                </p>
-              )}
-              {item.tags?.length > 0 && (
-                <div className="flex flex-wrap gap-1.5 mt-2">
-                  {item.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-[11px] text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full"
-                    >
-                      #{t}
-                    </span>
-                  ))}
+          {results.map((item, i) => (
+            <Reveal key={item._type + '-' + item.id} delay={i * 50}>
+              <Link
+                to={
+                  item._type === 'article'
+                    ? `/article/${item.id}`
+                    : `/interview/${item.id}`
+                }
+                className="group block bg-card rounded-2xl p-5 border border-border shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition"
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span
+                    className={`text-xs font-semibold px-2 py-0.5 rounded-full inline-flex items-center gap-1 ${
+                      item._type === 'article'
+                        ? 'bg-brand-50 text-brand-600'
+                        : 'bg-warning-50 text-warning-600'
+                    }`}
+                  >
+                    {item._type === 'article' ? (
+                      <BookOpen size={11} />
+                    ) : (
+                      <Lightbulb size={11} />
+                    )}
+                    {item._type === 'article' ? '文章' : '面试题'}
+                  </span>
+                  <span className="text-xs text-text-muted">
+                    {item.category}
+                  </span>
                 </div>
-              )}
-            </Link>
+                <h3 className="font-bold text-text-primary group-hover:text-brand-600 transition">
+                  {item.title || item.question}
+                </h3>
+                {item._snippet && (
+                  <p className="text-sm text-text-secondary mt-1.5">
+                    {highlightSnippet(item._snippet, keywords)}
+                  </p>
+                )}
+                {item.tags?.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {item.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[11px] text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full"
+                      >
+                        #{t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </Link>
+            </Reveal>
           ))}
         </div>
       )}

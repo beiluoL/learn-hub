@@ -96,14 +96,14 @@ export default function Header() {
         {/* Search */}
         <form onSubmit={submit} className="ml-auto flex-1 max-w-md">
           <label htmlFor="hd-search" className="sr-only">搜索</label>
-          <div className="relative">
+          <div className="relative focus-within:ring-2 focus-within:ring-brand-200 rounded-lg">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
             <input
               id="hd-search"
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="搜索 Java / Python / 前端 / AI…"
-              className="w-full pl-9 pr-3 py-2 rounded-lg bg-surface border border-border focus:border-brand-400 focus:bg-card outline-none text-sm text-text-primary placeholder:text-text-muted transition"
+              className="search-input w-full pl-9 pr-3 py-2 rounded-lg bg-surface border border-border focus:border-brand-400 focus:bg-card outline-none text-sm text-text-primary placeholder:text-text-muted transition"
             />
           </div>
         </form>
@@ -131,7 +131,7 @@ export default function Header() {
       {open && (
         <>
           <div
-            className="md:hidden fixed inset-0 top-16 bg-black/30 z-30"
+            className="md:hidden fixed inset-0 top-16 bg-black/30 z-30 cursor-pointer"
             onClick={close}
           />
           <nav className="md:hidden absolute top-full left-0 right-0 bg-card border-b border-border shadow-card z-30 px-4 py-4 flex flex-col gap-1">
