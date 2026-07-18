@@ -43,6 +43,12 @@ jobs:
 
       - name: Build client
         working-directory: client
+        # Supabase / Umami 等前端公开配置经 GitHub 仓库密钥注入（.env 被 gitignore 不进仓库）
+        # anon key 本就随包下发到浏览器，存为加密 Actions secret 是标准做法
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+          VITE_UMAMI_ID: ${{ secrets.VITE_UMAMI_ID }}
         run: npm run build
 
       - name: Setup Pages
