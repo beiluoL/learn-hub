@@ -61,8 +61,10 @@ export default function CodeRunner({ code = '', lang = '' }) {
         setOutput(out || '(无输出)');
       } else if (group === 'js') {
         setOutput('');
-        const safe = JSON.stringify(code);
-        const srcdoc = `<!doctype html><html><head><style>body{font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;padding:10px;background:#0b1020;color:#e2e8f0;margin:0;white-space:pre-wrap}</style></head><body><pre id="o"></pre><script>var o=document.getElementById('o');console.log=function(){for(var i=0;i<arguments.length;i++){var x=arguments[i];try{o.textContent+=(typeof x==='object'?JSON.stringify(x):String(x));}catch(e){o.textContent+=String(x);}o.textContent+=' ';}o.textContent+='\\n';};try{eval(${safe});}catch(e){o.textContent+='Error: '+e.message;}<\/script></body></html>`;
+        // 用 <script type="module"> 以支持 import / 顶层 await；
+        // 控制台捕获与错误兜底放到独立经典脚本（模块链接错误也能捕获）。
+        const safeCode = String(code).replace(/<\/script>/gi, '<\\/script>');
+        const srcdoc = `<!doctype html><html><head><meta charset="utf-8"><style>body{font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;padding:10px;background:#0b1020;color:#e2e8f0;margin:0;white-space:pre-wrap}</style></head><body><pre id="o"></pre><script>var o=document.getElementById('o');function fmt(a){try{return typeof a==='string'?a:JSON.stringify(a);}catch(e){return String(a);}}function write(){for(var i=0;i<arguments.length;i++){o.textContent+=(i?' ':'')+fmt(arguments[i]);}o.textContent+='\\n';}['log','info','warn','error','debug'].forEach(function(m){var orig=console[m]?console[m].bind(console):function(){};console[m]=function(){write.apply(null,arguments);orig.apply(null,arguments);};});window.addEventListener('error',function(e){write('Error: '+(e.message||(e.error&&e.error.message)||e.error||e));});window.addEventListener('unhandledrejection',function(e){write('Error: '+((e.reason&&e.reason.message)||e.reason||e));});<\/script><script type="module">\n${safeCode}\n<\/script></body></html>`;
         setIframeSrc(srcdoc);
       } else {
         setOutput('');
