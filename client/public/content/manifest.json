@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T07:48:25.253Z",
+  "generatedAt": "2026-07-18T10:55:29.817Z",
   "categories": [
     {
       "id": "java",
@@ -2823,6 +2823,308 @@
       "type": "md"
     },
     {
+      "id": "frontend/react/cases/react-practice-admin",
+      "title": "练习 2 · 后台管理骨架（路由 + 状态）",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "cases",
+      "tier": "core",
+      "level": "intermediate",
+      "readMinutes": 13,
+      "tags": [
+        "React",
+        "练习",
+        "后台",
+        "React Router",
+        "Zustand",
+        "守卫"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-ch8-project"
+      ],
+      "summary": "组合路由、全局状态与守卫，搭一个含侧边栏布局、用户列表、新增表单的后台骨架，打通「工程化」能力。",
+      "timeline": false,
+      "order": 12,
+      "file": "frontend/react/cases/react-practice-admin.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/cases/react-practice-todo",
+      "title": "练习 1 · 写一个可增删改的 Todo",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "cases",
+      "tier": "core",
+      "level": "intermediate",
+      "readMinutes": 12,
+      "tags": [
+        "React",
+        "练习",
+        "Todo",
+        "useState",
+        "受控组件"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-ch3-hooks"
+      ],
+      "summary": "用 useState + 受控组件从零实现一个可新增、完成、删除、过滤的待办应用，巩固组件与状态基本功。",
+      "timeline": false,
+      "order": 11,
+      "file": "frontend/react/cases/react-practice-todo.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/roadmap/react-ch0-prebasic",
+      "title": "第 0 章 · React 前置基础",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "roadmap",
+      "tier": "core",
+      "level": "beginner",
+      "readMinutes": 14,
+      "tags": [
+        "React",
+        "前置",
+        "JavaScript",
+        "ES6",
+        "工具链"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-roadmap"
+      ],
+      "summary": "跑通 React 前必须掌握的 JS(ES6+) 与工具链：解构、箭头函数、map/reduce、模块化、Promise，以及 Node/npm/Vite 的基本用法。",
+      "timeline": false,
+      "order": 2,
+      "file": "frontend/react/roadmap/react-ch0-prebasic.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/roadmap/react-ch1-core",
+      "title": "第 1 章 · React 核心基础",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "roadmap",
+      "tier": "core",
+      "level": "beginner",
+      "readMinutes": 16,
+      "tags": [
+        "React",
+        "JSX",
+        "组件",
+        "Props",
+        "渲染"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-ch0-prebasic"
+      ],
+      "summary": "建立「组件即函数、JSX 即 UI」的心智模型，学会函数组件、props 传参、条件与列表渲染，跑起第一个 React 应用。",
+      "timeline": false,
+      "order": 3,
+      "file": "frontend/react/roadmap/react-ch1-core.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/roadmap/react-ch2-component",
+      "title": "第 2 章 · 组件化开发",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "roadmap",
+      "tier": "core",
+      "level": "beginner",
+      "readMinutes": 16,
+      "tags": [
+        "React",
+        "组件",
+        "Props",
+        "children",
+        "列表",
+        "受控组件"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-ch1-core"
+      ],
+      "summary": "学会把界面拆成可复用组件，掌握 props 传参、children 组合、列表 key、受控组件与表单处理。",
+      "timeline": false,
+      "order": 4,
+      "file": "frontend/react/roadmap/react-ch2-component.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/roadmap/react-ch3-hooks",
+      "title": "第 3 章 · Hooks 体系",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "roadmap",
+      "tier": "core",
+      "level": "intermediate",
+      "readMinutes": 18,
+      "tags": [
+        "React",
+        "Hooks",
+        "useState",
+        "useEffect",
+        "useRef",
+        "useMemo"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-ch2-component"
+      ],
+      "summary": "掌握 useState/useEffect/useRef/useMemo/useCallback 与 Hook 规则，让函数组件拥有状态与副作用，这是 React 的核心。",
+      "timeline": false,
+      "order": 5,
+      "file": "frontend/react/roadmap/react-ch3-hooks.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/roadmap/react-ch4-state",
+      "title": "第 4 章 · 状态管理",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "roadmap",
+      "tier": "core",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "React",
+        "状态管理",
+        "Context",
+        "useReducer",
+        "Zustand",
+        "Redux"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-ch3-hooks"
+      ],
+      "summary": "掌握状态提升、useContext + useReducer 跨层共享，以及 Zustand / Redux 等第三方方案，知道何时该用哪种。",
+      "timeline": false,
+      "order": 6,
+      "file": "frontend/react/roadmap/react-ch4-state.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/roadmap/react-ch5-router",
+      "title": "第 5 章 · React Router 路由",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "roadmap",
+      "tier": "core",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "React",
+        "React Router",
+        "路由",
+        "嵌套路由",
+        "守卫"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-ch4-state"
+      ],
+      "summary": "用 React Router 搭建多页应用：路由表、Link 导航、useParams 取参、嵌套路由、登录守卫与懒加载。",
+      "timeline": false,
+      "order": 7,
+      "file": "frontend/react/roadmap/react-ch5-router.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/roadmap/react-ch6-ecosystem",
+      "title": "第 6 章 · 生态与工程化",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "roadmap",
+      "tier": "core",
+      "level": "intermediate",
+      "readMinutes": 16,
+      "tags": [
+        "React",
+        "Vite",
+        "TypeScript",
+        "axios",
+        "测试",
+        "样式"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-ch5-router"
+      ],
+      "summary": "补齐生产级 React 工程能力：Vite 配置、TypeScript 接入、请求封装、UI 库选型、测试与样式方案。",
+      "timeline": false,
+      "order": 8,
+      "file": "frontend/react/roadmap/react-ch6-ecosystem.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/roadmap/react-ch7-principle",
+      "title": "第 7 章 · 进阶原理",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "roadmap",
+      "tier": "core",
+      "level": "advanced",
+      "readMinutes": 17,
+      "tags": [
+        "React",
+        "原理",
+        "Fiber",
+        "协调",
+        "并发",
+        "性能优化"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-ch6-ecosystem"
+      ],
+      "summary": "理解渲染/提交两阶段、Fiber 与协调 diff、key 的底层作用、并发特性（Suspense/useTransition）与性能优化策略。",
+      "timeline": false,
+      "order": 9,
+      "file": "frontend/react/roadmap/react-ch7-principle.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/roadmap/react-ch8-project",
+      "title": "第 8 章 · 实战项目",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "roadmap",
+      "tier": "core",
+      "level": "advanced",
+      "readMinutes": 15,
+      "tags": [
+        "React",
+        "实战",
+        "项目",
+        "部署"
+      ],
+      "prereq": [
+        "frontend/react/roadmap/react-ch7-principle"
+      ],
+      "summary": "把前面所学落到一个完整项目：项目结构规划、功能拆解、状态与路由设计，以及部署上线，让代码写进简历。",
+      "timeline": false,
+      "order": 10,
+      "file": "frontend/react/roadmap/react-ch8-project.md",
+      "type": "md"
+    },
+    {
+      "id": "frontend/react/roadmap/react-roadmap",
+      "title": "React 系统学习路线（含打卡清单）",
+      "category": "frontend",
+      "module": "react",
+      "subcat": "roadmap",
+      "tier": "core",
+      "level": "beginner",
+      "readMinutes": 12,
+      "tags": [
+        "React",
+        "学习路线",
+        "路线图",
+        "打卡"
+      ],
+      "prereq": [],
+      "summary": "从前置基础到实战项目的 9 阶段 React 学习路线，每个阶段拆成可勾选任务，方便对照打卡。",
+      "timeline": true,
+      "order": 1,
+      "file": "frontend/react/roadmap/react-roadmap.md",
+      "type": "md"
+    },
+    {
       "id": "frontend/vue/cases/vue3-practice-api",
       "title": "练习 3 · axios 封装与接口调用",
       "category": "frontend",
@@ -2965,7 +3267,7 @@
       "subcat": "roadmap",
       "tier": "core",
       "level": "beginner",
-      "readMinutes": 14,
+      "readMinutes": 22,
       "tags": [
         "Vue",
         "环境",
@@ -2989,7 +3291,7 @@
       "subcat": "roadmap",
       "tier": "core",
       "level": "beginner",
-      "readMinutes": 16,
+      "readMinutes": 26,
       "tags": [
         "Vue",
         "模板",
@@ -3013,7 +3315,7 @@
       "subcat": "roadmap",
       "tier": "core",
       "level": "intermediate",
-      "readMinutes": 16,
+      "readMinutes": 26,
       "tags": [
         "Vue",
         "组件",
@@ -3037,7 +3339,7 @@
       "subcat": "roadmap",
       "tier": "core",
       "level": "intermediate",
-      "readMinutes": 15,
+      "readMinutes": 24,
       "tags": [
         "Vue",
         "Composition",
@@ -3046,7 +3348,7 @@
       "prereq": [
         "frontend/vue/roadmap/vue-ch2-component"
       ],
-      "summary": "用 <script setup> 语法糖组织逻辑，理解 ref/reactive 取舍，并学会把通用逻辑抽成组合式函数。",
+      "summary": "用 <script setup> 语法糖组织逻辑，理解 ref/reactive 取舍，并学会把通用逻辑抽成组合式函数复用。",
       "timeline": false,
       "order": 5,
       "file": "frontend/vue/roadmap/vue-ch3-composition.md",
@@ -3060,7 +3362,7 @@
       "subcat": "roadmap",
       "tier": "core",
       "level": "intermediate",
-      "readMinutes": 16,
+      "readMinutes": 26,
       "tags": [
         "Vue",
         "Router",
@@ -3070,7 +3372,7 @@
       "prereq": [
         "frontend/vue/roadmap/vue-ch3-composition"
       ],
-      "summary": "用 Vue Router 搭建多页应用，掌握动态路由、嵌套路由、编程式导航、路由守卫与懒加载。",
+      "summary": "用 Vue Router 搭建多页应用，掌握动态路由、嵌套路由、编程式导航、路由守卫与懒加载，并注意静态部署的 hash 模式。",
       "timeline": false,
       "order": 6,
       "file": "frontend/vue/roadmap/vue-ch4-router.md",
@@ -3084,7 +3386,7 @@
       "subcat": "roadmap",
       "tier": "core",
       "level": "intermediate",
-      "readMinutes": 15,
+      "readMinutes": 24,
       "tags": [
         "Vue",
         "Pinia",
@@ -3093,7 +3395,7 @@
       "prereq": [
         "frontend/vue/roadmap/vue-ch4-router"
       ],
-      "summary": "用 Pinia 管理跨组件全局状态，掌握 state/getters/actions、storeToRefs、异步 action 与数据持久化。",
+      "summary": "用 Pinia 管理跨组件全局状态，掌握 state/getters/actions、storeToRefs、异步 action、跨 store 调用与数据持久化。",
       "timeline": false,
       "order": 7,
       "file": "frontend/vue/roadmap/vue-ch5-pinia.md",
@@ -3107,7 +3409,7 @@
       "subcat": "roadmap",
       "tier": "core",
       "level": "advanced",
-      "readMinutes": 16,
+      "readMinutes": 26,
       "tags": [
         "Vue",
         "Vite",
@@ -3117,7 +3419,7 @@
       "prereq": [
         "frontend/vue/roadmap/vue-ch5-pinia"
       ],
-      "summary": "掌握 Vite 配置、TypeScript 接入、axios 封装、UI 库选型与 Vitest 单元测试，让项目可维护可协作。",
+      "summary": "掌握 Vite 配置、TypeScript 接入、axios 封装、UI 库选型、自动化引入与 Vitest 单元测试，让项目可维护可协作。",
       "timeline": false,
       "order": 8,
       "file": "frontend/vue/roadmap/vue-ch6-ecosystem.md",
@@ -3131,7 +3433,7 @@
       "subcat": "roadmap",
       "tier": "core",
       "level": "advanced",
-      "readMinutes": 15,
+      "readMinutes": 24,
       "tags": [
         "Vue",
         "原理",
@@ -3141,7 +3443,7 @@
       "prereq": [
         "frontend/vue/roadmap/vue-ch6-ecosystem"
       ],
-      "summary": "理解 Vue 3 响应式（Proxy）、虚拟 DOM 与 diff、编译时优化，并掌握常用性能优化手段。",
+      "summary": "理解 Vue 3 响应式（Proxy）、虚拟 DOM 与 diff、编译时优化，并掌握 nextTick、shallowRef、keep-alive 等性能优化手段。",
       "timeline": false,
       "order": 9,
       "file": "frontend/vue/roadmap/vue-ch7-principle.md",
@@ -3155,7 +3457,7 @@
       "subcat": "roadmap",
       "tier": "core",
       "level": "beginner",
-      "readMinutes": 12,
+      "readMinutes": 18,
       "tags": [
         "Vue",
         "学习路线",
@@ -3163,7 +3465,7 @@
         "打卡"
       ],
       "prereq": [],
-      "summary": "从前置基础到实战项目的 9 阶段 Vue 3 学习路线，每个阶段拆成可勾选任务，方便对照打卡。",
+      "summary": "从前置基础到实战项目的 9 阶段 Vue 3 学习路线，每阶段给出目标、产出、重点与可勾选任务，并附 React 对照与学习误区。",
       "timeline": true,
       "order": 1,
       "file": "frontend/vue/roadmap/vue-roadmap.md",

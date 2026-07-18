@@ -181,6 +181,46 @@ export function extractFlashcards(article) {
   return cards;
 }
 
+// ---------- 从文章抽取知识自测（Quiz） ----------
+// 支持 ```quiz 围栏，块内语法（分隔符宽松）：
+//   问题：...            （或 Q: / question:）
+//   A. 选项一           （A-H，分隔符 . ) 、 均可）
+//   B. 选项二
+//   C. 选项三
+//   D. 选项四
+//   答案：B             （或 answer: / 正确：）
+//   解析：...           （或 解释：/ explanation: / 说明：）
+// 仅当「问题 + 至少 2 个选项 + 答案」齐全时才收录，避免畸形块破坏渲染。
+export function extractQuizzes(body = '') {
+  const blocks = body.match(/```quiz\s*\n([\s\S]*?)```/g) || [];
+  const out = [];
+  for (const blk of blocks) {
+    const inner = blk.replace(/```quiz\s*\n/, '').replace(/```$/, '');
+    let question = '';
+    const options = [];
+    let answer = '';
+    let explanation = '';
+    inner.split('\n').forEach((raw) => {
+      const line = raw.trim();
+      if (!line) return;
+      let m;
+      if ((m = line.match(/^(?:问题|Q|question)[:：]\s*(.+)$/i))) {
+        question = m[1].trim();
+      } else if ((m = line.match(/^([A-H])[.、)]\s+(.+)$/))) {
+        options.push({ key: m[1].toUpperCase(), text: m[2].trim() });
+      } else if ((m = line.match(/^(?:答案|answer|正确)[:：]\s*([A-H])\s*$/i))) {
+        answer = m[1].toUpperCase();
+      } else if ((m = line.match(/^(?:解析|解释|explanation|说明)[:：]\s*(.+)$/i))) {
+        explanation = m[1].trim();
+      }
+    });
+    if (question && options.length >= 2 && answer) {
+      out.push({ question, options, answer, explanation });
+    }
+  }
+  return out;
+}
+
 // ---------- 工具：去 HTML 标签 ----------
 export function stripHtml(html = '') {
   return html

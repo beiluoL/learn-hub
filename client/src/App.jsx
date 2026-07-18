@@ -18,6 +18,7 @@ const KnowledgeMap = lazy(() => import('./pages/KnowledgeMap.jsx'));
 const Login = lazy(() => import('./pages/Login.jsx'));
 const StudyPlan = lazy(() => import('./pages/StudyPlan.jsx'));
 const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
+const CodeRun = lazy(() => import('./pages/CodeRun.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
 export default function App() {
@@ -67,6 +68,7 @@ export default function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/plan" element={<StudyPlan />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/run" element={<CodeRun />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </div>

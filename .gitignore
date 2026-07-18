@@ -27,3 +27,6 @@ client/vite.config.js.timestamp-*.mjs
 
 # 本地预览脚手架（软链到 dist，勿提交）
 _preview/
+
+# 临时逻辑自测脚本（勿提交）
+client/_*.mjs

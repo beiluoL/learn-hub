@@ -1,42 +1,9 @@
 import { useState } from 'react';
 import { Play, Loader2, Terminal } from 'lucide-react';
+import { buildJsSrcdoc, buildHtmlSrcdoc, runPython, langGroup } from '../lib/runner.js';
 
-// 在线运行代码片段：Python 用 Pyodide(WASM, CDN 懒加载)；JS 用沙箱 iframe；HTML 直接渲染。
-// 不打包任何重型依赖，运行时按需从 CDN 取 Pyodide。
-
-let pyodidePromise = null;
-function loadPyodide() {
-  if (pyodidePromise) return pyodidePromise;
-  pyodidePromise = new Promise((resolve, reject) => {
-    const s = document.createElement('script');
-    s.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js';
-    s.onload = async () => {
-      try {
-        const py = await window.loadPyodide({
-          indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/',
-        });
-        resolve(py);
-      } catch (e) {
-        reject(e);
-      }
-    };
-    s.onerror = () => reject(new Error('Pyodide 脚本加载失败（需要联网）'));
-    document.head.appendChild(s);
-  });
-  return pyodidePromise;
-}
-
-const PY_LANGS = ['python', 'py'];
-const JS_LANGS = ['javascript', 'js', 'node'];
-const HTML_LANGS = ['html', 'xml'];
-
-function langGroup(lang) {
-  const l = (lang || '').toLowerCase();
-  if (PY_LANGS.includes(l)) return 'py';
-  if (JS_LANGS.includes(l)) return 'js';
-  if (HTML_LANGS.includes(l)) return 'html';
-  return null;
-}
+// 文章内联「在线运行」按钮：复用 lib/runner.js 的执行逻辑。
+// JS 用沙箱 iframe（原生 module + esm.sh 裸 import 改写）；Python 用 Pyodide；HTML 直接渲染。
 
 export default function CodeRunner({ code = '', lang = '' }) {
   const group = langGroup(lang);
@@ -53,22 +20,16 @@ export default function CodeRunner({ code = '', lang = '' }) {
     try {
       if (group === 'py') {
         setIframeSrc('');
-        const py = await loadPyodide();
-        let out = '';
-        py.setStdout({ batched: (s) => (out += s + '\n') });
-        py.setStderr({ batched: (s) => (out += s + '\n') });
-        await py.runPythonAsync(code);
-        setOutput(out || '(无输出)');
+        const out = await runPython(code);
+        setOutput(out);
       } else if (group === 'js') {
         setOutput('');
-        // 用 <script type="module"> 以支持 import / 顶层 await；
-        // 控制台捕获与错误兜底放到独立经典脚本（模块链接错误也能捕获）。
-        const safeCode = String(code).replace(/<\/script>/gi, '<\\/script>');
-        const srcdoc = `<!doctype html><html><head><meta charset="utf-8"><style>body{font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;padding:10px;background:#0b1020;color:#e2e8f0;margin:0;white-space:pre-wrap}</style></head><body><pre id="o"></pre><script>var o=document.getElementById('o');function fmt(a){try{return typeof a==='string'?a:JSON.stringify(a);}catch(e){return String(a);}}function write(){for(var i=0;i<arguments.length;i++){o.textContent+=(i?' ':'')+fmt(arguments[i]);}o.textContent+='\\n';}['log','info','warn','error','debug'].forEach(function(m){var orig=console[m]?console[m].bind(console):function(){};console[m]=function(){write.apply(null,arguments);orig.apply(null,arguments);};});window.addEventListener('error',function(e){write('Error: '+(e.message||(e.error&&e.error.message)||e.error||e));});window.addEventListener('unhandledrejection',function(e){write('Error: '+((e.reason&&e.reason.message)||e.reason||e));});<\/script><script type="module">\n${safeCode}\n<\/script></body></html>`;
-        setIframeSrc(srcdoc);
+        // 沙箱 iframe 内用原生 module 执行；控制台输出渲染在 iframe 内 <pre>，
+        // 裸 import 已改写为 esm.sh 完整地址，故 'vue' 等可解析。
+        setIframeSrc(buildJsSrcdoc(code));
       } else {
         setOutput('');
-        setIframeSrc(code);
+        setIframeSrc(buildHtmlSrcdoc(code));
       }
     } catch (e) {
       setError(e?.message || String(e));

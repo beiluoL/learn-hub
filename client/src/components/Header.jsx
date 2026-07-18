@@ -7,6 +7,7 @@ const NAV = [
   { to: '/', label: '首页' },
   { to: '/plan', label: '学习计划' },
   { to: '/dashboard', label: '仪表盘' },
+  { to: '/run', label: '在线运行' },
   { to: '/map', label: '知识地图' },
   { to: '/interviews', label: '面试题' },
 ];

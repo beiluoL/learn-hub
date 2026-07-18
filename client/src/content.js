@@ -58,10 +58,19 @@ function fixCjkEmphasis(md) {
 // 把正文渲染为安全的 HTML（md 用 marked 解析，html 直接用；统一经 DOMPurify 消毒）
 function renderBody(body, type) {
   const html = type === 'html' ? body : marked.parse(fixCjkEmphasis(body || ''));
-  return DOMPurify.sanitize(html, {
+  let out = DOMPurify.sanitize(html, {
     ADD_ATTR: ['target', 'rel'],
     FORBID_TAGS: ['style', 'iframe', 'form', 'input', 'button'],
   });
+  // 把 ```quiz 知识自测块从正文 HTML 中剥离：自测题在 ArticleDetail 中以交互组件渲染，
+  // 不应以裸代码块形式出现在文章里。
+  if (type !== 'html') {
+    out = out.replace(
+      /<pre>\s*<code class="language-quiz">[\s\S]*?<\/code>\s*<\/pre>/g,
+      ''
+    );
+  }
+  return out;
 }
 
 function splitTags(tags) {

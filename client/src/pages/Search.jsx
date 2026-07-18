@@ -174,12 +174,13 @@ export default function Search() {
                 {item.tags?.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {item.tags.map((t) => (
-                      <span
+                      <Link
                         key={t}
-                        className="text-[11px] text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full"
+                        to={`/search?q=${encodeURIComponent(t)}`}
+                        className="text-[11px] text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full hover:bg-brand-100 transition"
                       >
                         #{t}
-                      </span>
+                      </Link>
                     ))}
                   </div>
                 )}

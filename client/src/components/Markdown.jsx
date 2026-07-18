@@ -72,6 +72,71 @@ export default function Markdown({ html, className = '' }) {
         /* 忽略个别无法高亮的片段 */
       }
     });
+
+    // 代码块「复制」按钮：通过 DOM 注入（此组件用 innerHTML 渲染，按钮不参与 React 调和）
+    container.querySelectorAll('pre').forEach((pre) => {
+      if (pre.querySelector('.code-copy-btn')) return;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'code-copy-btn no-print';
+      btn.textContent = '复制';
+      btn.setAttribute('aria-label', '复制代码');
+      Object.assign(btn.style, {
+        position: 'absolute',
+        top: '8px',
+        right: '8px',
+        zIndex: '5',
+        fontSize: '12px',
+        lineHeight: '1',
+        padding: '4px 9px',
+        borderRadius: '6px',
+        border: '1px solid rgba(127,127,127,0.35)',
+        background: 'rgba(127,127,127,0.14)',
+        color: 'inherit',
+        cursor: 'pointer',
+        opacity: '0',
+        transition: 'opacity .15s ease',
+      });
+      pre.style.position = 'relative';
+      pre.appendChild(btn);
+      const code = pre.querySelector('code');
+      btn.addEventListener('click', () => {
+        const text = (code ? code.textContent : pre.textContent) || '';
+        const done = () => {
+          btn.textContent = '已复制';
+          setTimeout(() => (btn.textContent = '复制'), 1500);
+        };
+        if (navigator.clipboard?.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+        } else {
+          fallbackCopy(text, done);
+        }
+      });
+      const show = () => (btn.style.opacity = '1');
+      const hide = () => (btn.style.opacity = '0');
+      pre.addEventListener('mouseenter', show);
+      pre.addEventListener('mouseleave', hide);
+      // 触屏无 hover：代码块聚焦时也显示
+      pre.addEventListener('focusin', show);
+      pre.tabIndex = -1;
+    });
+
+    function fallbackCopy(text, done) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        done();
+      } catch {
+        btn.textContent = '复制失败';
+        setTimeout(() => (btn.textContent = '复制'), 1500);
+      }
+      document.body.removeChild(ta);
+    }
   }, [html]);
 
   return (

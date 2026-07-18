@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Clock, Lightbulb, CheckCircle2, Circle, Play } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock, Lightbulb, CheckCircle2, Circle, Play, Award, Link2 } from 'lucide-react';
 import { content } from '../content.js';
 import LevelBadge from '../components/LevelBadge.jsx';
 import Markdown from '../components/Markdown.jsx';
@@ -12,10 +12,11 @@ import Checklist from '../components/Checklist.jsx';
 import NotesPanel from '../components/NotesPanel.jsx';
 import Flashcards from '../components/Flashcards.jsx';
 import CodeRunner from '../components/CodeRunner.jsx';
+import Quiz from '../components/Quiz.jsx';
 import { ArticleDetailSkeleton } from '../components/Skeleton.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { getDone, setDone, setLastRead, logStudy } from '../lib/progress.js';
-import { extractFlashcards } from '../lib/study.js';
+import { extractFlashcards, extractQuizzes } from '../lib/study.js';
 
 // 从正文抽取可在线运行的代码块（Python / JS / HTML）
 function extractRunnables(body = '') {
@@ -35,6 +36,7 @@ export default function ArticleDetail() {
   const [loading, setLoading] = useState(true);
   const [prevArticle, setPrevArticle] = useState(null);
   const [nextArticle, setNextArticle] = useState(null);
+  const [allArticles, setAllArticles] = useState([]);
   const [activeId, setActiveId] = useState('');
   const [catName, setCatName] = useState('');
   const [moduleName, setModuleName] = useState('');
@@ -47,17 +49,20 @@ export default function ArticleDetail() {
     setLoading(true);
     setPrevArticle(null);
     setNextArticle(null);
+    setAllArticles([]);
 
     content
       .article(id)
       .then((a) => {
         setArticle(a);
-        // 拉取同分类文章列表找前后篇
+        // 拉取全站文章：同分类内找前后篇，全站按共享标签算相关阅读
         if (a) {
-          content.articles(a.category).then((list) => {
-            const idx = list.findIndex((item) => item.id === a.id);
-            if (idx > 0) setPrevArticle(list[idx - 1]);
-            if (idx >= 0 && idx < list.length - 1) setNextArticle(list[idx + 1]);
+          content.articles().then((list) => {
+            setAllArticles(list);
+            const catList = list.filter((item) => item.category === a.category);
+            const idx = catList.findIndex((item) => item.id === a.id);
+            if (idx > 0) setPrevArticle(catList[idx - 1]);
+            if (idx >= 0 && idx < catList.length - 1) setNextArticle(catList[idx + 1]);
           });
         }
       })
@@ -148,6 +153,31 @@ export default function ArticleDetail() {
     () => extractRunnables(article?.body || ''),
     [article]
   );
+
+  // 知识自测（来自正文 ```quiz 块）
+  const quizzes = useMemo(
+    () => extractQuizzes(article?.body || ''),
+    [article]
+  );
+
+  // 相关阅读：按共享标签数量排序，取前 3（排除自身与上下篇）
+  const related = useMemo(() => {
+    if (!article) return [];
+    const myTags = new Set((article.tags || []).map((t) => t.toLowerCase()));
+    const skip = new Set(
+      [article.id, prevArticle?.id, nextArticle?.id].filter(Boolean)
+    );
+    return allArticles
+      .filter((a) => a.id && !skip.has(a.id) && a.category === article.category)
+      .map((a) => {
+        const shared = (a.tags || []).filter((t) => myTags.has(t.toLowerCase())).length;
+        return { a, shared };
+      })
+      .filter((x) => x.shared > 0)
+      .sort((x, y) => y.shared - x.shared || (x.a.order || 0) - (y.a.order || 0))
+      .slice(0, 3)
+      .map((x) => x.a);
+  }, [article, allArticles, prevArticle, nextArticle]);
 
   // 构造面包屑：前端模块文章补「模块」层级，其余显示分类名。
   // 注意：本组件所有 hooks（含下方的 useRef / useEffect）必须无条件执行，
@@ -247,12 +277,13 @@ export default function ArticleDetail() {
         <p className="text-text-secondary mt-2">{article.summary}</p>
         <div className="flex flex-wrap gap-1.5 my-4">
           {article.tags?.map((t) => (
-            <span
+            <Link
               key={t}
-              className="text-xs text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full"
+              to={`/search?q=${encodeURIComponent(t)}`}
+              className="text-xs text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full hover:bg-brand-100 transition"
             >
               #{t}
-            </span>
+            </Link>
           ))}
         </div>
         <hr className="border-border my-5" />
@@ -293,6 +324,19 @@ export default function ArticleDetail() {
           <Flashcards cards={flashcards} />
         </div>
 
+        {/* 随堂小测：把正文里的 ```quiz 块变成即时判分的交互题 */}
+        {quizzes.length > 0 && (
+          <section className="mt-8">
+            <h2 className="text-lg font-bold text-text-primary mb-1 flex items-center gap-2">
+              <Award size={18} className="text-brand-500" /> 随堂小测
+            </h2>
+            <p className="text-sm text-text-secondary mb-3">
+              合上文章试一试，做错的地方回对应小节再巩固。
+            </p>
+            <Quiz quizzes={quizzes} />
+          </section>
+        )}
+
         {/* 上/下篇导航 */}
         {(prevArticle || nextArticle) && (
           <nav className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -325,6 +369,31 @@ export default function ArticleDetail() {
               </Link>
             )}
           </nav>
+        )}
+
+        {/* 相关阅读：同分类下共享标签最多的几篇，方便顺着知识点延伸 */}
+        {related.length > 0 && (
+          <section className="mt-8">
+            <h2 className="text-lg font-bold text-text-primary mb-3 flex items-center gap-2">
+              <Link2 size={18} className="text-brand-500" /> 相关阅读
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {related.map((r) => (
+                <Link
+                  key={r.id}
+                  to={`/article/${r.id}`}
+                  className="group bg-card border border-border rounded-2xl p-4 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition"
+                >
+                  <p className="text-sm font-semibold text-text-primary group-hover:text-brand-600 line-clamp-2 leading-snug">
+                    {r.title}
+                  </p>
+                  <span className="inline-block mt-2 text-xs text-text-muted">
+                    {r.readMinutes} 分钟 · {r.level}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
         )}
       </article>
 
