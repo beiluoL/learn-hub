@@ -6,6 +6,8 @@ import { DIFF_MAP } from '../components/LevelBadge.jsx';
 import Markdown from '../components/Markdown.jsx';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import ShareButton from '../components/ShareButton.jsx';
+import Flashcards from '../components/Flashcards.jsx';
+import { interviewFlashcards } from '../lib/study.js';
 import { InterviewDetailSkeleton } from '../components/Skeleton.jsx';
 
 const CAT_NAME = {
@@ -85,6 +87,11 @@ export default function InterviewDetail() {
       <hr className="border-border my-5" />
       <div className="text-xs font-bold text-brand-600 mb-2 tracking-wide">参考答案</div>
       <Markdown html={iv.answer} />
+
+      <section className="mt-8">
+        <h2 className="text-lg font-bold text-text-primary mb-3">自测题卡 · 间隔复习</h2>
+        <Flashcards cards={interviewFlashcards(iv)} />
+      </section>
 
       <div className="grid grid-cols-2 gap-3 mt-10">
         {prev ? (

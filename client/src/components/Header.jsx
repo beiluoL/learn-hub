@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Coffee, Search, Menu, X, Sun, Moon } from 'lucide-react';
+import UserMenu from './UserMenu.jsx';
 
 const NAV = [
   { to: '/', label: '首页' },
+  { to: '/plan', label: '学习计划' },
+  { to: '/dashboard', label: '仪表盘' },
   { to: '/map', label: '知识地图' },
   { to: '/interviews', label: '面试题' },
 ];
@@ -116,6 +119,9 @@ export default function Header() {
         >
           {dark ? <Sun size={18} /> : <Moon size={18} />}
         </button>
+
+        {/* 登录 / 用户菜单 */}
+        <UserMenu />
 
         {/* Hamburger button */}
         <button

@@ -1,0 +1,18 @@
+{
+  "name": "LearnHub 学习中心",
+  "short_name": "LearnHub",
+  "description": "Java / Python / 前端 / AI 一站式学习平台，支持进度追踪、学习计划与离线访问",
+  "start_url": "/learn-hub/",
+  "scope": "/learn-hub/",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#7C3AED",
+  "icons": [
+    {
+      "src": "/learn-hub/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { BookOpen, Network, QrCode } from 'lucide-react';
+import { BookOpen, Network, QrCode, GraduationCap, ArrowRight } from 'lucide-react';
 import { content } from '../content.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import InterviewCard from '../components/InterviewCard.jsx';
@@ -8,6 +8,8 @@ import Reveal from '../components/Reveal.jsx';
 import CatIcon from '../components/CatIcon.jsx';
 import LINKS, { WECHAT, SocialLinkList } from '../components/AuthorSocial.jsx';
 import { ListSkeleton } from '../components/Skeleton.jsx';
+import { useAuth } from '../context/AuthContext.jsx';
+import { getRecent, getDoneCount, getLastRead } from '../lib/progress.js';
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
@@ -18,6 +20,10 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState('');
   const navigate = useNavigate();
+  const { user, isSupabaseConfigured } = useAuth();
+  const [myRecent, setMyRecent] = useState([]);
+  const [doneCount, setDoneCount] = useState(0);
+  const [lastRead, setLastRead] = useState(null);
 
   useEffect(() => {
     Promise.all([
@@ -27,6 +33,55 @@ export default function Home() {
       content.stats().then(setStats),
     ]).finally(() => setLoading(false));
   }, []);
+
+  // 登录用户：拉取「我的学习进度」
+  useEffect(() => {
+    if (!user) {
+      setMyRecent([]);
+      setDoneCount(0);
+      return;
+    }
+    let alive = true;
+    (async () => {
+      const [count, recent, lastId] = await Promise.all([
+        getDoneCount(user.id),
+        getRecent(user.id, 4),
+        Promise.resolve(getLastRead(user.id)),
+      ]);
+      if (!alive) return;
+      setDoneCount(count);
+      // 只保留「能在本站内容里找到」的文章，避免进度表里残留的脏 id
+      // 生成死链（点进去会显示「未找到该文章」）。
+      const resolved = [];
+      for (const r of recent) {
+        try {
+          const a = await content.article(r.article_id);
+          if (a) {
+            resolved.push({
+              id: r.article_id,
+              title: a.title,
+              to: `/article/${r.article_id}`,
+            });
+          }
+        } catch {
+          /* 跳过找不到的文章 */
+        }
+      }
+      if (alive) setMyRecent(resolved);
+      // 「继续学习 / 上次读到」
+      if (lastId) {
+        try {
+          const a = await content.article(lastId);
+          if (alive && a) setLastRead({ id: lastId, title: a.title });
+        } catch {
+          /* ignore */
+        }
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [user]);
 
   const submit = (e) => {
     e.preventDefault();
@@ -115,6 +170,65 @@ export default function Home() {
           })}
         </div>
       </section>
+
+      {/* 我的学习进度（仅登录后显示） */}
+      {isSupabaseConfigured && user && (
+        <section className="max-w-6xl mx-auto px-4 pb-4">
+          <div className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl p-5 shadow-soft">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div className="flex items-center gap-3">
+                <span className="w-11 h-11 rounded-xl bg-white/20 grid place-items-center">
+                  <GraduationCap size={24} />
+                </span>
+                <div>
+                  <div className="font-bold text-lg">我的学习进度</div>
+                  <div className="text-white/85 text-sm">
+                    已学 <span className="font-bold">{doneCount}</span> 篇 · 继续加油！
+                  </div>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <Link
+                  to="/plan"
+                  className="text-sm font-semibold bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition"
+                >
+                  学习计划
+                </Link>
+                <Link
+                  to="/dashboard"
+                  className="text-sm font-semibold bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition"
+                >
+                  仪表盘
+                </Link>
+              </div>
+            </div>
+
+            {lastRead && (
+              <Link
+                to={`/article/${lastRead.id}`}
+                className="mt-4 inline-flex items-center gap-2 bg-white text-emerald-700 hover:bg-emerald-50 px-4 py-2.5 rounded-lg text-sm font-semibold transition"
+              >
+                <ArrowRight size={15} /> 继续学习：{lastRead.title}
+              </Link>
+            )}
+
+            {myRecent.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {myRecent.map((r) => (
+                  <Link
+                    key={r.id}
+                    to={r.to}
+                    className="inline-flex items-center gap-1 bg-white/15 hover:bg-white/25 px-3 py-1.5 rounded-lg text-sm transition truncate max-w-xs"
+                  >
+                    <ArrowRight size={13} className="shrink-0" />
+                    <span className="truncate">{r.title}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* 知识地图入口 */}
       <section className="max-w-6xl mx-auto px-4 pb-4">

@@ -5,6 +5,7 @@ import { content } from '../content.js';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { SearchResultSkeleton } from '../components/Skeleton.jsx';
+import { normalizeLevel, normalizeTier, LEVEL_LABEL, TIER_LABEL } from '../lib/study.js';
 
 function highlightSnippet(text, keywords) {
   if (!text || !keywords.length) return text;
@@ -29,6 +30,8 @@ export default function Search() {
   const q = params.get('q') || '';
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [tier, setTier] = useState('all');
+  const [level, setLevel] = useState('all');
 
   const keywords = useMemo(() => {
     if (!q) return [];
@@ -52,6 +55,31 @@ export default function Search() {
       .finally(() => setLoading(false));
   }, [q]);
 
+  // 全站筛选：按重要度(层级) × 难度（仅文章，面试题不参与）
+  const filtered = useMemo(() => {
+    if (!results) return null;
+    return results.filter((item) => {
+      if (item._type !== 'article') return true;
+      const okTier = tier === 'all' || normalizeTier(item.tier) === normalizeTier(tier);
+      const okLevel = level === 'all' || normalizeLevel(item.level) === normalizeLevel(level);
+      return okTier && okLevel;
+    });
+  }, [results, tier, level]);
+
+  const TIER_OPTS = [
+    { id: 'all', label: '全部层级' },
+    { id: 'basic', label: TIER_LABEL.basic },
+    { id: 'core', label: TIER_LABEL.core },
+    { id: 'key', label: TIER_LABEL.key },
+    { id: 'extra', label: TIER_LABEL.extra },
+  ];
+  const LEVEL_OPTS = [
+    { id: 'all', label: '全部难度' },
+    { id: 'easy', label: '简单/入门' },
+    { id: 'medium', label: '中等' },
+    { id: 'hard', label: '困难/进阶' },
+  ];
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
       <Breadcrumb items={[
@@ -64,15 +92,49 @@ export default function Search() {
 
       {loading && <SearchResultSkeleton />}
 
-      {!loading && q !== '' && results !== null && (
+      {!loading && q !== '' && filtered !== null && (
         <p className="text-text-secondary mt-1">
-          共找到 <b className="text-text-primary">{results.length}</b> 条结果
+          共找到 <b className="text-text-primary">{filtered.length}</b> 条结果
         </p>
       )}
 
-      {!loading && results && results.length > 0 && (
+      {/* 全站筛选：重要度 × 难度 */}
+      {!loading && q !== '' && filtered !== null && filtered.length > 0 && (
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3">
+          <div className="flex flex-wrap gap-2">
+            <span className="text-xs text-text-muted self-center mr-1">层级</span>
+            {TIER_OPTS.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setTier(t.id)}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+                  tier === t.id ? 'bg-brand-500 text-white' : 'btn-ghost border border-border'
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <span className="text-xs text-text-muted self-center mr-1">难度</span>
+            {LEVEL_OPTS.map((l) => (
+              <button
+                key={l.id}
+                onClick={() => setLevel(l.id)}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+                  level === l.id ? 'bg-brand-500 text-white' : 'btn-ghost border border-border'
+                }`}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {!loading && filtered && filtered.length > 0 && (
         <div className="mt-6 space-y-4">
-          {results.map((item, i) => (
+          {filtered.map((item, i) => (
             <Reveal key={item._type + '-' + item.id} delay={i * 50}>
               <Link
                 to={
@@ -146,7 +208,7 @@ export default function Search() {
         </div>
       )}
 
-      {!loading && q !== '' && results && results.length === 0 && (
+      {!loading && q !== '' && filtered && filtered.length === 0 && (
         <div className="text-center py-16">
           <SearchIcon size={48} className="mx-auto mb-3 text-text-muted" />
           <p className="text-text-secondary">

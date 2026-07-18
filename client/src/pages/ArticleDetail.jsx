@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Clock, Lightbulb } from 'lucide-react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, Clock, Lightbulb, CheckCircle2, Circle, Play } from 'lucide-react';
 import { content } from '../content.js';
 import LevelBadge from '../components/LevelBadge.jsx';
 import Markdown from '../components/Markdown.jsx';
@@ -8,7 +8,26 @@ import Timeline from '../components/Timeline.jsx';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import ReadingProgress from '../components/ReadingProgress.jsx';
 import ShareButton from '../components/ShareButton.jsx';
+import Checklist from '../components/Checklist.jsx';
+import NotesPanel from '../components/NotesPanel.jsx';
+import Flashcards from '../components/Flashcards.jsx';
+import CodeRunner from '../components/CodeRunner.jsx';
 import { ArticleDetailSkeleton } from '../components/Skeleton.jsx';
+import { useAuth } from '../context/AuthContext.jsx';
+import { getDone, setDone, setLastRead, logStudy } from '../lib/progress.js';
+import { extractFlashcards } from '../lib/study.js';
+
+// 从正文抽取可在线运行的代码块（Python / JS / HTML）
+function extractRunnables(body = '') {
+  const re = /```(\w+)\n([\s\S]*?)```/g;
+  const out = [];
+  let m;
+  while ((m = re.exec(body)) !== null) {
+    out.push({ lang: m[1], code: m[2].replace(/\n$/, '') });
+  }
+  const ok = ['python', 'py', 'javascript', 'js', 'html'];
+  return out.filter((b) => ok.includes(b.lang.toLowerCase()));
+}
 
 export default function ArticleDetail() {
   const { '*': id } = useParams();
@@ -19,6 +38,10 @@ export default function ArticleDetail() {
   const [activeId, setActiveId] = useState('');
   const [catName, setCatName] = useState('');
   const [moduleName, setModuleName] = useState('');
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [done, setDoneState] = useState(false);
+  const [busyDone, setBusyDone] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -56,6 +79,42 @@ export default function ArticleDetail() {
     });
   }, [article]);
 
+  // 已登录时拉取本篇「已学」状态
+  useEffect(() => {
+    if (!user || !article) {
+      setDoneState(false);
+      return;
+    }
+    getDone(user.id, article.id).then(setDoneState);
+  }, [user, article]);
+
+  // 记录「上次读到」，用于首页「继续学习 / 上次读到」
+  useEffect(() => {
+    if (article) setLastRead(user?.id, article.id);
+  }, [article, user]);
+
+  // 切换「标记已学」
+  const toggleDone = async () => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    const next = !done;
+    setDoneState(next);
+    setBusyDone(true);
+    try {
+      await setDone(user.id, article.id, next);
+      if (next) {
+        logStudy(user?.id, {
+          articleId: article.id,
+          minutes: Number(article.readMinutes) || 10,
+        });
+      }
+    } finally {
+      setBusyDone(false);
+    }
+  };
+
   // 从 article.content（HTML 字符串）提取 h2/h3 标题
   const headings = useMemo(() => {
     if (!article?.content) return [];
@@ -79,6 +138,16 @@ export default function ArticleDetail() {
 
   const isTimeline = article?.timeline === true;
   const showToc = headings.length > 0 && !isTimeline;
+
+  // 闪卡（来自清单/概念/小节）+ 可在线运行的代码块
+  const flashcards = useMemo(
+    () => (article ? extractFlashcards(article) : []),
+    [article]
+  );
+  const runnables = useMemo(
+    () => extractRunnables(article?.body || ''),
+    [article]
+  );
 
   // 构造面包屑：前端模块文章补「模块」层级，其余显示分类名。
   // 注意：本组件所有 hooks（含下方的 useRef / useEffect）必须无条件执行，
@@ -159,7 +228,21 @@ export default function ArticleDetail() {
           <h1 className="text-3xl font-extrabold text-text-primary leading-tight flex-1">
             {article.title}
           </h1>
-          <ShareButton />
+          <div className="flex flex-col items-end gap-2 shrink-0">
+            <ShareButton />
+            <button
+              onClick={toggleDone}
+              disabled={busyDone}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-semibold transition cursor-pointer border ${
+                done
+                  ? 'bg-green-50 text-green-700 border-green-200 hover:bg-green-100'
+                  : 'bg-surface text-text-secondary border-border hover:bg-brand-50 hover:text-brand-600'
+              }`}
+            >
+              {done ? <CheckCircle2 size={16} /> : <Circle size={16} />}
+              {done ? '已学' : '标记已学'}
+            </button>
+          </div>
         </div>
         <p className="text-text-secondary mt-2">{article.summary}</p>
         <div className="flex flex-wrap gap-1.5 my-4">
@@ -173,6 +256,8 @@ export default function ArticleDetail() {
           ))}
         </div>
         <hr className="border-border my-5" />
+        {/* 学习目标清单：把正文 - [ ] 变成可勾选、本地持久化 */}
+        <Checklist body={article.body} articleId={article.id} />
         {isTimeline ? (
           <Timeline markdown={article.body} />
         ) : (
@@ -187,6 +272,25 @@ export default function ArticleDetail() {
             </Link>{' '}
             板块检验一下掌握程度吧。
           </span>
+        </div>
+
+        {/* 在线运行示例：把正文里的 Python/JS/HTML 代码块变成可运行 playground */}
+        {runnables.length > 0 && (
+          <section className="mt-8">
+            <h2 className="text-lg font-bold text-text-primary mb-1 flex items-center gap-2">
+              <Play size={18} className="text-brand-500" /> 在线运行
+            </h2>
+            <p className="text-sm text-text-secondary mb-3">边学边跑，记忆更牢。</p>
+            {runnables.map((r, i) => (
+              <CodeRunner key={i} code={r.code} lang={r.lang} />
+            ))}
+          </section>
+        )}
+
+        {/* 笔记 + 闪卡：主动过手，记忆留存率更高 */}
+        <div className="mt-8 grid md:grid-cols-2 gap-5 items-start">
+          <NotesPanel articleId={article.id} userId={user?.id} />
+          <Flashcards cards={flashcards} />
         </div>
 
         {/* 上/下篇导航 */}

@@ -8,6 +8,9 @@
     <!-- 主题色（亮/暗随系统切换） -->
     <meta name="theme-color" content="#F7F8FA" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)" />
+    <!-- PWA：可安装 + 离线 -->
+    <link rel="manifest" href="/learn-hub/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/learn-hub/icon.svg" />
     <!-- 防暗色模式闪烁：在 React 挂载前应用主题 class -->
     <script>
       (function () {
@@ -25,6 +28,22 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
     />
+
+    <!-- Umami 访问统计：构建时会把 %VITE_UMAMI_ID% 替换成 .env 里的值；未配置则整段不生效 -->
+    <script>
+      (function () {
+        var id = '%VITE_UMAMI_ID%';
+        // 未配置时 Vite 不会替换占位符，id 仍含 %，此时不注入脚本
+        if (id && id.indexOf('%') === -1) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.defer = true;
+          s.src = 'https://cloud.umami.is/script.js';
+          s.setAttribute('data-website-id', id);
+          document.head.appendChild(s);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
